@@ -6,7 +6,7 @@
 /*   By: maks <maksim.gayduk@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/27 16:12:55 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/22 20:48:06 by maks             ###   ########.fr       */
+/*   Updated: 2018/05/22 22:14:19 by maks             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,6 @@ int	main(int argc, char **argv)
 	init_players(&data);
 	init_processes(&data);
 	init_arena(&data);
-	// play_corewar(&data);
+	play_corewar(&data);
 	return (0);
 }

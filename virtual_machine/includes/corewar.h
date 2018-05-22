@@ -6,7 +6,7 @@
 /*   By: maks <maksim.gayduk@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/26 17:22:40 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/22 20:51:30 by maks             ###   ########.fr       */
+/*   Updated: 2018/05/22 22:13:35 by maks             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,5 +164,10 @@ t_byte			*read_arena_chunk(t_data *data, t_byte *dest, int start, size_t n);
 void			write_arena_chunk(t_data *data, t_byte *src, int start, size_t n);
 void			*reverse_array(void *arr, size_t arr_size);
 void			dump_arena(t_data *data);
+
+/*
+**	number_funcs.c
+*/
+int				get_number(void *arr);
 
 #endif

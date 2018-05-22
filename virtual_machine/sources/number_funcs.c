@@ -1,24 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd.c                                        :+:      :+:    :+:   */
+/*   number_funcs.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maks <maksim.gayduk@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/10 17:07:46 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/22 21:57:16 by maks             ###   ########.fr       */
+/*   Created: 2018/05/22 21:40:48 by maks              #+#    #+#             */
+/*   Updated: 2018/05/22 21:53:56 by maks             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "corewar.h"
 
-void	ft_lstadd(t_list **alst, t_list *new)
+/*
+**	Converts array of bytes to the little-endian integer
+**	and returns it;
+*/
+
+int get_number(void *arr)
 {
-	if (alst && !*alst && new)
-		*alst = new;
-	else if (alst && new)
-	{
-		new->next = *alst;
-		*alst = new;
-	}
+	int res;
+	unsigned char *s;
+
+	res = 0;
+	s = (unsigned char *)arr;
+	res += s[3];
+	res += s[2] << 8;
+	res += s[1] << 16;
+	res += s[0] << 24;
+
+	return (res);
 }

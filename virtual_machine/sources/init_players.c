@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_players.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgayduk <mgayduk@student.42.fr>            +#+  +:+       +#+        */
+/*   By: maks <maksim.gayduk@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/27 16:30:59 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/21 20:21:17 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/05/22 22:09:44 by maks             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,13 @@ static void		read_champ(t_player *player, char *file_path)
 		exit(ft_printf("Can't read source file %s\n", file_path));
 	player->file_size += read(fd, player->magic, MAGIC_LENGTH);
 	player->file_size += read(fd, player->name, PROG_NAME_LENGTH);
-	player->file_size += lseek(fd, PADDING, 1);
+	lseek(fd, PADDING, 1);
 	player->file_size += read(fd, player->size, SIZE_LENGTH);
 	player->file_size += read(fd, player->comment, COMMENT_LENGTH);
-	player->file_size += lseek(fd, PADDING, 1);
-	reverse_array(player->size, SIZE_LENGTH);
-	player->file_size += GET_NUMBER(player->size);
-	player->exec_code = (char *)malloc(GET_NUMBER(player->size));
+	lseek(fd, PADDING, 1);
+	player->file_size += PADDING * 2;
+	player->file_size += get_number(player->size);
+	player->exec_code = (char *)malloc(get_number(player->size));
 	if (!player->exec_code)
 		error_msg(MEM_ERROR);
 	read(fd, player->exec_code, GET_NUMBER(player->size));
