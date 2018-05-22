@@ -6,7 +6,7 @@
 #    By: maks <maksim.gayduk@gmail.com>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/27 16:20:32 by mgayduk           #+#    #+#              #
-#    Updated: 2018/05/22 22:53:13 by maks             ###   ########.fr        #
+#    Updated: 2018/05/22 23:57:42 by maks             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,8 +31,9 @@ SRC :=	main.c					\
 		init_processes.c		\
 		init_arena.c			\
 		number_funcs.c			\
+		arena_funcs.c 			\
 		play_corewar.c 			\
-		# parse_arguments.c 		\
+		parse_arguments.c 		\
 		# kill_cursors.c
 		
 

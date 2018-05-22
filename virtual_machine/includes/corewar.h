@@ -6,7 +6,7 @@
 /*   By: maks <maksim.gayduk@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/26 17:22:40 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/22 23:17:12 by maks             ###   ########.fr       */
+/*   Updated: 2018/05/23 00:22:06 by maks             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,28 +37,30 @@ typedef char	t_byte;
 */
 
 //# define GET_PC(x)			data->cursors[x].pc
-# define GET_PC(x)			((t_process *)x->content)->pc
+# define GET_PROCESS(x)		((t_process *)x->content)
+# define GET_PC(x)			GET_PROCESS(x)->pc
 # define GET_PC_VAL(x)		data->arena[GET_PC(x)]
-# define GET_CARRY(x)		data->cursors[x].carry
+
+# define GET_CARRY(x)		GET_PROCESS(x)->carry
 # define SET_CARRY(x, v)	GET_CARRY(x) = GET_REGISTER_VALUE(x, v) ? 0 : 1
-# define GET_PADDING(x)		data->cursors[x].padding
+# define GET_PADDING(x)		GET_PROCESS(x)->padding
 
 
 // Operation block
-# define GET_OPERATION(x)	((t_process *)x->content)->oper
+# define GET_OPERATION(x)	GET_PROCESS(x)->oper
 # define GET_DELAY(x)		GET_OPERATION(x).delay
 # define GET_OPCODE(x)		GET_OPERATION(x).op_code
 
 
-
-# define GET_ARGUMENT(x, v)	data->cursors[x].oper.args[v]
-# define GET_VALUE(x, v)	data->cursors[x].oper.args[v].val
-# define GET_VALUE_IDX(x, v)	data->cursors[x].oper.args[v].val_idx
-# define GET_REG_NUM(x, v)	data->cursors[x].oper.args[v].reg
-# define GET_OFFSET(x, v)	data->cursors[x].oper.args[v].offset
-# define GET_SIZE(x, v)		data->cursors[x].oper.args[v].size
-# define GET_TYPE(x, v)		data->cursors[x].oper.args[v].type
-# define GET_USED(x, v)		data->cursors[x].oper.args[v].used
+// Arguments block
+# define GET_ARGUMENT(x, v)		x->oper.args[v]
+# define GET_VALUE(x, v)		GET_ARGUMENT(x, v).val
+# define GET_VALUE_IDX(x, v)	GET_ARGUMENT(x, v).val_idx
+# define GET_REG_NUM(x, v)		GET_ARGUMENT(x, v).reg_num
+# define GET_OFFSET(x, v)		GET_ARGUMENT(x, v).offset
+# define GET_SIZE(x, v)			GET_ARGUMENT(x, v).size
+# define GET_TYPE(x, v)			GET_ARGUMENT(x, v).type
+# define GET_USED(x, v)			GET_ARGUMENT(x, v).used
 
 
 
@@ -75,23 +77,6 @@ typedef char	t_byte;
 
 # define MEM_ERROR "memory allocation failed" 
 
-typedef struct	s_arg
-{
-	t_byte		val[REG_SIZE];
-	t_byte		val_idx[REG_SIZE];
-	t_byte		type;
-	short		reg;
-	int			offset;
-	int			size;
-	t_byte		used;
-}				t_arg;
-
-typedef	struct	s_oper
-{
-	int			op_code;
-	size_t		delay;
-	t_arg		args[3];
-}				t_oper;
 
 /*
 **	The structure that represents a player.
@@ -111,6 +96,24 @@ typedef struct	s_player
 	size_t		live;
 	size_t		last_live;
 }				t_player;
+
+typedef struct	s_arg
+{
+	t_byte		val[REG_SIZE];
+	t_byte		val_idx[REG_SIZE];
+	t_byte		type;
+	short		reg_num;
+	int			offset;
+	int			size;
+	t_byte		used;
+}				t_arg;
+
+typedef	struct	s_oper
+{
+	int			op_code;
+	size_t		delay;
+	t_arg		args[3];
+}				t_oper;
 
 typedef struct	s_process
 {
@@ -158,17 +161,21 @@ void			parse_input_params(t_data *data, char **argv);
 void			init_players(t_data *data);
 void			init_processes(t_data *data);
 void			init_arena(t_data *data);
-void			parse_arguments(t_data *data, size_t c_num);
+void			parse_arguments(t_data *data, t_process *process);
 
 void    		play_corewar(t_data *data);
 void			kill_cursors(t_data *data);
 
 /*
+** 	arena_funcs.c
+*/
+t_byte			*read_arena_chunk(t_data *data, t_byte *dest, int start, size_t n);
+void			write_arena_chunk(t_data *data, t_byte *src, int start, size_t n);
+
+/*
 ** helpers.c
 */
 void			error_msg(char *msg);
-t_byte			*read_arena_chunk(t_data *data, t_byte *dest, int start, size_t n);
-void			write_arena_chunk(t_data *data, t_byte *src, int start, size_t n);
 void			*reverse_array(void *arr, size_t arr_size);
 void			dump_arena(t_data *data);
 

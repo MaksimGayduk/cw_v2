@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   helpers.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
+/*   By: maks <maksim.gayduk@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/28 15:52:05 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/21 12:30:59 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/05/22 23:57:04 by maks             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,55 +18,6 @@ void	error_msg(char *msg)
 	exit(1);
 }
 
-/*
-**	Writes some data to arena
-**	start - index of arena, where writing should begin.
-**	n - size of data, that should be written.
-*/
-
-void	write_arena_chunk(t_data *data, t_byte *src, int start, size_t n)
-{
-	size_t i;
-	int index;
-
-	i = 0;
-
-	while (i < n)
-	{
-		index = start % MEM_SIZE;
-		if (index < 0)
-			index += MEM_SIZE;
-		data->arena[index] = src[i];
-		start++;
-		i++;
-	}
-}
-
-/*
-**	Reads some peace of arena memory
-**	Implements the idea of cycled memory
-**	For exmaple: arena[-2] => arena[4094]
-**	arena[4098] => arena[2]
-*/
-
-t_byte	*read_arena_chunk(t_data *data, t_byte *dest, int start, size_t n)
-{
-	size_t i;
-	int index;
-
-	i = 0;
-
-	while (i < n)
-	{
-		index = start % MEM_SIZE;
-		if (index < 0)
-			index += MEM_SIZE;
-		dest[i] = data->arena[index];
-		start++;
-		i++;
-	}
-	return (dest);
-}
 
 
 /*

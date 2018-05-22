@@ -6,7 +6,7 @@
 /*   By: maks <maksim.gayduk@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/05 11:43:30 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/22 23:13:19 by maks             ###   ########.fr       */
+/*   Updated: 2018/05/23 00:29:12 by maks             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,24 +18,19 @@ inline static void		compute_instructions(t_data *data)
 	t_list *track;
 	t_process *test;
 
-	int pc;
-
 	track = data->processes;
 	while (track)
 	{
 		test = track->content;
-		if (GET_OPCODE(i) && GET_DELAY(track) == 0)
+		if (GET_OPCODE(track) && GET_DELAY(track) == 0)
 		{
-			parse_arguments(data, i);
-			// op_tab[GET_OPCODE(i)].action(data, i);					
-			// if (GET_OPCODE(i) != 9 || !GET_CARRY(i))
-			// 	GET_PC(i) += GET_PADDING(i);
-			// ft_bzero(&GET_OPERATION(i), sizeof(t_oper));
+			parse_arguments(data, track->content);
+			//op_tab[GET_OPCODE(track)].action(data, i);					
+			if (GET_OPCODE(track) != 9 || !GET_CARRY(track))
+				GET_PC(track) += GET_PADDING(track);
+			//normilize pc
+			ft_bzero(&GET_OPERATION(track), sizeof(t_oper));
 		}
-		
-		pc = GET_PC(track);
-		pc = data->arena[GET_PC(track)];
-
 		if (!GET_OPCODE(track) && IS_OPCODE(GET_PC_VAL(track)))
 		{
 			GET_OPCODE(track) = GET_PC_VAL(track);
@@ -111,12 +106,12 @@ void	play_corewar(t_data *data)
 		// if (DUMPED && data->cycle == DUMP_VALUE)
 		// 	dump_arena(data);
 		compute_instructions(data);
-		// if (data->counter == data->cycle_to_die)
-		// {
-		// 	if (!data->total_lives)
-		// 		announce_the_winner(data);
-		// 	handle_cycle(data);
-		// }
+		if (data->counter == data->cycle_to_die)
+		{
+			if (!data->total_lives)
+				//;announce_the_winner(data);
+			handle_cycle(data);
+		}
 		ft_printf("%u\n", data->cycle);
 		data->cycle++;
 		data->counter++;
