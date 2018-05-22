@@ -1,0 +1,17 @@
+.*
+!.gitignore
+
+*~
+#*#
+
+*.o
+
+corewar
+asm
+a.out
+a.out.dSYM
+
+COREWAR.xlsx
+libft.a
+vm_champs
+champions
