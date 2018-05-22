@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgayduk <mgayduk@student.42.fr>            +#+  +:+       +#+        */
+/*   By: maks <maksim.gayduk@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/27 16:12:55 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/22 17:26:38 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/05/22 20:48:06 by maks             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	main(int argc, char **argv)
 	ft_bzero(&data, sizeof(t_data));
 	parse_input_params(&data, ++argv);
 	init_players(&data);
-	init_cursors(&data);
+	init_processes(&data);
 	init_arena(&data);
 	// play_corewar(&data);
 	return (0);

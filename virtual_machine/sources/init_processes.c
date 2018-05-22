@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_cursors.c                                     :+:      :+:    :+:   */
+/*   init_processes.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgayduk <mgayduk@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -13,30 +13,30 @@
 #include "corewar.h"
 
 /*
-** Allocates mamory for cursors.
-** Computes inital pc for cursors.
+** Allocates mamory for processes.
+** Computes inital pc for processes.
 ** Sets player`s signature to the first register.
 */
 
-void	init_cursors(t_data *data)
+void	init_processes(t_data *data)
 {
 	size_t		i;
-	t_cursor	cursor;
+	t_process	process;
 	t_list		*new_node;
 
 	data->curs_qty = data->players_qty;
 	i = 0;
 	while (i < data->curs_qty)
 	{
-		ft_bzero(&cursor, sizeof(t_cursor));
-		cursor.pc = MEM_SIZE / data->players_qty * i;
+		ft_bzero(&process, sizeof(t_process));
+		process.pc = MEM_SIZE / data->players_qty * i;
 		reverse_array(&GET_SIGNATURE(i), REG_SIZE);
-		ft_memcpy(&cursor.reg[1], &GET_SIGNATURE(i), REG_SIZE);
-		new_node = ft_lstnew(&cursor, sizeof(t_cursor));
-		if (!data->cursors)
-			data->cursors = new_node;
+		ft_memcpy(&process.reg[1], &GET_SIGNATURE(i), REG_SIZE);
+		new_node = ft_lstnew(&process, sizeof(t_process));
+		if (!data->processes)
+			data->processes = new_node;
 		else
-			ft_lstadd(&data->cursors, new_node);
+			ft_lstadd(&data->processes, new_node);
 		i++;
 	}
 }

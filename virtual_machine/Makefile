@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mgayduk <mgayduk@student.42.fr>            +#+  +:+       +#+         #
+#    By: maks <maksim.gayduk@gmail.com>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/27 16:20:32 by mgayduk           #+#    #+#              #
-#    Updated: 2018/05/22 17:32:10 by mgayduk          ###   ########.fr        #
+#    Updated: 2018/05/22 20:48:45 by maks             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ SRC :=	main.c					\
 		helpers.c				\
 		parse_input_params.c	\
 		init_players.c			\
-		init_cursors.c			\
+		init_processes.c			\
 		init_arena.c			\
 		# play_corewar.c 			\
 		# parse_arguments.c 		\

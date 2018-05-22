@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   corewar.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgayduk <mgayduk@student.42.fr>            +#+  +:+       +#+        */
+/*   By: maks <maksim.gayduk@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/26 17:22:40 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/22 17:23:03 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/05/22 20:51:30 by maks             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ typedef struct	s_player
 	size_t		last_live;
 }				t_player;
 
-typedef struct	s_cursor
+typedef struct	s_process
 {
 	size_t		pc;
 	size_t		padding;
@@ -114,7 +114,7 @@ typedef struct	s_cursor
 	t_byte		carry;
 	t_oper		oper;
 	t_byte		reg[REG_NUMBER + 1][REG_SIZE];
-}				t_cursor;
+}				t_process;
 
 typedef	struct	s_info
 {
@@ -136,7 +136,7 @@ typedef struct	s_data
 	size_t		players_qty;
 	t_player	players[MAX_PLAYERS];
 	size_t		curs_qty;
-	t_list		*cursors;
+	t_list		*processes;
 	int			cycle;
 	int			counter;
 	size_t		live_checks;
@@ -149,7 +149,7 @@ typedef struct	s_data
 
 void			parse_input_params(t_data *data, char **argv);
 void			init_players(t_data *data);
-void			init_cursors(t_data *data);
+void			init_processes(t_data *data);
 void			init_arena(t_data *data);
 void			parse_arguments(t_data *data, size_t c_num);
 
