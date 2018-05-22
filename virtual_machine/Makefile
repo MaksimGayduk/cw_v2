@@ -6,7 +6,7 @@
 #    By: maks <maksim.gayduk@gmail.com>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/27 16:20:32 by mgayduk           #+#    #+#              #
-#    Updated: 2018/05/22 21:43:28 by maks             ###   ########.fr        #
+#    Updated: 2018/05/22 22:53:13 by maks             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = corewar
 
 # Compiler
 CC		= gcc
-FLAGS	= -Wall -Wextra -Werror -g
+FLAGS	= -g -Wall -Wextra #-Werror 
 
 # Directories
 SRC_DIR := ./sources
@@ -30,29 +30,29 @@ SRC :=	main.c					\
 		init_players.c			\
 		init_processes.c		\
 		init_arena.c			\
-		number_funcs.c
-		# play_corewar.c 			\
+		number_funcs.c			\
+		play_corewar.c 			\
 		# parse_arguments.c 		\
 		# kill_cursors.c
 		
 
-# OPER := oper_tab.c		\
-#  		oper_01_live.c	\
-# 		oper_02_ld.c	\
-# 		oper_03_st.c	\
-# 		oper_04_add.c	\
-# 		oper_05_sub.c	\
-# 		oper_06_and.c	\
-# 		oper_07_or.c	\
-# 		oper_08_xor.c	\
-# 		oper_09_zjmp.c	\
-# 		oper_10_ldi.c	\
-# 		oper_11_sti.c	\
-# 		oper_12_fork.c	\
-# 		oper_13_lld.c	\
-# 		oper_14_lldi.c	\
-# 		oper_15_lfork.c \
-# 		oper_16_aff.c 
+OPER := oper_tab.c		\
+ 		# oper_01_live.c	\
+		# oper_02_ld.c	\
+		# oper_03_st.c	\
+		# oper_04_add.c	\
+		# oper_05_sub.c	\
+		# oper_06_and.c	\
+		# oper_07_or.c	\
+		# oper_08_xor.c	\
+		# oper_09_zjmp.c	\
+		# oper_10_ldi.c	\
+		# oper_11_sti.c	\
+		# oper_12_fork.c	\
+		# oper_13_lld.c	\
+		# oper_14_lldi.c	\
+		# oper_15_lfork.c \
+		# oper_16_aff.c 
 
 SRC := $(SRC) $(OPER)
 

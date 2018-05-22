@@ -6,7 +6,7 @@
 /*   By: maks <maksim.gayduk@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/26 17:22:40 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/22 22:13:35 by maks             ###   ########.fr       */
+/*   Updated: 2018/05/22 23:17:12 by maks             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,20 @@ typedef char	t_byte;
 **	input argument x - number of player(cursor)
 */
 
-# define GET_PC(x)			data->cursors[x].pc
+//# define GET_PC(x)			data->cursors[x].pc
+# define GET_PC(x)			((t_process *)x->content)->pc
 # define GET_PC_VAL(x)		data->arena[GET_PC(x)]
-# define SET_PC(x, v)		data->cursors[x].pc += v
-# define GET_OPERATION(x)	data->cursors[x].oper
-# define GET_OPCODE(x)		data->cursors[x].oper.op_code
+# define GET_CARRY(x)		data->cursors[x].carry
+# define SET_CARRY(x, v)	GET_CARRY(x) = GET_REGISTER_VALUE(x, v) ? 0 : 1
+# define GET_PADDING(x)		data->cursors[x].padding
+
+
+// Operation block
+# define GET_OPERATION(x)	((t_process *)x->content)->oper
+# define GET_DELAY(x)		GET_OPERATION(x).delay
+# define GET_OPCODE(x)		GET_OPERATION(x).op_code
+
+
 
 # define GET_ARGUMENT(x, v)	data->cursors[x].oper.args[v]
 # define GET_VALUE(x, v)	data->cursors[x].oper.args[v].val
@@ -51,9 +60,7 @@ typedef char	t_byte;
 # define GET_TYPE(x, v)		data->cursors[x].oper.args[v].type
 # define GET_USED(x, v)		data->cursors[x].oper.args[v].used
 
-# define GET_CARRY(x)		data->cursors[x].carry
-# define SET_CARRY(x, v)	GET_CARRY(x) = GET_REGISTER_VALUE(x, v) ? 0 : 1
-# define GET_PADDING(x)		data->cursors[x].padding
+
 
 # define GET_REGISTER(x, v)	data->cursors[x].reg[v]
 # define GET_REGISTER_VALUE(x, v)	*((int *)data->cursors[x].reg[v])

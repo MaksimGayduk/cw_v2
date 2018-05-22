@@ -6,7 +6,7 @@
 /*   By: maks <maksim.gayduk@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/27 16:30:59 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/22 22:09:44 by maks             ###   ########.fr       */
+/*   Updated: 2018/05/22 22:48:50 by maks             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 static void		read_champ(t_player *player, char *file_path)
 {
 	int			fd;
+	int			size;
 
 	fd = open(file_path, O_RDONLY);
 	if (fd == -1)
@@ -32,11 +33,12 @@ static void		read_champ(t_player *player, char *file_path)
 	player->file_size += read(fd, player->comment, COMMENT_LENGTH);
 	lseek(fd, PADDING, 1);
 	player->file_size += PADDING * 2;
-	player->file_size += get_number(player->size);
-	player->exec_code = (char *)malloc(get_number(player->size));
+	size = get_number(player->size);
+	player->file_size += size;
+	player->exec_code = (char *)malloc(size);
 	if (!player->exec_code)
 		error_msg(MEM_ERROR);
-	read(fd, player->exec_code, GET_NUMBER(player->size));
+	read(fd, player->exec_code, size);
 	close(fd);
 }
 
