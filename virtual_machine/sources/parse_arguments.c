@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/07 11:48:33 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/23 12:29:36 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/05/23 13:00:16 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ void	read_register(t_data *data, int *padding, t_process *process)
 	SIZE(process, i) = REG_SIZE;
 	TYPE(process, i) = REG_CODE;
 	USED(process, i) = 1;
-	if (INCORRECT_REG_NUM(reg_num))
-		return ;
-	ft_memcpy(VALUE(process, i), process->registers[reg_num], REG_SIZE);
+	// if (INCORRECT_REG_NUM(reg_num))
+	// 	return ;
+	// ft_memcpy(VALUE(process, i), process->registers[reg_num], REG_SIZE);
 
 }
 

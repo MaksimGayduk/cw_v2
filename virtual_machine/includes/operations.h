@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/05 11:57:21 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/23 11:26:17 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/05/23 13:01:25 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,21 +32,21 @@ extern			const t_op	op_tab[18];
 
 void			live(t_data *data, t_process *process);
 void			ld(t_data *data, t_process *process);
-void			st(t_data *data, size_t c_num);
-void			add(t_data *data, size_t c_num);
-void			sub(t_data *data, size_t c_num);
-void			and(t_data *data, size_t c_num);
-void			or(t_data *data, size_t c_num);
-void			xor(t_data *data, size_t c_num);
-void			zjmp(t_data *data, size_t c_num);
-void			ldi(t_data *data, size_t c_num);
-void			sti(t_data *data, size_t c_num);
-void			fork_cor(t_data *data, size_t c_num);
-void			lld(t_data *data, size_t c_num);
-void			lldi(t_data *data, size_t c_num);
-void			lfork_cor(t_data *data, size_t c_num);
-void			aff(t_data *data, size_t c_num);
+void			st(t_data *data, t_process *process);
+void			add(t_data *data, t_process *process);
+void			sub(t_data *data, t_process *process);
+void			and(t_data *data, t_process *process);
+void			or(t_data *data, t_process *process);
+void			xor(t_data *data, t_process *process);
+void			zjmp(t_data *data, t_process *process);
+void			ldi(t_data *data, t_process *process);
+void			sti(t_data *data, t_process *process);
+void			fork_cor(t_data *data, t_process *process);
+void			lld(t_data *data, t_process *process);
+void			lldi(t_data *data, t_process *process);
+void			lfork_cor(t_data *data, t_process *process);
+void			aff(t_data *data, t_process *process);
 
-void			let_new_cursor_play(t_data *data, size_t c_num);
+void			let_new_cursor_play(t_data *data, t_process *process);
 
 #endif

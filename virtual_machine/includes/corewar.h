@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/26 17:22:40 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/23 12:17:27 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/05/23 12:56:43 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ typedef char	t_byte;
 
 
 
-//# define GET_REGISTER(x, v)	data->cursors[x].reg[v]
+//# define REGISTER(x, v)			x->registers[v].reg[v]
 # define REGISTER_VALUE(x, v)	get_number(x->registers[v])
 # define INCORRECT_REG_NUM(x)	x < 1 || x > REG_NUMBER ? 1 : 0
 
