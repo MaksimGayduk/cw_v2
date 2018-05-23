@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   oper_01_live.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgayduk <mgayduk@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/09 09:22:48 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/22 12:53:19 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/05/23 11:20:29 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,33 +18,31 @@
 **	is indeed alive.
 */
 
-int	is_player_num(t_data *data, size_t c_num)
+int	is_player_num(t_data *data, int val)
 {
-	int	i;
-	int	arg;
+	size_t	i;
 
-	arg = GET_REV_NUMBER(GET_VALUE(c_num, 0), REG_SIZE);
 	i = 0;
-	while (i < (int)data->players_qty)
+	while (i < data->players_qty)
 	{
-		if (data->players[i].signature == arg)
+		if (data->players[i].signature == val)
 			return (i);
 		i++;
 	}
 	return (-42);
 }
 
-void	live(t_data *data, size_t c_num)
+void	live(t_data *data, t_process *process)
 {
-	t_cursor	*test;
+	int			val;
 	int			p_num;
 
-	test = &data->cursors[c_num];
-	if ((p_num = is_player_num(data, c_num)) != -42)
+	val = get_number(VALUE(process, 0));
+	if ((p_num = is_player_num(data, val)) != -42)
 	{
 		data->players[p_num].live++;
 		data->players[p_num].last_live = data->cycle;
 	}	
-	data->cursors[c_num].live++;
+	process->live++;
 	data->total_lives++;
 }

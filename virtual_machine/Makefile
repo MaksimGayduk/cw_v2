@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mgayduk <mgayduk@student.42.fr>            +#+  +:+       +#+         #
+#    By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/27 16:20:32 by mgayduk           #+#    #+#              #
-#    Updated: 2018/05/23 10:20:40 by mgayduk          ###   ########.fr        #
+#    Updated: 2018/05/23 11:36:21 by mgayduk          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,8 +38,8 @@ SRC :=	main.c					\
 		
 
 OPER := oper_tab.c		\
- 		# oper_01_live.c	\
-		# oper_02_ld.c	\
+ 		oper_01_live.c	\
+		oper_02_ld.c	\
 		# oper_03_st.c	\
 		# oper_04_add.c	\
 		# oper_05_sub.c	\

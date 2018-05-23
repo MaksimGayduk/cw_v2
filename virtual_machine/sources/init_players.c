@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/27 16:30:59 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/23 10:49:27 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/05/23 10:57:13 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	check_champ(t_player *player, char *file_path)
 		exit(ft_printf("Error: File %s is too small to be a champion\n",
 			file_path));
 			
-	magic = GET_REV_NUMBER(player->magic, MAGIC_LENGTH);	
+	magic = get_number(player->magic);	
 	if (magic != COREWAR_EXEC_MAGIC)
 		exit(ft_printf("Error: File %s has an invalid header\n",
 			file_path));

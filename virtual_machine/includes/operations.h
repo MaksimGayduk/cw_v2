@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   operations.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgayduk <mgayduk@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/05 11:57:21 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/22 11:56:25 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/05/23 11:26:17 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,13 @@ typedef struct	s_op
 	int			delay;
 	int			carry;
 	int			label_size;
-	void		(*action)(t_data *, size_t);
+	void		(*action)(t_data *, t_process *);
 }				t_op;
 
 extern			const t_op	op_tab[18];
 
-void			live(t_data *data, size_t c_num);
-void			ld(t_data *data, size_t c_num);
+void			live(t_data *data, t_process *process);
+void			ld(t_data *data, t_process *process);
 void			st(t_data *data, size_t c_num);
 void			add(t_data *data, size_t c_num);
 void			sub(t_data *data, size_t c_num);

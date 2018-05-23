@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/05 11:43:30 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/23 10:52:06 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/05/23 11:24:37 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ inline static void		compute_instructions(t_data *data)
 		if (OPCODE(track) && DELAY(track) == 0)
 		{
 			parse_arguments(data, track->content);
-			//op_tab[OPCODE(track)].action(data, i);					
+			op_tab[OPCODE(track)].action(data, track->content);					
 			if (OPCODE(track) != 9 || !CARRY(track))
 				PC(track) = normalize_index(PC(track) + PADDING(track));
 			ft_bzero(&GET_OPERATION(track), sizeof(t_oper));

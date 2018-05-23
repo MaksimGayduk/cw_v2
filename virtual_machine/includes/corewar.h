@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/26 17:22:40 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/23 10:54:10 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/05/23 12:17:27 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,22 +26,21 @@ typedef char	t_byte;
 # define BUFF_SIZE 16
 # define DUMP_SIZE 32
 
-# define GET_NUMBER(x) *((int *)x)
-# define GET_REV_NUMBER(x, v) *((int *)reverse_array(x, v))
-# define SET_NUMBER(d, s) ft_memcpy(d, s, REG_SIZE)
+//# define GET_NUMBER(x) *((int *)x)
+//# define GET_REV_NUMBER(x, v) *((int *)reverse_array(x, v))
+//# define SET_NUMBER(d, s) ft_memcpy(d, s, REG_SIZE)
 # define IS_OPCODE(x) (x > 0 && x <= OPER_QTY - 2) ? 1 : 0
 
 /*
 **	Defines for data access simplification
 */
 
-//# define GET_PC(x)			data->cursors[x].pc
+// process block
 # define GET_PROCESS(x)		((t_process *)x->content)
 # define PC(x)				GET_PROCESS(x)->pc
 # define PC_VAL(x)			data->arena[PC(x)]
-
 # define CARRY(x)			GET_PROCESS(x)->carry
-# define SET_CARRY(x, v)	CARRY(x) = GET_REGISTER_VALUE(x, v) ? 0 : 1
+# define SET_CARRY(x, v)	x->carry = !REGISTER_VALUE(process, reg_num)
 # define PADDING(x)			GET_PROCESS(x)->padding
 
 
@@ -53,18 +52,18 @@ typedef char	t_byte;
 
 // Arguments block
 # define GET_ARGUMENT(x, v)		x->oper.args[v]
-# define VALUE(x, v)		GET_ARGUMENT(x, v).val
-# define VALUE_IDX(x, v)	GET_ARGUMENT(x, v).val_idx
-# define REG_NUM(x, v)		GET_ARGUMENT(x, v).reg_num
-# define OFFSET(x, v)		GET_ARGUMENT(x, v).offset
-# define SIZE(x, v)			GET_ARGUMENT(x, v).size
-# define TYPE(x, v)			GET_ARGUMENT(x, v).type
-# define USED(x, v)			GET_ARGUMENT(x, v).used
+# define VALUE(x, v)			GET_ARGUMENT(x, v).val
+# define VALUE_IDX(x, v)		GET_ARGUMENT(x, v).val_idx
+# define REG_NUM(x, v)			GET_ARGUMENT(x, v).reg_num
+# define OFFSET(x, v)			GET_ARGUMENT(x, v).offset
+# define SIZE(x, v)				GET_ARGUMENT(x, v).size
+# define TYPE(x, v)				GET_ARGUMENT(x, v).type
+# define USED(x, v)				GET_ARGUMENT(x, v).used
 
 
 
-# define GET_REGISTER(x, v)	data->cursors[x].reg[v]
-# define GET_REGISTER_VALUE(x, v)	*((int *)data->cursors[x].reg[v])
+//# define GET_REGISTER(x, v)	data->cursors[x].reg[v]
+# define REGISTER_VALUE(x, v)	get_number(x->registers[v])
 # define INCORRECT_REG_NUM(x)	x < 1 || x > REG_NUMBER ? 1 : 0
 
 # define GET_PLAYER_INFO(x)	data->input_params.players_info[x]
@@ -122,7 +121,7 @@ typedef struct	s_process
 	t_byte		dead;
 	t_byte		carry;
 	t_oper		oper;
-	t_byte		reg[REG_NUMBER + 1][REG_SIZE];
+	t_byte		registers[REG_NUMBER + 1][REG_SIZE];
 }				t_process;
 
 typedef	struct	s_info
@@ -182,6 +181,7 @@ void			dump_arena(t_data *data);
 **	number_funcs.c
 */
 int				get_number(void *arr);
+short 			get_short_number(void *arr);
 int				normalize_index(int index);
 
 #endif

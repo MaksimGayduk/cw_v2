@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   number_funcs.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgayduk <mgayduk@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/22 21:40:48 by maks              #+#    #+#             */
-/*   Updated: 2018/05/23 10:27:14 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/05/23 12:17:34 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,18 @@ int get_number(void *arr)
 	res += s[1] << 16;
 	res += s[0] << 24;
 
+	return (res);
+}
+
+short get_short_number(void *arr)
+{
+	short res;
+	unsigned char *s;
+
+	res = 0;
+	s = (unsigned char *)arr;
+	res += s[1];
+	res += s[0] << 8;
 	return (res);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   oper_tab.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maks <maksim.gayduk@gmail.com>             +#+  +:+       +#+        */
+/*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/04 13:55:18 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/22 22:56:18 by maks             ###   ########.fr       */
+/*   Updated: 2018/05/23 11:24:53 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 const t_op	op_tab[OPER_QTY] = 
 {
 	{0, NULL, NULL, 0, 0, 0, 0, 0, NULL},
-	{0x01, "live", "alive", 0, 1, 10, 0, 4, NULL},
-	{0x02, "ld", "load", 1, 2, 5, 1, 4, NULL},
+	{0x01, "live", "alive", 0, 1, 10, 0, 4, &live},
+	{0x02, "ld", "load", 1, 2, 5, 1, 4, &ld},
 	{0x03, "st", "store", 1, 2, 5, 0, 4, NULL},
 	{0x04, "add", "addition", 1, 3, 10, 1, 4, NULL},
 	{0x05, "sub", "substruction", 1, 3, 10, 1, 4, NULL},

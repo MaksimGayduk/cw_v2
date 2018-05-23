@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/07 11:48:33 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/23 10:54:31 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/05/23 12:29:36 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	read_register(t_data *data, int *padding, t_process *process)
 	USED(process, i) = 1;
 	if (INCORRECT_REG_NUM(reg_num))
 		return ;
-	ft_memcpy(VALUE(process, i), process->reg[reg_num], REG_SIZE);
+	ft_memcpy(VALUE(process, i), process->registers[reg_num], REG_SIZE);
 
 }
 
@@ -64,16 +64,13 @@ void	read_indirect_value(t_data *data, int *padding, t_process *process)
 	i = 0;
 	while (USED(process, i))
 		i++;
-
 	ft_bzero(temp, sizeof(temp));
 	read_arena_chunk(data, temp, process->pc + *padding, IND_SIZE);
-	offset = get_number(temp);
+	offset = get_short_number(temp);
 	OFFSET(process, i) = offset;
-
 	ft_bzero(temp, sizeof(temp));
 	read_arena_chunk(data, temp, process->pc + offset, T_IND);
 	ft_memcpy(VALUE(process, i), temp, T_IND);
-	
 	ft_bzero(temp, sizeof(temp));
 	read_arena_chunk(data, temp, process->pc + (offset % IDX_MOD), T_IND);
 	ft_memcpy(VALUE_IDX(process, i), temp, T_IND);

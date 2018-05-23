@@ -3,37 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   oper_02_ld.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgayduk <mgayduk@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/10 10:01:03 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/22 13:23:59 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/05/23 12:22:31 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
 /*
-**	Takes a random argument and a registry. 
-**	Load the value of the first argument in the registry
+**	Load the value of the first argument in the registry.
 */
 
-void	ld(t_data *data, size_t c_num)
+void	ld(t_data *__attribute__((__unused__)) data, t_process *process)
 {
-	t_cursor *test;
-	t_byte val[REG_SIZE];
-	short reg_num;
+	t_byte	*val;
+	int		reg_num;
 
-	test = &data->cursors[c_num];
-	ft_bzero(&val, REG_SIZE);
-	reg_num = GET_REG_NUM(c_num, 1);
+	reg_num = REG_NUM(process, 1);
 	if (INCORRECT_REG_NUM(reg_num))
 		return ;
-	if (GET_TYPE(c_num, 0) == DIR_CODE)
-		ft_memcpy(&val, &GET_VALUE(c_num, 0), REG_SIZE);	
-	else if (GET_TYPE(c_num, 0) == IND_CODE)
-		ft_memcpy(&val, &GET_VALUE_IDX(c_num, 0), REG_SIZE);
+	if (TYPE(process, 0) == DIR_CODE)
+		val = VALUE(process, 0);
+	else if (TYPE(process, 0) == IND_CODE)
+		val = VALUE_IDX(process, 0);
 	else
 		return ;
-	ft_memcpy(&GET_REGISTER(c_num, reg_num), &val, REG_SIZE);
-	SET_CARRY(c_num, reg_num);
+	ft_memcpy(process->registers[reg_num], val, REG_SIZE);
+	SET_CARRY(process, reg_num);
 }
