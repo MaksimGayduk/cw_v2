@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/09 09:22:48 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/23 11:20:29 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/05/23 15:07:35 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	live(t_data *data, t_process *process)
 	int			val;
 	int			p_num;
 
-	val = get_number(VALUE(process, 0));
+	val = get_int_number(VALUE(process, 0));
 	if ((p_num = is_player_num(data, val)) != -42)
 	{
 		data->players[p_num].live++;

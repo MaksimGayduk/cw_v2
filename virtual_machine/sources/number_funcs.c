@@ -6,18 +6,17 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/22 21:40:48 by maks              #+#    #+#             */
-/*   Updated: 2018/05/23 12:17:34 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/05/23 15:16:38 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
 /*
-**	Converts array of bytes to a little-endian integer
-**	and returns it.
+**	Converts array of bytes to a little-endian integer and returns it.
 */
 
-int get_number(void *arr)
+int get_int_number(void *arr)
 {
 	int res;
 	unsigned char *s;
@@ -32,6 +31,10 @@ int get_number(void *arr)
 	return (res);
 }
 
+/*
+**	Converts array of bytes to a little-endian short and returns it.
+*/
+
 short get_short_number(void *arr)
 {
 	short res;
@@ -41,6 +44,19 @@ short get_short_number(void *arr)
 	s = (unsigned char *)arr;
 	res += s[1];
 	res += s[0] << 8;
+	return (res);
+}
+
+
+int	get_number(void *arr, int size)
+{
+	int res;
+
+	res = 0;
+	if (size == REG_SIZE)
+		res = get_int_number(arr);
+	else if (size == IND_SIZE)
+		res = get_short_number(arr);
 	return (res);
 }
 

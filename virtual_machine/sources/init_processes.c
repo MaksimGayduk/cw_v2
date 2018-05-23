@@ -32,7 +32,7 @@ void	init_processes(t_data *data)
 	{
 		ft_bzero(&process, sizeof(t_process));
 		process.pc = MEM_SIZE / data->players_qty * i;
-		signature = get_number(&GET_SIGNATURE(i));
+		signature = get_int_number(&GET_SIGNATURE(i));
 		ft_memcpy(&process.registers[1], &signature, REG_SIZE);
 		new_node = ft_lstnew(&process, sizeof(t_process));
 		ft_lstadd(&data->processes, new_node);

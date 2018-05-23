@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/26 17:22:40 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/23 12:56:43 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/05/23 15:16:21 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ typedef char	t_byte;
 
 
 //# define REGISTER(x, v)			x->registers[v].reg[v]
-# define REGISTER_VALUE(x, v)	get_number(x->registers[v])
+# define REGISTER_VALUE(x, v)	get_int_number(x->registers[v])
 # define INCORRECT_REG_NUM(x)	x < 1 || x > REG_NUMBER ? 1 : 0
 
 # define GET_PLAYER_INFO(x)	data->input_params.players_info[x]
@@ -180,7 +180,8 @@ void			dump_arena(t_data *data);
 /*
 **	number_funcs.c
 */
-int				get_number(void *arr);
+int				get_number(void *arr, int size);
+int				get_int_number(void *arr);
 short 			get_short_number(void *arr);
 int				normalize_index(int index);
 

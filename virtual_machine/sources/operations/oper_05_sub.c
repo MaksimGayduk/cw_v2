@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/11 15:36:28 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/23 13:53:52 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/05/23 15:09:09 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,11 @@ void	sub(t_data *data, t_process *process)
 		INCORRECT_REG_NUM(REG_NUM(process, 2)))
 		return ;
 	
-	v1 = get_number(VALUE(process, 0));
-	v2 = get_number(VALUE(process, 1));
+	v1 = get_int_number(VALUE(process, 0));
+	v2 = get_int_number(VALUE(process, 1));
 	res = v1 - v2;
 	reg_num = REG_NUM(process, 2);
-	res = get_number(&res);
+	res = get_int_number(&res);
 	ft_memcpy(process->registers[reg_num], &res, REG_SIZE);
 	SET_CARRY(process, reg_num);
 }

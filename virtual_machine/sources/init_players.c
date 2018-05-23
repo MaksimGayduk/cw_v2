@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/27 16:30:59 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/23 10:57:13 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/05/23 15:06:09 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static void		read_champ(t_player *player, char *file_path)
 	player->file_size += read(fd, player->comment, COMMENT_LENGTH);
 	lseek(fd, PADDING_LENGTH, 1);
 	player->file_size += PADDING_LENGTH * 2;
-	size = get_number(player->size);
+	size = get_int_number(player->size);
 	player->file_size += size;
 	player->exec_code = (char *)malloc(size);
 	if (!player->exec_code)
@@ -50,7 +50,7 @@ void	check_champ(t_player *player, char *file_path)
 		exit(ft_printf("Error: File %s is too small to be a champion\n",
 			file_path));
 			
-	magic = get_number(player->magic);	
+	magic = get_int_number(player->magic);	
 	if (magic != COREWAR_EXEC_MAGIC)
 		exit(ft_printf("Error: File %s has an invalid header\n",
 			file_path));
