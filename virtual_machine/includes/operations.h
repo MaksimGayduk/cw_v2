@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/05 11:57:21 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/23 13:01:25 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/05/23 16:23:30 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,6 @@ void			lldi(t_data *data, t_process *process);
 void			lfork_cor(t_data *data, t_process *process);
 void			aff(t_data *data, t_process *process);
 
-void			let_new_cursor_play(t_data *data, t_process *process);
+void			let_new_process_play(t_data *data, t_process *process);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/10 10:01:03 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/23 15:03:27 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/05/23 16:15:53 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 void	ld(t_data *data, t_process *process)
 {
 	t_byte	*val;
-	int		reg_num;
+	short	reg_num;
 
 	data = NULL;
 	reg_num = REG_NUM(process, 1);

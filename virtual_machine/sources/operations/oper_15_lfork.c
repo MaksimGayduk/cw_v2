@@ -3,39 +3,38 @@
 /*                                                        :::      ::::::::   */
 /*   oper_15_lfork.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgayduk <mgayduk@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/16 13:08:36 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/22 11:55:26 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/05/23 16:21:04 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
 /*
-**	Creates new cursor.
-**	Copies carry and registers of parent.
-**	Puts new cursor on new pc, wich is input argument;
+**	Creates a new process, that inherits all parameters
+**	from the parent process, except pc.
+**	Puts new cursor on new pc, wich is input argument.
+**	The same as fork, bbut without % IDX_MOD.
 */
 
-void	lfork_cor(t_data *data, size_t c_num)
+void	lfork_cor(t_data *data, t_process *process)
 {
-	t_cursor new;
-	short	pc;
+	t_list		*new_node;
+	t_process	new_process;
+	short		pc;
 
-	new = data->cursors[c_num];
-	ft_bzero(&(new.oper), sizeof(t_oper));
-	pc = 	GET_PC(c_num) + GET_REV_NUMBER(GET_VALUE(c_num, 0),
-			GET_SIZE(c_num, 0));
-	pc %= MEM_SIZE;
-	if (pc < 0)
-		pc += MEM_SIZE;
-	new.pc = pc;
-	data->cursors = (t_cursor *)realloc(data->cursors,
-								sizeof(t_cursor) * (data->curs_qty + 1));
-	if (!data->cursors)
+	new_process = *process;
+	ft_bzero(&new_process.oper, sizeof(t_oper));
+	pc = get_short_number(VALUE(process, 0));
+	pc += process->pc;
+	pc = normalize_index(pc);
+	new_process.pc = pc;
+	let_new_process_play(data, &new_process);
+	new_node = ft_lstnew(&new_process, sizeof(t_process));
+	if (!new_node)
 		error_msg(MEM_ERROR);
-	data->cursors[data->curs_qty] = new;
-	let_new_cursor_play(data, data->curs_qty);
-	data->curs_qty++;
+	ft_lstadd(&data->processes, new_node);
+	data->process_qty++;
 }
