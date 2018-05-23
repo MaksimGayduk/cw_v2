@@ -6,29 +6,29 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/11 15:36:28 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/11 15:55:26 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/05/23 13:36:32 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-void	sub(t_data *data, size_t c_num)
+void	sub(t_data *__attribute__((__unused__))data, t_process *process)
 {
-	intmax_t res;
-	t_byte *v1;
-	t_byte *v2;
-	short reg_num;
+	int		res;
+	int		v1;
+	int		v2;
+	short	reg_num;
 
-	if (INCORRECT_REG_NUM(GET_REG_NUM(c_num, 0)) ||
-		INCORRECT_REG_NUM(GET_REG_NUM(c_num, 1)) ||
-		INCORRECT_REG_NUM(GET_REG_NUM(c_num, 2)))
+	if (INCORRECT_REG_NUM(REG_NUM(process, 0)) ||
+		INCORRECT_REG_NUM(REG_NUM(process, 1)) ||
+		INCORRECT_REG_NUM(REG_NUM(process, 2)))
 		return ;
 	
-	v1 = GET_VALUE(c_num, 0);
-	v2 = GET_VALUE(c_num, 1);
-	reg_num = GET_REG_NUM(c_num, 2);
-	res = GET_REV_NUMBER(v1, REG_SIZE) - GET_REV_NUMBER(v2, REG_SIZE);
-	reverse_array(&res, REG_SIZE);
-	ft_memcpy(GET_REGISTER(c_num, reg_num), &res, REG_SIZE);
-	SET_CARRY(c_num, reg_num);
+	v1 = get_number(VALUE(process, 0));
+	v2 = get_number(VALUE(process, 1));
+	res = v1 - v2;
+	reg_num = REG_NUM(process, 2);
+	res = get_number(&res);
+	ft_memcpy(process->registers[reg_num], &res, REG_SIZE);
+	SET_CARRY(process, reg_num);
 }
