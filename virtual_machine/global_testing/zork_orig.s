@@ -7,5 +7,7 @@
 # live:	live %1
 #  		zjmp %:live
 live %-2
-ld	-4, r2
-st r2, r30
+ld	%-2, r2
+ld	%2, r3
+add	r2, r3, r4
+st r4, 7

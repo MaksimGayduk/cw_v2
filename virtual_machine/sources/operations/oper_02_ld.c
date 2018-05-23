@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/10 10:01:03 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/23 12:22:31 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/05/23 13:25:42 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 **	Load the value of the first argument in the registry.
 */
 
-void	ld(t_data *__attribute__((__unused__)) data, t_process *process)
+void	ld(t_data *__attribute__((__unused__))data, t_process *process)
 {
 	t_byte	*val;
 	int		reg_num;
