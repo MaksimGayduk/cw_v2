@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/26 17:22:40 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/23 15:54:33 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/05/23 16:46:23 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ typedef char	t_byte;
 # define CARRY(x)			GET_PROCESS(x)->carry
 # define SET_CARRY(x, v)	x->carry = !REGISTER_VALUE(process, reg_num)
 # define PADDING(x)			GET_PROCESS(x)->padding
-
+# define LIVE(x)			GET_PROCESS(x)->live
 
 // Operation block
 # define GET_OPERATION(x)	GET_PROCESS(x)->oper
@@ -162,7 +162,7 @@ void			init_arena(t_data *data);
 void			parse_arguments(t_data *data, t_process *process);
 
 void    		play_corewar(t_data *data);
-void			kill_cursors(t_data *data);
+void			kill_processes(t_data *data);
 
 /*
 ** 	arena_funcs.c
