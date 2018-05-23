@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/04 13:55:18 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/23 13:37:01 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/05/23 13:54:59 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ const t_op	op_tab[OPER_QTY] =
 	{0x03, "st", "store", 1, 2, 5, 0, 4, &st},
 	{0x04, "add", "addition", 1, 3, 10, 1, 4, &add},
 	{0x05, "sub", "substruction", 1, 3, 10, 1, 4, &sub},
-	{0x06, "and", "r1 & r2 -> r3", 1, 3, 6, 1, 4, NULL},
-	{0x07, "or", "r1 | r2 -> r3", 1, 3, 6, 1, 4, NULL},
-	{0x08, "xor", "r1 ^ r2 -> r3", 1, 3, 6, 1, 4, NULL},
+	{0x06, "and", "r1 & r2 -> r3", 1, 3, 6, 1, 4, &and},
+	{0x07, "or", "r1 | r2 -> r3", 1, 3, 6, 1, 4, &or},
+	{0x08, "xor", "r1 ^ r2 -> r3", 1, 3, 6, 1, 4, &xor},
 	{0x09, "zjmp", "jump if zero", 0, 1, 20, 0, 2, NULL},
 	{0x0A, "ldi", "load index", 1, 3, 25, 0, 2, NULL},
 	{0x0B, "sti", "store index", 1, 3, 25, 0, 2, NULL},

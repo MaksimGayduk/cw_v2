@@ -6,19 +6,20 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/11 15:36:28 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/23 13:36:32 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/05/23 13:53:52 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-void	sub(t_data *__attribute__((__unused__))data, t_process *process)
+void	sub(t_data *data, t_process *process)
 {
 	int		res;
 	int		v1;
 	int		v2;
 	short	reg_num;
 
+	data = NULL;
 	if (INCORRECT_REG_NUM(REG_NUM(process, 0)) ||
 		INCORRECT_REG_NUM(REG_NUM(process, 1)) ||
 		INCORRECT_REG_NUM(REG_NUM(process, 2)))

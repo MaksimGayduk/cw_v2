@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/10 10:01:03 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/23 13:25:42 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/05/23 13:53:29 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,12 @@
 **	Load the value of the first argument in the registry.
 */
 
-void	ld(t_data *__attribute__((__unused__))data, t_process *process)
+void	ld(t_data *data, t_process *process)
 {
 	t_byte	*val;
 	int		reg_num;
 
+	data = NULL;
 	reg_num = REG_NUM(process, 1);
 	if (INCORRECT_REG_NUM(reg_num))
 		return ;
