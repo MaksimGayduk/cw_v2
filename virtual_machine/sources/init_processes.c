@@ -25,10 +25,10 @@ void	init_processes(t_data *data)
 	t_list		*new_node;
 	int			signature;
 
-	data->curs_qty = data->players_qty;
+	data->process_qty = data->players_qty;
 	new_node = NULL;
 	i = 0;
-	while (i < data->curs_qty)
+	while (i < data->process_qty)
 	{
 		ft_bzero(&process, sizeof(t_process));
 		process.pc = MEM_SIZE / data->players_qty * i;
