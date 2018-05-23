@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_players.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maks <maksim.gayduk@gmail.com>             +#+  +:+       +#+        */
+/*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/27 16:30:59 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/22 22:48:50 by maks             ###   ########.fr       */
+/*   Updated: 2018/05/23 10:49:27 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,14 @@ static void		read_champ(t_player *player, char *file_path)
 
 	fd = open(file_path, O_RDONLY);
 	if (fd == -1)
-		exit(ft_printf("Can't read source file %s\n", file_path));
+		exit(ft_printf("Error: Can't read source file %s\n", file_path));
 	player->file_size += read(fd, player->magic, MAGIC_LENGTH);
 	player->file_size += read(fd, player->name, PROG_NAME_LENGTH);
-	lseek(fd, PADDING, 1);
+	lseek(fd, PADDING_LENGTH, 1);
 	player->file_size += read(fd, player->size, SIZE_LENGTH);
 	player->file_size += read(fd, player->comment, COMMENT_LENGTH);
-	lseek(fd, PADDING, 1);
-	player->file_size += PADDING * 2;
+	lseek(fd, PADDING_LENGTH, 1);
+	player->file_size += PADDING_LENGTH * 2;
 	size = get_number(player->size);
 	player->file_size += size;
 	player->exec_code = (char *)malloc(size);
@@ -52,7 +52,7 @@ void	check_champ(t_player *player, char *file_path)
 			
 	magic = GET_REV_NUMBER(player->magic, MAGIC_LENGTH);	
 	if (magic != COREWAR_EXEC_MAGIC)
-		exit(ft_printf("File %s has an invalid header\n",
+		exit(ft_printf("Error: File %s has an invalid header\n",
 			file_path));
 }
 

@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/07 11:48:33 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/23 10:38:12 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/05/23 10:54:31 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,16 @@ void	read_register(t_data *data, int *padding, t_process *process)
 
 	(*padding)++;
 	i = 0;
-	while (GET_USED(process, i))
+	while (USED(process, i))
 		i++;
 	reg_num = data->arena[(process->pc + *padding) % MEM_SIZE];
-	GET_REG_NUM(process, i) = reg_num;
-	GET_SIZE(process, i) = REG_SIZE;
-	GET_TYPE(process, i) = REG_CODE;
-	GET_USED(process, i) = 1;
+	REG_NUM(process, i) = reg_num;
+	SIZE(process, i) = REG_SIZE;
+	TYPE(process, i) = REG_CODE;
+	USED(process, i) = 1;
 	if (INCORRECT_REG_NUM(reg_num))
 		return ;
-	ft_memcpy(GET_VALUE(process, i), process->reg[reg_num], REG_SIZE);
+	ft_memcpy(VALUE(process, i), process->reg[reg_num], REG_SIZE);
 
 }
 
@@ -40,17 +40,17 @@ void	read_direct_value(t_data *data, int *padding, t_process *process)
 
 	(*padding)++;
 	i = 0;
-	while (GET_USED(process, i))
+	while (USED(process, i))
 		i++;
 	size = op_tab[process->oper.op_code].label_size;
 	ft_bzero(temp, sizeof(temp));
 	read_arena_chunk(data, temp, process->pc + *padding, size);
 	if (temp[0] & 0b10000000)
-		ft_memset(&GET_VALUE(process, i), -1, DIR_SIZE);
-	ft_memcpy(GET_VALUE(process, i), temp, size);
-	GET_SIZE(process, i) = size;
-	GET_TYPE(process, i) = DIR_CODE;
-	GET_USED(process, i) = 1;
+		ft_memset(&VALUE(process, i), -1, DIR_SIZE);
+	ft_memcpy(VALUE(process, i), temp, size);
+	SIZE(process, i) = size;
+	TYPE(process, i) = DIR_CODE;
+	USED(process, i) = 1;
 	(*padding) += size - 1;
 }
 
@@ -62,24 +62,24 @@ void	read_indirect_value(t_data *data, int *padding, t_process *process)
 
 	(*padding)++;
 	i = 0;
-	while (GET_USED(process, i))
+	while (USED(process, i))
 		i++;
 
 	ft_bzero(temp, sizeof(temp));
 	read_arena_chunk(data, temp, process->pc + *padding, IND_SIZE);
 	offset = get_number(temp);
-	GET_OFFSET(process, i) = offset;
+	OFFSET(process, i) = offset;
 
 	ft_bzero(temp, sizeof(temp));
 	read_arena_chunk(data, temp, process->pc + offset, T_IND);
-	ft_memcpy(GET_VALUE(process, i), temp, T_IND);
+	ft_memcpy(VALUE(process, i), temp, T_IND);
 	
 	ft_bzero(temp, sizeof(temp));
 	read_arena_chunk(data, temp, process->pc + (offset % IDX_MOD), T_IND);
-	ft_memcpy(GET_VALUE_IDX(process, i), temp, T_IND);
-	GET_SIZE(process, i) = REG_SIZE;
-	GET_TYPE(process, i) = IND_CODE;
-	GET_USED(process, i) = 1;
+	ft_memcpy(VALUE_IDX(process, i), temp, T_IND);
+	SIZE(process, i) = REG_SIZE;
+	TYPE(process, i) = IND_CODE;
+	USED(process, i) = 1;
 	(*padding) += IND_SIZE - 1;
 }
 

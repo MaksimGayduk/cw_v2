@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/05 11:43:30 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/23 10:42:41 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/05/23 10:52:06 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,25 +22,22 @@ inline static void		compute_instructions(t_data *data)
 	while (track)
 	{
 		test = track->content;
-		if (GET_OPCODE(track) && GET_DELAY(track) == 0)
+		if (OPCODE(track) && DELAY(track) == 0)
 		{
 			parse_arguments(data, track->content);
-			//op_tab[GET_OPCODE(track)].action(data, i);					
-			if (GET_OPCODE(track) != 9 || !GET_CARRY(track))
-			{
-				GET_PC(track) += GET_PADDING(track);
-				GET_PC(track) = normalize_index(GET_PC(track));
-			}
+			//op_tab[OPCODE(track)].action(data, i);					
+			if (OPCODE(track) != 9 || !CARRY(track))
+				PC(track) = normalize_index(PC(track) + PADDING(track));
 			ft_bzero(&GET_OPERATION(track), sizeof(t_oper));
 		}
-		if (!GET_OPCODE(track) && IS_OPCODE(GET_PC_VAL(track)))
+		if (!OPCODE(track) && IS_OPCODE(PC_VAL(track)))
 		{
-			GET_OPCODE(track) = GET_PC_VAL(track);
-			GET_DELAY(track) = op_tab[GET_OPCODE(track)].delay;
+			OPCODE(track) = PC_VAL(track);
+			DELAY(track) = op_tab[OPCODE(track)].delay;
 		}
-		else if (!GET_OPCODE(track) && !IS_OPCODE(GET_PC_VAL(track)))
-			GET_PC(track)++;
-		GET_DELAY(track)--;
+		else if (!OPCODE(track) && !IS_OPCODE(PC_VAL(track)))
+			PC(track)++;
+		DELAY(track)--;
 		track = track->next;
 	}		
 }

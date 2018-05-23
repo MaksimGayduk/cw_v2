@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   constants.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgayduk <mgayduk@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/26 16:31:44 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/21 20:22:33 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/05/23 10:47:53 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,12 +59,12 @@
 # define SIZE_LENGTH			4
 # define COMMENT_LENGTH 		(2048)
 # define COREWAR_EXEC_MAGIC 	0xea83f3
-# define PADDING				4
+# define PADDING_LENGTH				4
 
 # define MIN_PROGSIZE			MAGIC_LENGTH + \
 								PROG_NAME_LENGTH + \
 								SIZE_LENGTH + \
 								COMMENT_LENGTH + \
-								PADDING * 2
+								PADDING_LENGTH	 * 2
 
 #endif

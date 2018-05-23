@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   corewar.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgayduk <mgayduk@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/26 17:22:40 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/23 10:27:47 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/05/23 10:54:10 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,29 +37,29 @@ typedef char	t_byte;
 
 //# define GET_PC(x)			data->cursors[x].pc
 # define GET_PROCESS(x)		((t_process *)x->content)
-# define GET_PC(x)			GET_PROCESS(x)->pc
-# define GET_PC_VAL(x)		data->arena[GET_PC(x)]
+# define PC(x)				GET_PROCESS(x)->pc
+# define PC_VAL(x)			data->arena[PC(x)]
 
-# define GET_CARRY(x)		GET_PROCESS(x)->carry
-# define SET_CARRY(x, v)	GET_CARRY(x) = GET_REGISTER_VALUE(x, v) ? 0 : 1
-# define GET_PADDING(x)		GET_PROCESS(x)->padding
+# define CARRY(x)			GET_PROCESS(x)->carry
+# define SET_CARRY(x, v)	CARRY(x) = GET_REGISTER_VALUE(x, v) ? 0 : 1
+# define PADDING(x)			GET_PROCESS(x)->padding
 
 
 // Operation block
 # define GET_OPERATION(x)	GET_PROCESS(x)->oper
-# define GET_DELAY(x)		GET_OPERATION(x).delay
-# define GET_OPCODE(x)		GET_OPERATION(x).op_code
+# define DELAY(x)			GET_OPERATION(x).delay
+# define OPCODE(x)			GET_OPERATION(x).op_code
 
 
 // Arguments block
 # define GET_ARGUMENT(x, v)		x->oper.args[v]
-# define GET_VALUE(x, v)		GET_ARGUMENT(x, v).val
-# define GET_VALUE_IDX(x, v)	GET_ARGUMENT(x, v).val_idx
-# define GET_REG_NUM(x, v)		GET_ARGUMENT(x, v).reg_num
-# define GET_OFFSET(x, v)		GET_ARGUMENT(x, v).offset
-# define GET_SIZE(x, v)			GET_ARGUMENT(x, v).size
-# define GET_TYPE(x, v)			GET_ARGUMENT(x, v).type
-# define GET_USED(x, v)			GET_ARGUMENT(x, v).used
+# define VALUE(x, v)		GET_ARGUMENT(x, v).val
+# define VALUE_IDX(x, v)	GET_ARGUMENT(x, v).val_idx
+# define REG_NUM(x, v)		GET_ARGUMENT(x, v).reg_num
+# define OFFSET(x, v)		GET_ARGUMENT(x, v).offset
+# define SIZE(x, v)			GET_ARGUMENT(x, v).size
+# define TYPE(x, v)			GET_ARGUMENT(x, v).type
+# define USED(x, v)			GET_ARGUMENT(x, v).used
 
 
 
