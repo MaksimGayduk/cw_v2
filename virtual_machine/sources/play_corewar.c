@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   play_corewar.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maks <maksim.gayduk@gmail.com>             +#+  +:+       +#+        */
+/*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/05 11:43:30 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/23 00:29:12 by maks             ###   ########.fr       */
+/*   Updated: 2018/05/23 10:42:41 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,10 @@ inline static void		compute_instructions(t_data *data)
 			parse_arguments(data, track->content);
 			//op_tab[GET_OPCODE(track)].action(data, i);					
 			if (GET_OPCODE(track) != 9 || !GET_CARRY(track))
+			{
 				GET_PC(track) += GET_PADDING(track);
-			//normilize pc
+				GET_PC(track) = normalize_index(GET_PC(track));
+			}
 			ft_bzero(&GET_OPERATION(track), sizeof(t_oper));
 		}
 		if (!GET_OPCODE(track) && IS_OPCODE(GET_PC_VAL(track)))
@@ -57,25 +59,25 @@ inline static void		compute_instructions(t_data *data)
 // 		data->cursors[i++].live = 0;			
 // }
 
-// void	handle_cycle(t_data *data)
-// {
-// 	data->counter = 0;
-// 	if (data->total_lives >= NBR_LIVE)
-// 	{
-// 		data->cycle_to_die -= CYCLE_DELTA;
-// 		data->live_checks = MAX_CHECKS;
-// 	}
-// 	else
-// 		data->live_checks--;
+void	handle_cycle(t_data *data)
+{
+	data->counter = 0;
+	if (data->total_lives >= NBR_LIVE)
+	{
+		data->cycle_to_die -= CYCLE_DELTA;
+		data->live_checks = MAX_CHECKS;
+	}
+	else
+		data->live_checks--;
 
-// 	if (!data->live_checks)
-// 	{
-// 		data->cycle_to_die -= CYCLE_DELTA;
-// 		data->live_checks = MAX_CHECKS;
-// 	}
-// 	kill_cursors(data);
-// 	set_lives_zero(data);
-// }
+	if (!data->live_checks)
+	{
+		data->cycle_to_die -= CYCLE_DELTA;
+		data->live_checks = MAX_CHECKS;
+	}
+	//kill_cursors(data);
+	//set_lives_zero(data);
+}
 
 // void	announce_the_winner(t_data *data)
 // {
@@ -109,7 +111,7 @@ void	play_corewar(t_data *data)
 		if (data->counter == data->cycle_to_die)
 		{
 			if (!data->total_lives)
-				//;announce_the_winner(data);
+				;//;announce_the_winner(data);
 			handle_cycle(data);
 		}
 		ft_printf("%u\n", data->cycle);

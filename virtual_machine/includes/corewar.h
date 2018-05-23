@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   corewar.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maks <maksim.gayduk@gmail.com>             +#+  +:+       +#+        */
+/*   By: mgayduk <mgayduk@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/26 17:22:40 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/23 00:22:06 by maks             ###   ########.fr       */
+/*   Updated: 2018/05/23 10:27:47 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ typedef char	t_byte;
 
 /*
 **	Defines for data access simplification
-**	input argument x - number of player(cursor)
 */
 
 //# define GET_PC(x)			data->cursors[x].pc
@@ -183,5 +182,6 @@ void			dump_arena(t_data *data);
 **	number_funcs.c
 */
 int				get_number(void *arr);
+int				normalize_index(int index);
 
 #endif
