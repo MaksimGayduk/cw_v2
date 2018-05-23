@@ -3,26 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   oper_09_zjmp.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgayduk <mgayduk@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/11 17:21:30 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/21 14:53:34 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/05/23 14:10:47 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-void	zjmp(t_data *data, size_t c_num)
+void	zjmp(t_data *data, t_process *process)
 {
 	short offset;
 	short dest;
 
-	if (!GET_CARRY(c_num))
+	data = NULL;
+	if (!process->carry)
 		return ;
-	offset = GET_REV_NUMBER(GET_VALUE(c_num, 0), GET_SIZE(c_num, 0));
-	dest = GET_PC(c_num) + (offset % IDX_MOD);
-	dest %= MEM_SIZE;
-	if (dest < 0)
-		dest += MEM_SIZE;
-	GET_PC(c_num) = dest;
+	offset = get_short_number(VALUE(process, 0));
+	dest = process->pc + (offset % IDX_MOD);
+	dest = normalize_index(dest);
+	process->pc = dest;
 }
