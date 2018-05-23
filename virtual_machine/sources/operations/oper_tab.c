@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/04 13:55:18 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/23 14:56:08 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/05/23 15:38:27 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ const t_op	op_tab[OPER_QTY] =
 	{0x08, "xor", "r1 ^ r2 -> r3", 1, 3, 6, 1, 4, &xor},
 	{0x09, "zjmp", "jump if zero", 0, 1, 20, 0, 2, &zjmp},
 	{0x0A, "ldi", "load index", 1, 3, 25, 0, 2, &ldi},
-	{0x0B, "sti", "store index", 1, 3, 25, 0, 2, NULL},
+	{0x0B, "sti", "store index", 1, 3, 25, 0, 2, &sti},
 	{0x0C, "fork", "fork procces", 0, 1, 800, 0, 2, NULL},
 	{0x0D, "lld", "long load", 1, 2, 10, 1, 4, NULL},
 	{0x0E, "lldi", "long load index", 1, 3, 50, 1, 2, NULL},
