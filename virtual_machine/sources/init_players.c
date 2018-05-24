@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/27 16:30:59 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/23 15:06:09 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/05/24 19:25:30 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void		read_champ(t_player *player, char *file_path)
 
 	fd = open(file_path, O_RDONLY);
 	if (fd == -1)
-		exit(ft_printf("Error: Can't read source file %s\n", file_path));
+		error_msg("Can't read source file %s", file_path);
 	player->file_size += read(fd, player->magic, MAGIC_LENGTH);
 	player->file_size += read(fd, player->name, PROG_NAME_LENGTH);
 	lseek(fd, PADDING_LENGTH, 1);
@@ -37,7 +37,7 @@ static void		read_champ(t_player *player, char *file_path)
 	player->file_size += size;
 	player->exec_code = (char *)malloc(size);
 	if (!player->exec_code)
-		error_msg(MEM_ERROR);
+		error_msg(MEM_ERROR, NULL);
 	read(fd, player->exec_code, size);
 	close(fd);
 }
@@ -47,13 +47,10 @@ void	check_champ(t_player *player, char *file_path)
 	int magic;
 
 	if (player->file_size < MIN_PROGSIZE)
-		exit(ft_printf("Error: File %s is too small to be a champion\n",
-			file_path));
-			
+		error_msg("File %s is too small to be a champion", file_path);
 	magic = get_int_number(player->magic);	
 	if (magic != COREWAR_EXEC_MAGIC)
-		exit(ft_printf("Error: File %s has an invalid header\n",
-			file_path));
+		error_msg("File %s has an invalid header", file_path);
 }
 
 

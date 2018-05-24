@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   oper_12_fork.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maks <maksim.gayduk@gmail.com>             +#+  +:+       +#+        */
+/*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/16 13:08:36 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/24 08:10:28 by maks             ###   ########.fr       */
+/*   Updated: 2018/05/24 19:23:33 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	fork_cor(t_data *data, t_process *process)
 	let_new_process_play(data, &new_process);
 	new_node = ft_lstnew(&new_process, sizeof(t_process));
 	if (!new_node)
-		error_msg(MEM_ERROR);
+		error_msg(MEM_ERROR, NULL);
 	ft_lstadd(&data->processes, new_node);
 	data->process_qty = ft_lstlen(data->processes);
 }

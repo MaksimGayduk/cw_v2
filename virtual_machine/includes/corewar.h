@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/26 17:22:40 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/24 18:54:39 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/05/24 19:19:40 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,7 +175,7 @@ void 			set_lives_to_zero(t_data *data);
 /*
 ** helpers.c
 */
-void			error_msg(char *msg);
+void			error_msg(char *msg, char *arg);
 void			*reverse_array(void *arr, size_t arr_size);
 void			dump_arena(t_data *data);
 
