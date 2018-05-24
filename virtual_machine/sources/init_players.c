@@ -6,11 +6,31 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/27 16:30:59 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/24 19:25:30 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/05/24 20:39:00 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
+
+static int		read_exec_code(int fd, char **dest)
+{
+	int ret;
+	int size;
+	char buff[BUFF_SIZE + 1];
+
+	size = 0;
+	while ((ret = read(fd, buff, BUFF_SIZE)))
+	{
+		if (ret == -1)
+			error_msg("some errors while reading exec_code were occur", NULL);
+		size += ret;
+	}
+	lseek(fd, -size, 2);
+	*dest = ft_strnew(size);
+	read(fd, *dest, size);
+	return (size);
+}
+
 
 /*
 **	Reads champion`s data: magic, name, size, comment
@@ -21,7 +41,6 @@
 static void		read_champ(t_player *player, char *file_path)
 {
 	int			fd;
-	int			size;
 
 	fd = open(file_path, O_RDONLY);
 	if (fd == -1)
@@ -33,12 +52,8 @@ static void		read_champ(t_player *player, char *file_path)
 	player->file_size += read(fd, player->comment, COMMENT_LENGTH);
 	lseek(fd, PADDING_LENGTH, 1);
 	player->file_size += PADDING_LENGTH * 2;
-	size = get_int_number(player->size);
-	player->file_size += size;
-	player->exec_code = (char *)malloc(size);
-	if (!player->exec_code)
-		error_msg(MEM_ERROR, NULL);
-	read(fd, player->exec_code, size);
+	player->exec_code_size = read_exec_code(fd, &player->exec_code);
+	player->file_size += player->exec_code_size;
 	close(fd);
 }
 
@@ -46,6 +61,8 @@ void	check_champ(t_player *player, char *file_path)
 {
 	int magic;
 
+	if (get_int_number(player->size) != (int)player->exec_code_size)
+		error_msg("File %s has a code size that differ from what its header says", file_path);
 	if (player->file_size < MIN_PROGSIZE)
 		error_msg("File %s is too small to be a champion", file_path);
 	magic = get_int_number(player->magic);	

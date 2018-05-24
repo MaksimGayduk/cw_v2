@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/26 17:22:40 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/24 19:19:40 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/05/24 20:14:32 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ typedef struct	s_player
 	t_byte		size[SIZE_LENGTH];
 	t_byte		comment[COMMENT_LENGTH + 1];
 	t_byte		*exec_code;
+	size_t		exec_code_size;
 	size_t		file_size;
 	int			signature;
 	size_t		live;

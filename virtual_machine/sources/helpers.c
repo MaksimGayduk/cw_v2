@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/28 15:52:05 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/24 19:24:06 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/05/24 20:38:36 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,14 @@
 
 void	error_msg(char *msg, char *arg)
 {
-	char *buff;
-
 	if (arg == NULL)
 		ft_printf("Error: %s\n", msg);
 	else
 	{
-		buff = ft_strnew(ft_strlen(msg) + 8);
-		buff = ft_strcat(buff, "Error: ");
-		buff = ft_strcat(buff, msg);
-		buff = ft_strcat(buff, "\n");
+		ft_printf("Error: ");
 		ft_printf(msg, arg);
-		ft_strdel(&buff);
+		ft_printf("\n");
 	}
-	system("leaks a.out");
 	exit(1);
 }
 

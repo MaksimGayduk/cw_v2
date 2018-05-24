@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/28 15:23:55 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/23 15:07:19 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/05/24 20:16:31 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	init_arena(t_data *data)
 	{
 		pc = ((t_process *)track->content)->pc;
 		exec_code = data->players[i].exec_code;
-		size = get_int_number(data->players[i].size);
+		size = data->players[i].exec_code_size;
 		ft_memcpy(&(data->arena[pc]), exec_code, size);
 		track = track->next;
 		i--;
