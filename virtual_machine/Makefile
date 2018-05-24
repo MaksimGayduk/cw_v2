@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: maks <maksim.gayduk@gmail.com>             +#+  +:+       +#+         #
+#    By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/27 16:20:32 by mgayduk           #+#    #+#              #
-#    Updated: 2018/05/24 07:49:23 by maks             ###   ########.fr        #
+#    Updated: 2018/05/24 12:18:59 by mgayduk          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = corewar
 
 # Compiler
 CC		= gcc
-FLAGS	= -g -Wall -Wextra #-Werror 
+FLAGS	= -g -Wall -Wextra -Werror 
 
 # Directories
 SRC_DIR := ./sources

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_arguments.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maks <maksim.gayduk@gmail.com>             +#+  +:+       +#+        */
+/*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/07 11:48:33 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/24 08:54:31 by maks             ###   ########.fr       */
+/*   Updated: 2018/05/24 12:51:42 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ static void		read_register(t_data *data, int *padding, t_process *process)
 	int i;
 	int reg_num;
 
-	(*padding)++;
-	if ((i = get_next_available_argument(process) > 2))
+	if ((i = get_next_available_argument(process)) > 2)
 		return ;
+	(*padding)++;
 	reg_num = data->arena[(process->pc + *padding) % MEM_SIZE];
 	REG_NUM(process, i) = reg_num;
 	SIZE(process, i) = REG_SIZE;
@@ -38,7 +38,6 @@ static void		read_register(t_data *data, int *padding, t_process *process)
 	if (INCORRECT_REG_NUM(reg_num))
 		return ;
 	ft_memcpy(VALUE(process, i), process->registers[reg_num], REG_SIZE);
-
 }
 
 static void		read_direct_value(t_data *data, int *padding, t_process *process)
@@ -47,9 +46,9 @@ static void		read_direct_value(t_data *data, int *padding, t_process *process)
 	int		size;
 	t_byte	temp[DIR_SIZE];
 
-	(*padding)++;
-	if ((i = get_next_available_argument(process) > 2))
+	if ((i = get_next_available_argument(process)) > 2)
 		return ;
+	(*padding)++;
 	size = op_tab[process->oper.op_code].label_size;
 	ft_bzero(temp, sizeof(temp));
 	read_arena_chunk(data, temp, process->pc + *padding, size);
@@ -68,9 +67,9 @@ void			read_indirect_value(t_data *data, int *padding, t_process *process)
 	short	offset;
 	t_byte	temp[T_IND];
 
-	(*padding)++;
-	if ((i = get_next_available_argument(process) > 2))
+	if ((i = get_next_available_argument(process)) > 2)
 		return ;
+	(*padding)++;
 	ft_bzero(temp, sizeof(temp));
 	read_arena_chunk(data, temp, process->pc + *padding, IND_SIZE);
 	offset = get_short_number(temp);
@@ -96,6 +95,7 @@ void			read_indirect_value(t_data *data, int *padding, t_process *process)
 
 void	parse_arguments(t_data *data, t_process *process)
 {
+	int		args_num;
 	int		k;
 	int		padding;
 	t_byte	codage;
@@ -106,8 +106,9 @@ void	parse_arguments(t_data *data, t_process *process)
 	else
 	{
 		padding = 1;
+		args_num = op_tab[process->oper.op_code].args_num;
 		codage = data->arena[(process->pc + padding) % MEM_SIZE];
-		while (codage)
+		while (args_num--)
 		{
 			k = (codage & 0b11000000) >> 6;
 			if (k == REG_CODE)

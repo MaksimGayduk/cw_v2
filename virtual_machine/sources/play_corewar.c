@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   play_corewar.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maks <maksim.gayduk@gmail.com>             +#+  +:+       +#+        */
+/*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/05 11:43:30 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/24 08:50:17 by maks             ###   ########.fr       */
+/*   Updated: 2018/05/24 18:53:54 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,25 +21,30 @@ void	test_process(t_list *head)
 		process = head->content;
 		head = head->next;
 	}
-		
 }
+
+	// if (data->cycle == 5982)
+	// 	ft_printf("%u\n", data->cycle);
+
+/*
+**	Goes through each process. 
+**	Reads instructions and it`s arguments then execute them.
+** 	Compute delay and pc.
+*/
+
 inline static void		compute_instructions(t_data *data)
 {
 	t_list *track;
 	t_process *test;
 
 	track = data->processes;
-	if (data->cycle == 5982)
-		ft_printf("%u\n", data->cycle);
 	while (track)
 	{
 		test = track->content;
 		if (OPCODE(track) && DELAY(track) == 0)
 		{
 			parse_arguments(data, track->content);
-			test = data->processes->content;
-			op_tab[OPCODE(track)].action(data, track->content);
-			test = data->processes->content;				
+			op_tab[OPCODE(track)].action(data, track->content);				
 			if (OPCODE(track) != 9 || !CARRY(track))
 				PC(track) = normalize_index(PC(track) + PADDING(track));
 			ft_bzero(&GET_OPERATION(track), sizeof(t_oper));
@@ -57,23 +62,9 @@ inline static void		compute_instructions(t_data *data)
 	}		
 }
 
-
-void set_lives_to_zero(t_data *data)
-{
-	t_list	*track;
-	size_t	i;
-
-	data->total_lives = 0;
-	i = 0;
-	while (i < data->players_qty)
-		data->players[i++].live = 0;
-	track = data->processes;
-	while (track)
-	{
-		LIVE(track) = 0;
-		track = track->next;
-	}			
-}
+/*
+**	Reduce cycle_to_die.
+*/
 
 void	handle_cycle(t_data *data)
 {
@@ -92,26 +83,9 @@ void	handle_cycle(t_data *data)
 	}
 }
 
-void	announce_the_winner(t_data *data)
-{
-	size_t	i;
-	size_t	p_num;
-
-	i = 1;
-	p_num = 0;
-	while (i < data->players_qty)
-	{
-		if (data->players[i].last_live > data->players[p_num].last_live)
-			p_num = i;
-		i++;
-	}
-	ft_printf("Contestant %d, \" %s \", has won !\n",
-				data->players[p_num].signature,
-				data->players[p_num].name);
-	ft_printf("The game end on %d cycle\n", data->cycle);
-	exit(1);
-}
-
+/*
+**	Main cycle of corewar game.
+*/
 void	play_corewar(t_data *data)
 {
 	while (1)
@@ -120,8 +94,8 @@ void	play_corewar(t_data *data)
 		// 	ft_printf("%u\n", data->cycle);
 		if (data->cycle_to_die <= 0)
 			announce_the_winner(data);
-		// if (DUMPED && data->cycle == DUMP_VALUE)
-		// 	dump_arena(data);
+		if (DUMPED && data->cycle == DUMP_VALUE)
+			dump_arena(data);
 		compute_instructions(data);
 		if (data->counter == data->cycle_to_die)
 		{
