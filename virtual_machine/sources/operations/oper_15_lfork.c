@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   oper_15_lfork.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
+/*   By: maks <maksim.gayduk@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/16 13:08:36 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/23 16:21:04 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/05/24 08:10:41 by maks             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,5 @@ void	lfork_cor(t_data *data, t_process *process)
 	if (!new_node)
 		error_msg(MEM_ERROR);
 	ft_lstadd(&data->processes, new_node);
-	data->process_qty++;
+	data->process_qty = ft_lstlen(data->processes);
 }

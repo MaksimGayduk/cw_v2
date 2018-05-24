@@ -6,26 +6,13 @@
 /*   By: maks <maksim.gayduk@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/09 10:07:58 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/22 21:52:49 by maks             ###   ########.fr       */
+/*   Updated: 2018/05/24 07:59:44 by maks             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+// gcc temp.c ../libft/libft.a -I ../includes/ -I ../libft/includes
+
 #include "corewar.h"
-
-int get_number(void *arr)
-{
-	int res;
-	unsigned char *s;
-
-	res = 0;
-	s = (unsigned char *)arr;
-	res += s[3];
-	res += s[2] << 8;
-	res += s[1] << 16;
-	res += s[0] << 24;
-
-	return (res);
-}
 
 int main(void)
 {
@@ -33,13 +20,13 @@ int main(void)
 	int s = 0;
 	short v = 0;
 
-	t_byte v1[REG_SIZE] = {0xff, 0xff, 0xff, 0xfd};
+	//t_byte v1[REG_SIZE] = {0xff, 0xff, 0xff, 0xfd};
 
-	n = get_number(v1);
+	n = 0x80000000;
 
-	s = *(int *)v1;
+	s = 20;
 
-	
+	v = n * -1;
 	// t_byte v2[REG_SIZE] = {0x00, 0x00, 0x0a, 0xf1};
 
 	

@@ -3,29 +3,43 @@
 /*                                                        :::      ::::::::   */
 /*   play_corewar.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
+/*   By: maks <maksim.gayduk@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/05 11:43:30 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/23 18:47:11 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/05/24 08:50:17 by maks             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
+void	test_process(t_list *head)
+{
+	t_process *process;
 
+	while (head)
+	{
+		process = head->content;
+		head = head->next;
+	}
+		
+}
 inline static void		compute_instructions(t_data *data)
 {
 	t_list *track;
 	t_process *test;
 
 	track = data->processes;
+	if (data->cycle == 5982)
+		ft_printf("%u\n", data->cycle);
 	while (track)
 	{
 		test = track->content;
 		if (OPCODE(track) && DELAY(track) == 0)
 		{
 			parse_arguments(data, track->content);
-			op_tab[OPCODE(track)].action(data, track->content);					
+			test = data->processes->content;
+			op_tab[OPCODE(track)].action(data, track->content);
+			test = data->processes->content;				
 			if (OPCODE(track) != 9 || !CARRY(track))
 				PC(track) = normalize_index(PC(track) + PADDING(track));
 			ft_bzero(&GET_OPERATION(track), sizeof(t_oper));
@@ -37,7 +51,8 @@ inline static void		compute_instructions(t_data *data)
 		}
 		else if (!OPCODE(track) && !IS_OPCODE(PC_VAL(track)))
 			PC(track) = normalize_index(++PC(track));
-		DELAY(track)--;
+		if (DELAY(track))
+			DELAY(track)--;
 		track = track->next;
 	}		
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   kill_processes.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
+/*   By: maks <maksim.gayduk@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/17 12:48:39 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/23 18:04:25 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/05/24 08:10:50 by maks             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,5 +83,5 @@ void	kill_processes(t_data *data)
 	if (alive == data->process_qty)
 		return ;
 	delete_dead_processes(data);
-	data->process_qty = alive;
+	data->process_qty = ft_lstlen(data->processes);
 }
