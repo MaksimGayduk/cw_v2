@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/26 17:22:40 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/24 20:14:32 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/05/28 12:35:36 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,8 +170,14 @@ void			kill_processes(t_data *data);
 */
 t_byte			*read_arena_chunk(t_data *data, t_byte *dest, int start, size_t n);
 void			write_arena_chunk(t_data *data, t_byte *src, int start, size_t n);
-void			announce_the_winner(t_data *data);
 void 			set_lives_to_zero(t_data *data);
+
+
+/*
+**	game_funcs.c
+*/
+void			announce_the_winner(t_data *data);
+void			introduce_players(t_data *data);
 
 /*
 ** helpers.c

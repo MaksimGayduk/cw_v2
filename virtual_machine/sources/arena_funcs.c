@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/22 23:56:31 by maks              #+#    #+#             */
-/*   Updated: 2018/05/24 13:00:33 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/05/28 12:27:02 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,29 +77,4 @@ void set_lives_to_zero(t_data *data)
 		LIVE(track) = 0;
 		track = track->next;
 	}			
-}
-
-/*
-**	Determinates which player sad live last.
-**	Writes message who is winner.
-*/
-
-void	announce_the_winner(t_data *data)
-{
-	size_t	i;
-	size_t	p_num;
-
-	i = 1;
-	p_num = 0;
-	while (i < data->players_qty)
-	{
-		if (data->players[i].last_live > data->players[p_num].last_live)
-			p_num = i;
-		i++;
-	}
-	ft_printf("Contestant %d, \" %s \", has won !\n",
-				data->players[p_num].signature,
-				data->players[p_num].name);
-	ft_printf("The game end on %d cycle\n", data->cycle);
-	exit(1);
 }

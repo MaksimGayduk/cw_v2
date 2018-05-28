@@ -6,7 +6,7 @@
 #    By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/27 16:20:32 by mgayduk           #+#    #+#              #
-#    Updated: 2018/05/24 12:18:59 by mgayduk          ###   ########.fr        #
+#    Updated: 2018/05/28 12:35:18 by mgayduk          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,8 @@ SRC :=	main.c					\
 		arena_funcs.c 			\
 		play_corewar.c 			\
 		parse_arguments.c 		\
-		kill_processes.c
+		kill_processes.c		\
+		game_funcs.c
 		
 
 OPER := oper_tab.c		\
