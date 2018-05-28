@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/28 17:21:09 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/28 18:24:00 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/05/28 18:29:18 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ void draw_cordinates(WINDOW *a_win)
 	while (i < NC_RAW_SIZE)
 		wprintw(a_win, "%02hhi ", i++);
 	i = 0;
-	wmove(a_win, 3, X_PADDING);
-	while (i++ < NC_RAW_SIZE * 3 - 1)
+	wmove(a_win, 3, X_PADDING - 2);
+	while (i++ < NC_RAW_SIZE * 3 + 1)
 		wprintw(a_win, "-");
 	i = 4;
 	while (i < NC_RAW_SIZE + 4)
@@ -62,9 +62,9 @@ void 	draw_arena(t_data *data, WINDOW *a_win)
 	while (i < MEM_SIZE)
 	{
 		if (cursor_on_pc(data, i))
-			wattron(a_win, COLOR_PAIR(2));
+			wattron(a_win, A_REVERSE);
 		wprintw(a_win, "%02hhx", data->arena[i]);
-		wattroff(a_win, COLOR_PAIR(2));
+		wattroff(a_win, A_REVERSE);
 		wprintw(a_win, " ");
 		i++;
 		if (i % NC_RAW_SIZE == 0)
