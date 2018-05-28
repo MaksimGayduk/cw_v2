@@ -6,7 +6,7 @@
 #    By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/27 16:20:32 by mgayduk           #+#    #+#              #
-#    Updated: 2018/05/28 12:35:18 by mgayduk          ###   ########.fr        #
+#    Updated: 2018/05/28 17:22:47 by mgayduk          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,9 +19,16 @@ FLAGS	= -g -Wall -Wextra -Werror
 # Directories
 SRC_DIR := ./sources
 OPER_DIR := $(SRC_DIR)/operations
+RENDER_DIR := $(SRC_DIR)/render
 OBJ_DIR := ./objects
 INC_DIR := ./includes ./libft/includes
 LFT_DIR := ./libft
+
+# Libs
+LFT := $(LFT_DIR)/libft.a -lncurses
+
+#includes
+INC := $(addprefix -I, $(INC_DIR))
 
 # Source files
 SRC :=	main.c					\
@@ -56,16 +63,13 @@ OPER := oper_tab.c		\
 		oper_15_lfork.c \
 		oper_16_aff.c 
 
-SRC := $(SRC) $(OPER)
+VIS	:=	render_main.c	\
+		arena_window.c
+
+SRC := $(SRC) $(OPER) $(VIS)
 
 # Object files
 OBJ := $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
-
-#includes
-INC := $(addprefix -I, $(INC_DIR))
-
-# Libs
-LFT := libft.a
 
 .PHONY = all clean fclean re
 
@@ -74,10 +78,10 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	make -C $(LFT_DIR) all
-	$(CC) $(FLAGS) $(OBJ) $(LFT_DIR)/$(LFT) $(INC) -o $(NAME)
+	$(CC) $(FLAGS) $(OBJ) $(LFT) $(INC) -o $(NAME)
 
 
-VPATH := $(SRC_DIR) $(OPER_DIR)
+VPATH := $(SRC_DIR) $(OPER_DIR) $(RENDER_DIR)
 
 $(OBJ_DIR)/%.o: %.c
 	mkdir -p $(OBJ_DIR)
