@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/28 12:50:38 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/29 17:10:14 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/05/29 18:34:42 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,27 +39,41 @@ void	init_colors(void)
 	init_pair(2, COLOR_BLUE, COLOR_BLACK);
 	init_pair(3, COLOR_RED, COLOR_BLACK);
 	init_pair(4, COLOR_CYAN, COLOR_BLACK);
-	init_pair(5, COLOR_BLACK, COLOR_WHITE);
-	init_pair(6, COLOR_BLACK, COLOR_GREEN);
-	init_pair(7, COLOR_BLACK, COLOR_BLUE);
-	init_pair(8, COLOR_BLACK, COLOR_RED);
-	init_pair(9, COLOR_BLACK, COLOR_CYAN);
-	init_pair(41, COLOR_RED, COLOR_BLACK);
+	
+	init_pair(5, COLOR_BLACK, COLOR_GREEN);
+	init_pair(6, COLOR_BLACK, COLOR_BLUE);
+	init_pair(7, COLOR_BLACK, COLOR_RED);
+	init_pair(8, COLOR_BLACK, COLOR_CYAN);
+
 	init_pair(42, COLOR_MAGENTA, COLOR_MAGENTA);
 	init_pair(43, COLOR_MAGENTA, COLOR_BLACK);
+	init_pair(47, COLOR_BLACK, COLOR_MAGENTA);
 }
 
 int render_game(t_data *data)
 {
-
+	int c;
 	data->render.main_win = initscr();
 	curs_set(0);
 	init_colors();
+	noecho();
 	
-	//render_arena(data);
-	//render_side_bar(data);
-	
-	//getch();
+	keypad(data->render.main_win, true);
+	render_arena(data);
+	render_side_bar(data);
+	getch();
+
+	while (1)
+	{
+		usleep(500000);
+		timeout(10);
+		if ((c = getch()) == ' ')
+		{
+			timeout(-1);
+			getch();
+		}
+		play_corewar(data);
+	}
 	delwin(data->render.arena_win);
 	delwin(data->render.side_win);
 	endwin();

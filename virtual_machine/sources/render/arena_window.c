@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/28 17:21:09 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/29 17:04:42 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/05/29 17:20:06 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ static void 	draw_processes(t_data *data)
 		y = PC(track) / ARENA_RAW_SIZE + ARENA_Y_PADDING;
 		x = (PC(track) % ARENA_RAW_SIZE) * 3 + ARENA_X_PADDING;
 		wmove(a_win, y, x);
-		wchgat(a_win, 2, 0, data->render.color_map[PC(track)] + 5,  NULL);
+		wchgat(a_win, 2, 0, data->render.color_map[PC(track)] + 4,  NULL);
 		wrefresh(a_win);
 		track = track->next;
 	}

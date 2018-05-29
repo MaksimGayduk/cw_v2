@@ -6,25 +6,11 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/05 11:43:30 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/24 18:53:54 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/05/29 18:32:04 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
-
-void	test_process(t_list *head)
-{
-	t_process *process;
-
-	while (head)
-	{
-		process = head->content;
-		head = head->next;
-	}
-}
-
-	// if (data->cycle == 5982)
-	// 	ft_printf("%u\n", data->cycle);
 
 /*
 **	Goes through each process. 
@@ -32,7 +18,7 @@ void	test_process(t_list *head)
 ** 	Compute delay and pc.
 */
 
-inline static void		compute_instructions(t_data *data)
+void		compute_instructions(t_data *data)
 {
 	t_list *track;
 	t_process *test;
@@ -48,6 +34,7 @@ inline static void		compute_instructions(t_data *data)
 			if (OPCODE(track) != 9 || !CARRY(track))
 				PC(track) = normalize_index(PC(track) + PADDING(track));
 			ft_bzero(&GET_OPERATION(track), sizeof(t_oper));
+			render_arena(data);
 		}
 		if (!OPCODE(track) && IS_OPCODE(PC_VAL(track)))
 		{
@@ -55,7 +42,11 @@ inline static void		compute_instructions(t_data *data)
 			DELAY(track) = op_tab[OPCODE(track)].delay;
 		}
 		else if (!OPCODE(track) && !IS_OPCODE(PC_VAL(track)))
+		{
 			PC(track) = normalize_index(++PC(track));
+			render_arena(data);
+		}
+			
 		if (DELAY(track))
 			DELAY(track)--;
 		track = track->next;
@@ -88,12 +79,10 @@ void	handle_cycle(t_data *data)
 */
 void	play_corewar(t_data *data)
 {
-	while (1)
-	{	
-		// if (data->total_lives > 0)
-		// 	ft_printf("%u\n", data->cycle);
+		render_side_bar(data);
 		if (data->cycle_to_die <= 0)
 			announce_the_winner(data);
+			//return (0);
 		if (DUMPED && data->cycle == DUMP_VALUE)
 			dump_arena(data);
 		compute_instructions(data);
@@ -101,12 +90,12 @@ void	play_corewar(t_data *data)
 		{
 			if (!data->total_lives)
 				announce_the_winner(data);
+				//return (0);
 			handle_cycle(data);
 			kill_processes(data);
 			set_lives_to_zero(data);
 		}
-		ft_printf("%u\n", data->cycle);
 		data->cycle++;
 		data->counter++;
-	}
+		//return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/26 17:22:40 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/29 16:52:25 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/05/29 17:42:03 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,6 +177,8 @@ void			init_arena(t_data *data);
 void			parse_arguments(t_data *data, t_process *process);
 
 void    		play_corewar(t_data *data);
+void			handle_cycle(t_data *data);
+void			compute_instructions(t_data *data);
 void			kill_processes(t_data *data);
 
 /*
