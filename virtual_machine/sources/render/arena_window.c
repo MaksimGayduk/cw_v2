@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/28 17:21:09 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/29 12:51:37 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/05/29 13:11:40 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void		draw_cordinates(WINDOW *a_win)
 
 	wmove(a_win, ARENA_Y_PADDING - 2, ARENA_X_PADDING);
 
-	wattron(a_win, COLOR_PAIR(10));
+	wattron(a_win, COLOR_PAIR(41));
 	i = 0;
 	while (i < ARENA_RAW_SIZE)
 		wprintw(a_win, "%02hhi ", i++);

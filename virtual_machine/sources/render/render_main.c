@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/28 12:50:38 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/29 12:46:55 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/05/29 13:16:55 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,22 +27,26 @@ WINDOW	*create_new_window(int height, int width, int start_y, int start_x)
 
 void	init_colors(void)
 {
+	if (has_colors() == FALSE) 
+	{
+    	endwin();
+    	ft_printf("Your terminal does not support color\n");
+    	exit(1);
+	}
 	start_color();
-	init_pair(0, COLOR_WHITE, COLOR_BLACK);
+	init_color(COLOR_WHITE, 500, 500, 500);
 	init_pair(1, COLOR_GREEN, COLOR_BLACK);
 	init_pair(2, COLOR_BLUE, COLOR_BLACK);
 	init_pair(3, COLOR_YELLOW, COLOR_BLACK);
 	init_pair(4, COLOR_CYAN, COLOR_BLACK);
-	
 	init_pair(5, COLOR_BLACK, COLOR_WHITE);
 	init_pair(6, COLOR_BLACK, COLOR_GREEN);
 	init_pair(7, COLOR_BLACK, COLOR_BLUE);
 	init_pair(8, COLOR_BLACK, COLOR_YELLOW);
 	init_pair(9, COLOR_BLACK, COLOR_CYAN);
-
-	
-	init_pair(10, COLOR_RED, COLOR_BLACK);
+	init_pair(41, COLOR_RED, COLOR_BLACK);
 	init_pair(42, COLOR_WHITE, COLOR_WHITE);
+	init_pair(43, COLOR_WHITE, COLOR_BLACK);
 }
 
 int render_game(t_data *data)
