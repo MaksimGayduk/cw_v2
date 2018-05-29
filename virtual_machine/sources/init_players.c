@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/27 16:30:59 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/24 20:39:00 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/05/29 12:16:58 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ void			init_players(t_data *data)
 	{
 		read_champ(&(data->players[i]), GET_FILE_PATH(i));
 		check_champ(&(data->players[i]), GET_FILE_PATH(i));
+		data->players[i].number = i + 1;
 		data->players[i].signature = GET_SIGNATURE(i);
 		i++;
 	}

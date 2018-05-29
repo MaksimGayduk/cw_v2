@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/26 17:22:40 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/28 13:17:59 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/05/29 12:17:36 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ typedef struct	s_player
 	size_t		exec_code_size;
 	size_t		file_size;
 	int			signature;
+	int			number;
 	size_t		live;
 	size_t		last_live;
 }				t_player;
@@ -142,6 +143,7 @@ typedef	struct	s_params
 typedef struct	s_data
 {
 	t_byte		arena[MEM_SIZE];
+	t_byte		color_map[MEM_SIZE];
 	size_t		players_qty;
 	t_player	players[MAX_PLAYERS];
 	size_t		process_qty;
