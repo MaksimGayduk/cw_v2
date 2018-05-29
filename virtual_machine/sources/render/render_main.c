@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/28 12:50:38 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/28 18:15:47 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/05/29 11:09:19 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,9 @@ WINDOW	*create_new_window(int height, int width, int start_y, int start_x)
 
 	local_win = newwin(height, width, start_y, start_x);
 	refresh();
+	wattron(local_win, COLOR_PAIR(42) | A_DIM);
 	box(local_win, BORDER_VER , BORDER_HOR);
+	wattroff(local_win, COLOR_PAIR(42) | A_DIM);
 	wrefresh(local_win);
 	return (local_win);
 }
@@ -34,9 +36,9 @@ int render_game(t_data *data)
 	curs_set(0);
 
 	start_color();                 
-    init_pair(1, COLOR_RED, COLOR_BLACK);
-	init_pair(2, COLOR_BLACK, COLOR_RED);
-
+    init_pair(10, COLOR_RED, COLOR_BLACK);
+	init_pair(11, COLOR_BLACK, COLOR_RED);
+	init_pair(42, COLOR_WHITE, COLOR_WHITE);
 	render_arena(data, &ren_data);
 	
 	getch();

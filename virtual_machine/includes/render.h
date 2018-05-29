@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/28 12:51:27 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/28 18:04:45 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/05/29 12:01:38 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,14 @@
 # include "corewar.h"
 # include <ncurses.h>
 
-# define	BORDER_VER	0
-# define	BORDER_HOR	0
+# define	BORDER_VER	42
+# define	BORDER_HOR	42
 
-# define	NC_RAW_SIZE 		64
+# define	ARENA_RAW_SIZE 		64
 # define 	ARENA_WIN_HEIGHT	70
 # define	ARENA_WIN_WIDTH		210
-# define 	X_PADDING 			8
+# define	ARENA_Y_PADDING			4
+# define 	ARENA_X_PADDING 			10
 
 typedef	struct	s_ren
 {

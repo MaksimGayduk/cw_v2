@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/28 17:21:09 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/28 18:29:18 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/05/29 12:12:23 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,24 +16,24 @@ void draw_cordinates(WINDOW *a_win)
 {
 	size_t	i;
 
-	wmove(a_win, 2, X_PADDING);
+	wmove(a_win, ARENA_Y_PADDING - 2, ARENA_X_PADDING);
 
-	wattron(a_win, COLOR_PAIR(1));
+	wattron(a_win, COLOR_PAIR(10));
 	i = 0;
-	while (i < NC_RAW_SIZE)
+	while (i < ARENA_RAW_SIZE)
 		wprintw(a_win, "%02hhi ", i++);
 	i = 0;
-	wmove(a_win, 3, X_PADDING - 2);
-	while (i++ < NC_RAW_SIZE * 3 + 1)
+	wmove(a_win, ARENA_Y_PADDING - 1, ARENA_X_PADDING - 2);
+	while (i++ < ARENA_RAW_SIZE * 3 + 1)
 		wprintw(a_win, "-");
-	i = 4;
-	while (i < NC_RAW_SIZE + 4)
+	i = ARENA_Y_PADDING;
+	while (i < ARENA_RAW_SIZE + 4)
 	{
-		mvwprintw(a_win, i, 2, "%02hhi |", i - 4);
+		mvwprintw(a_win, i, ARENA_X_PADDING - 6, "%02hhi |", i - 4);
 		i++;
 	}
 	wrefresh(a_win);
-	wattroff(a_win, COLOR_PAIR(1));
+	wattroff(a_win, COLOR_PAIR(10));
 }
 
 int		cursor_on_pc(t_data *data, size_t cursor)
@@ -57,21 +57,37 @@ void 	draw_arena(t_data *data, WINDOW *a_win)
 	int		y;
 	int		x;
 
-	wmove(a_win, 4, X_PADDING);
+	wmove(a_win, ARENA_Y_PADDING, ARENA_X_PADDING);
 	i = 0;
 	while (i < MEM_SIZE)
 	{
-		if (cursor_on_pc(data, i))
-			wattron(a_win, A_REVERSE);
 		wprintw(a_win, "%02hhx", data->arena[i]);
 		wattroff(a_win, A_REVERSE);
 		wprintw(a_win, " ");
 		i++;
-		if (i % NC_RAW_SIZE == 0)
+		if (i % ARENA_RAW_SIZE == 0)
 		{
 			getyx(a_win, y, x);
-			wmove(a_win, y + 1, X_PADDING);
+			wmove(a_win, y + 1, ARENA_X_PADDING);
 		}
+	}
+	wrefresh(a_win);
+}
+
+void 	draw_processes(t_data *data, WINDOW *a_win)
+{
+	t_list	*track;
+	int		x;
+	int		y;
+
+	track = data->processes;
+	while(track)
+	{
+		y = PC(track) / ARENA_RAW_SIZE + ARENA_Y_PADDING;
+		x = PC(track) * 3 % ARENA_RAW_SIZE + ARENA_X_PADDING;
+		wmove(a_win, y, x);
+		wchgat(a_win, 2, A_REVERSE, 0, NULL);
+		track = track->next;
 	}
 	wrefresh(a_win);
 }
@@ -86,4 +102,6 @@ void	render_arena(t_data *data, t_ren *ren_data)
 	
 	draw_cordinates(a_win);
 	draw_arena(data, a_win);
+	draw_processes(data, a_win);
+
 }
