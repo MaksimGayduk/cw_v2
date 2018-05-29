@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/26 17:22:40 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/29 12:17:36 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/05/29 16:52:25 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdlib.h>
 # include <fcntl.h>
 # include <inttypes.h>
+# include <ncurses.h>
 
 # include "libft.h"
 # include "constants.h"
@@ -140,10 +141,17 @@ typedef	struct	s_params
 	t_info		players_info[MAX_PLAYERS];
 }				t_params;
 
+typedef	struct	s_ren
+{
+				t_byte	color_map[MEM_SIZE];
+				WINDOW	*main_win;
+				WINDOW	*arena_win;
+				WINDOW	*side_win;
+}				t_ren;
+
 typedef struct	s_data
 {
 	t_byte		arena[MEM_SIZE];
-	t_byte		color_map[MEM_SIZE];
 	size_t		players_qty;
 	t_player	players[MAX_PLAYERS];
 	size_t		process_qty;
@@ -154,10 +162,13 @@ typedef struct	s_data
 	size_t		total_lives;
 	int			cycle_to_die;
 	t_params	input_params;
+	t_ren		render;
+	
 }				t_data;
 
-# include 		"operations.h"
 # include		"render.h"
+# include 		"operations.h"
+
 
 void			parse_input_params(t_data *data, char **argv);
 void			init_players(t_data *data);

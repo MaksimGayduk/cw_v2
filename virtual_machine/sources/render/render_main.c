@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/28 12:50:38 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/29 16:16:10 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/05/29 17:10:14 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,17 +51,17 @@ void	init_colors(void)
 
 int render_game(t_data *data)
 {
-	static t_ren	ren_data;
 
-	ren_data.main_win = initscr();
+	data->render.main_win = initscr();
 	curs_set(0);
 	init_colors();
 	
-	render_arena(data, &ren_data);
-	render_side_bar(data, &ren_data);
+	//render_arena(data);
+	//render_side_bar(data);
 	
-	getch();
-	delwin(ren_data.arena_win);
+	//getch();
+	delwin(data->render.arena_win);
+	delwin(data->render.side_win);
 	endwin();
 	return (0);
 }

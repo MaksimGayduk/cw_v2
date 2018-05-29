@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/28 17:21:09 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/29 16:15:58 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/05/29 17:04:42 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,19 +43,21 @@ static void		draw_cordinates(WINDOW *a_win)
 **	Draws arena data with necessary colors of players.
 **	Color map array used to define color.
 */
-static void		draw_arena(t_data *data, WINDOW *a_win)
+static void		draw_arena(t_data *data)
 {
+	WINDOW	*a_win;
 	size_t	i;
 	int		y;
 	int		x;
 
+	a_win = data->render.arena_win;
 	wmove(a_win, ARENA_Y_PADDING, ARENA_X_PADDING);
 	i = 0;
 	while (i < MEM_SIZE)
 	{
-		wattron(a_win, COLOR_PAIR(data->color_map[i]));
+		wattron(a_win, COLOR_PAIR(data->render.color_map[i]));
 		wprintw(a_win, "%02hhx", data->arena[i]);
-		wattroff(a_win, COLOR_PAIR(data->color_map[i]));
+		wattroff(a_win, COLOR_PAIR(data->render.color_map[i]));
 		wprintw(a_win, " ");
 		i++;
 		if (i % ARENA_RAW_SIZE == 0)
@@ -71,21 +73,21 @@ static void		draw_arena(t_data *data, WINDOW *a_win)
 /*
 **	Draws location of each procces (PC) on arena.
 */
-static void 	draw_processes(t_data *data, WINDOW *a_win)
+static void 	draw_processes(t_data *data)
 {
+	WINDOW	*a_win;
 	t_list	*track;
 	int		x;
 	int		y;
 
+	a_win = data->render.arena_win;
 	track = data->processes;
 	while(track)
 	{
 		y = PC(track) / ARENA_RAW_SIZE + ARENA_Y_PADDING;
 		x = (PC(track) % ARENA_RAW_SIZE) * 3 + ARENA_X_PADDING;
-		// ft_printf("PC : %u\n", PC(track));
-		// ft_printf("x : %i\n", x);
 		wmove(a_win, y, x);
-		wchgat(a_win, 2, 0, data->color_map[PC(track)] + 5,  NULL);
+		wchgat(a_win, 2, 0, data->render.color_map[PC(track)] + 5,  NULL);
 		wrefresh(a_win);
 		track = track->next;
 	}
@@ -94,14 +96,12 @@ static void 	draw_processes(t_data *data, WINDOW *a_win)
 /*
 **	Renders arena data.
 */
-void	render_arena(t_data *data, t_ren *ren_data)
+void	render_arena(t_data *data)
 {
-	WINDOW *a_win;
-
-	a_win = ren_data->arena_win;
-	if (!a_win)
-		a_win = create_new_window(ARENA_WIN_HEIGHT, ARENA_WIN_WIDTH, 0, 0);
-	draw_cordinates(a_win);
-	draw_arena(data, a_win);
-	draw_processes(data, a_win);
+	if (!data->render.arena_win)
+		data->render.arena_win = create_new_window(ARENA_WIN_HEIGHT, ARENA_WIN_WIDTH, 0, 0);
+	
+	draw_cordinates(data->render.arena_win);
+	draw_arena(data);
+	draw_processes(data);
 }
