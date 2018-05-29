@@ -6,7 +6,7 @@
 #    By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/27 16:20:32 by mgayduk           #+#    #+#              #
-#    Updated: 2018/05/28 17:22:47 by mgayduk          ###   ########.fr        #
+#    Updated: 2018/05/29 13:22:37 by mgayduk          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,8 +63,9 @@ OPER := oper_tab.c		\
 		oper_15_lfork.c \
 		oper_16_aff.c 
 
-VIS	:=	render_main.c	\
-		arena_window.c
+VIS	:=	render_main.c		\
+		arena_window.c		\
+		side_bar_window.c 
 
 SRC := $(SRC) $(OPER) $(VIS)
 

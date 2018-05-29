@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/28 17:21:09 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/29 13:11:40 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/05/29 16:15:58 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void		draw_cordinates(WINDOW *a_win)
 
 	wmove(a_win, ARENA_Y_PADDING - 2, ARENA_X_PADDING);
 
-	wattron(a_win, COLOR_PAIR(41));
+	wattron(a_win, COLOR_PAIR(43));
 	i = 0;
 	while (i < ARENA_RAW_SIZE)
 		wprintw(a_win, "%02hhi ", i++);
@@ -81,7 +81,9 @@ static void 	draw_processes(t_data *data, WINDOW *a_win)
 	while(track)
 	{
 		y = PC(track) / ARENA_RAW_SIZE + ARENA_Y_PADDING;
-		x = PC(track) * 3 % ARENA_RAW_SIZE + ARENA_X_PADDING;
+		x = (PC(track) % ARENA_RAW_SIZE) * 3 + ARENA_X_PADDING;
+		// ft_printf("PC : %u\n", PC(track));
+		// ft_printf("x : %i\n", x);
 		wmove(a_win, y, x);
 		wchgat(a_win, 2, 0, data->color_map[PC(track)] + 5,  NULL);
 		wrefresh(a_win);
@@ -102,5 +104,4 @@ void	render_arena(t_data *data, t_ren *ren_data)
 	draw_cordinates(a_win);
 	draw_arena(data, a_win);
 	draw_processes(data, a_win);
-
 }

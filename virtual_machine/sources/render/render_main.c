@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/28 12:50:38 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/29 13:16:55 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/05/29 16:16:10 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,19 +34,19 @@ void	init_colors(void)
     	exit(1);
 	}
 	start_color();
-	init_color(COLOR_WHITE, 500, 500, 500);
+	init_color(COLOR_MAGENTA, 500, 500, 500);
 	init_pair(1, COLOR_GREEN, COLOR_BLACK);
 	init_pair(2, COLOR_BLUE, COLOR_BLACK);
-	init_pair(3, COLOR_YELLOW, COLOR_BLACK);
+	init_pair(3, COLOR_RED, COLOR_BLACK);
 	init_pair(4, COLOR_CYAN, COLOR_BLACK);
 	init_pair(5, COLOR_BLACK, COLOR_WHITE);
 	init_pair(6, COLOR_BLACK, COLOR_GREEN);
 	init_pair(7, COLOR_BLACK, COLOR_BLUE);
-	init_pair(8, COLOR_BLACK, COLOR_YELLOW);
+	init_pair(8, COLOR_BLACK, COLOR_RED);
 	init_pair(9, COLOR_BLACK, COLOR_CYAN);
 	init_pair(41, COLOR_RED, COLOR_BLACK);
-	init_pair(42, COLOR_WHITE, COLOR_WHITE);
-	init_pair(43, COLOR_WHITE, COLOR_BLACK);
+	init_pair(42, COLOR_MAGENTA, COLOR_MAGENTA);
+	init_pair(43, COLOR_MAGENTA, COLOR_BLACK);
 }
 
 int render_game(t_data *data)
@@ -58,6 +58,7 @@ int render_game(t_data *data)
 	init_colors();
 	
 	render_arena(data, &ren_data);
+	render_side_bar(data, &ren_data);
 	
 	getch();
 	delwin(ren_data.arena_win);
