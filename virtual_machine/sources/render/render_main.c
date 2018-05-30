@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/28 12:50:38 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/29 18:34:42 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/05/30 15:50:42 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,29 +50,52 @@ void	init_colors(void)
 	init_pair(47, COLOR_BLACK, COLOR_MAGENTA);
 }
 
-int render_game(t_data *data)
+void	set_speed(t_data *data)
 {
 	int c;
+
+	while ((c = getch()) != ' ')
+	{
+		data->render.paused = 1;;
+		render_speed_data(data);
+		if (c == 's') data->render.speed -= 100;
+		if (c == 'q') data->render.speed -= 10;
+		if (c == 'w') data->render.speed -= 1;
+		if (c == 'e') data->render.speed += 1;
+		if (c == 'r') data->render.speed += 10;
+		if (c == 'd') data->render.speed += 100;
+		if (data->render.speed < 1) data->render.speed = 1;
+		if (data->render.speed > 1000) data->render.speed = 1000;
+	}
+	data->render.paused = !data->render.paused;
+	render_speed_data(data);
+}
+
+void	init_start_window(t_data *data)
+{
 	data->render.main_win = initscr();
 	curs_set(0);
 	init_colors();
 	noecho();
-	
-	keypad(data->render.main_win, true);
-	render_arena(data);
+	data->render.speed = 50;
+	data->render.paused = 1;
 	render_side_bar(data);
-	getch();
+	render_arena(data);
+	set_speed(data);
+}
 
+int render_game(t_data *data)
+{
+	int c;
 	while (1)
 	{
-		usleep(500000);
+		usleep(1000000 / data->render.speed);
 		timeout(10);
 		if ((c = getch()) == ' ')
-		{
-			timeout(-1);
-			getch();
-		}
+			set_speed(data);
+		render_arena(data);
 		play_corewar(data);
+		render_cycle_data(data);
 	}
 	delwin(data->render.arena_win);
 	delwin(data->render.side_win);

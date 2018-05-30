@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/26 17:22:40 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/29 17:42:03 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/05/30 15:08:47 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,6 +147,12 @@ typedef	struct	s_ren
 				WINDOW	*main_win;
 				WINDOW	*arena_win;
 				WINDOW	*side_win;
+				WINDOW	*speed_win;
+				int		speed;
+				t_byte	paused;
+				WINDOW	*cycle_win;
+				WINDOW	*player_win;
+				WINDOW	*param_win;
 }				t_ren;
 
 typedef struct	s_data

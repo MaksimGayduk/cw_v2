@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/05 11:43:30 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/29 18:32:04 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/05/30 11:24:08 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ void		compute_instructions(t_data *data)
 			if (OPCODE(track) != 9 || !CARRY(track))
 				PC(track) = normalize_index(PC(track) + PADDING(track));
 			ft_bzero(&GET_OPERATION(track), sizeof(t_oper));
-			render_arena(data);
 		}
 		if (!OPCODE(track) && IS_OPCODE(PC_VAL(track)))
 		{
@@ -44,7 +43,6 @@ void		compute_instructions(t_data *data)
 		else if (!OPCODE(track) && !IS_OPCODE(PC_VAL(track)))
 		{
 			PC(track) = normalize_index(++PC(track));
-			render_arena(data);
 		}
 			
 		if (DELAY(track))
@@ -79,7 +77,6 @@ void	handle_cycle(t_data *data)
 */
 void	play_corewar(t_data *data)
 {
-		render_side_bar(data);
 		if (data->cycle_to_die <= 0)
 			announce_the_winner(data);
 			//return (0);

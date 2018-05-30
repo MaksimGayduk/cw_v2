@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/28 17:21:09 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/29 17:20:06 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/05/30 13:13:41 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,8 +99,8 @@ static void 	draw_processes(t_data *data)
 void	render_arena(t_data *data)
 {
 	if (!data->render.arena_win)
-		data->render.arena_win = create_new_window(ARENA_WIN_HEIGHT, ARENA_WIN_WIDTH, 0, 0);
-	
+		data->render.arena_win = create_new_window(ARENA_WIN_HEIGHT, ARENA_WIN_WIDTH,
+													ARENA_Y_OFFSET, ARENA_X_OFFSET);
 	draw_cordinates(data->render.arena_win);
 	draw_arena(data);
 	draw_processes(data);

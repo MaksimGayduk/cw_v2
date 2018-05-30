@@ -6,7 +6,7 @@
 #    By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/27 16:20:32 by mgayduk           #+#    #+#              #
-#    Updated: 2018/05/29 13:22:37 by mgayduk          ###   ########.fr        #
+#    Updated: 2018/05/30 12:00:13 by mgayduk          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = corewar
 
 # Compiler
 CC		= gcc
-FLAGS	= -g -Wall -Wextra -Werror 
+FLAGS	= -g -Wall -Wextra -Werror
 
 # Directories
 SRC_DIR := ./sources
