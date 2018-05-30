@@ -18,9 +18,7 @@
 
 # aff r2
 
-
-fork	%:live
-l2:		sti r1, %:live, %1
+l2:		sti r2, %:live, %1
 		and r1, %0, r1
 zjmp %:l2	
 live:	live %1

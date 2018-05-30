@@ -6,38 +6,39 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/05 11:43:30 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/30 17:58:00 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/05/30 18:56:44 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
+
+
+void	execute_instruction(t_data *data, t_list *track)
+{
+	parse_arguments(data, track->content);
+	op_tab[OPCODE(track)].action(data, track->content);				
+	if (OPCODE(track) != 9 || !CARRY(track))
+		PC(track) = normalize_index(PC(track) + PADDING(track));
+	if (V_FLAG) render_arena(data);
+	if (V_FLAG)	render_processes(data);
+	if (V_FLAG && OPCODE(track) == 1) render_players_data(data);
+	ft_bzero(&GET_OPERATION(track), sizeof(t_oper));
+}
 
 /*
 **	Goes through each process. 
 **	Reads instructions and it`s arguments then execute them.
 ** 	Compute delay and pc.
 */
-
-void		compute_instructions(t_data *data)
+inline void		compute_instructions(t_data *data)
 {
-	t_list *track;
-	t_process *test;
+	t_list 		*track;
 
 	track = data->processes;
 	while (track)
 	{
-		test = track->content;
 		if (OPCODE(track) && DELAY(track) == 0)
-		{
-			parse_arguments(data, track->content);
-			op_tab[OPCODE(track)].action(data, track->content);				
-			if (OPCODE(track) != 9 || !CARRY(track))
-				PC(track) = normalize_index(PC(track) + PADDING(track));
-			if (V_FLAG) render_arena(data);
-			if (V_FLAG)	render_processes(data);
-			if (V_FLAG && OPCODE(track) == 1) render_players_data(data);
-			ft_bzero(&GET_OPERATION(track), sizeof(t_oper));
-		}
+			execute_instruction(data, track);
 		if (!OPCODE(track) && IS_OPCODE(PC_VAL(track)))
 		{
 			OPCODE(track) = PC_VAL(track);
@@ -48,8 +49,7 @@ void		compute_instructions(t_data *data)
 			PC(track) = normalize_index(++PC(track));
 			if (V_FLAG) refresh_colors(data);
 			if (V_FLAG)	render_processes(data);
-		}
-			
+		}			
 		if (DELAY(track))
 			DELAY(track)--;
 		track = track->next;
@@ -59,8 +59,7 @@ void		compute_instructions(t_data *data)
 /*
 **	Reduce cycle_to_die.
 */
-
-void	handle_cycle(t_data *data)
+inline void	handle_cycle(t_data *data)
 {
 	data->counter = 0;
 	if (data->total_lives >= NBR_LIVE)
@@ -81,7 +80,7 @@ void	handle_cycle(t_data *data)
 /*
 **	Main cycle of corewar game.
 */
-int	play_corewar(t_data *data)
+inline int	play_corewar(t_data *data)
 {
 		if (data->cycle_to_die <= 0)
 			return (0);

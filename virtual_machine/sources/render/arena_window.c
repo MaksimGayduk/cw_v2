@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/28 17:21:09 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/30 17:48:23 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/05/30 18:07:50 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,7 @@ void		render_cordinates(WINDOW *a_win)
 	wattroff(a_win, COLOR_PAIR(10));
 }
 
-/*
-**	BAD IDEA. WORKS VEERY SLOWLY
-*/
+
 void		refresh_colors(t_data *data)
 {
 	WINDOW	*a_win;
@@ -88,7 +86,6 @@ void		render_arena(t_data *data)
 		wattron(a_win, COLOR_PAIR(data->render.color_map[i]));
 		wprintw(a_win, "%02hhx ", data->arena[i]);
 		wattroff(a_win, COLOR_PAIR(data->render.color_map[i]));
-		//wprintw(a_win, " ");
 		i++;
 		if (i % ARENA_RAW_SIZE == 0)
 		{
