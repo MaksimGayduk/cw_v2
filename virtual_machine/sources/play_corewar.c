@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/05 11:43:30 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/30 19:43:43 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/05/30 19:45:52 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ void	execute_instruction(t_data *data, t_list *track)
 	op_tab[OPCODE(track)].action(data, track->content);				
 	if (OPCODE(track) != 9 || !CARRY(track))
 		PC(track) = normalize_index(PC(track) + PADDING(track));
-	if (V_FLAG) render_arena(data);
-	if (V_FLAG)	render_processes(data);
+	//if (V_FLAG) render_arena(data);
+	//if (V_FLAG)	render_processes(data);
 	if (V_FLAG && OPCODE(track) == 1) render_players_data(data);
 	ft_bzero(&GET_OPERATION(track), sizeof(t_oper));
 }
@@ -47,8 +47,8 @@ inline void		compute_instructions(t_data *data)
 		else if (!OPCODE(track) && !IS_OPCODE(PC_VAL(track)))
 		{
 			PC(track) = normalize_index(++PC(track));
-			if (V_FLAG) refresh_colors(data);
-			if (V_FLAG)	render_processes(data);
+			//if (V_FLAG) refresh_colors(data);
+			//if (V_FLAG)	render_processes(data);
 		}			
 		if (DELAY(track))
 			DELAY(track)--;

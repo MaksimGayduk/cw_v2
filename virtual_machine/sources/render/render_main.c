@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/28 12:50:38 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/30 19:29:48 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/05/30 19:48:43 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,16 +91,16 @@ int render_game(t_data *data)
 	while (1)
 	{
 		//usleep(1000000 / (data->render.speed * 5));
-		timeout(1);
+		timeout(1000 / (data->render.speed * 5));
 		if ((c = getch()) == ' ')
 			set_speed(data);
 		if (!play_corewar(data))
 			break ;
 		render_cycle_data(data);
+		render_arena(data);
 	}
 	delwin(data->render.arena_win);
 	delwin(data->render.side_win);
 	endwin();
-	system("leaks corewar");
 	return (0);
 }
