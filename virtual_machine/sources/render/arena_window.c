@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/28 17:21:09 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/30 13:13:41 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/05/30 17:48:23 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 /*
 **	Draws horisontal and vertical coordinate bars.
 */
-static void		draw_cordinates(WINDOW *a_win)
+void		render_cordinates(WINDOW *a_win)
 {
 	size_t	i;
 
@@ -40,10 +40,40 @@ static void		draw_cordinates(WINDOW *a_win)
 }
 
 /*
+**	BAD IDEA. WORKS VEERY SLOWLY
+*/
+void		refresh_colors(t_data *data)
+{
+	WINDOW	*a_win;
+	size_t	i;
+	int		y;
+	int		x;
+
+	a_win = data->render.arena_win;
+	y = ARENA_Y_PADDING;
+	x = ARENA_X_PADDING;
+	
+	i = 0;
+	while (i < MEM_SIZE)
+	{
+		wmove(a_win, y, x);
+		wchgat(a_win, 2, 0, data->render.color_map[i],  NULL);
+		x += 3;
+		i++;
+		if (i % ARENA_RAW_SIZE == 0)
+		{
+			y++;
+			x = ARENA_X_PADDING;
+		}	
+	}
+	wrefresh(a_win);
+}
+
+/*
 **	Draws arena data with necessary colors of players.
 **	Color map array used to define color.
 */
-static void		draw_arena(t_data *data)
+void		render_arena(t_data *data)
 {
 	WINDOW	*a_win;
 	size_t	i;
@@ -56,16 +86,15 @@ static void		draw_arena(t_data *data)
 	while (i < MEM_SIZE)
 	{
 		wattron(a_win, COLOR_PAIR(data->render.color_map[i]));
-		wprintw(a_win, "%02hhx", data->arena[i]);
+		wprintw(a_win, "%02hhx ", data->arena[i]);
 		wattroff(a_win, COLOR_PAIR(data->render.color_map[i]));
-		wprintw(a_win, " ");
+		//wprintw(a_win, " ");
 		i++;
 		if (i % ARENA_RAW_SIZE == 0)
 		{
 			getyx(a_win, y, x);
 			wmove(a_win, y + 1, ARENA_X_PADDING);
 		}
-		
 	}
 	wrefresh(a_win);
 }
@@ -73,7 +102,7 @@ static void		draw_arena(t_data *data)
 /*
 **	Draws location of each procces (PC) on arena.
 */
-static void 	draw_processes(t_data *data)
+void 	render_processes(t_data *data)
 {
 	WINDOW	*a_win;
 	t_list	*track;
@@ -96,12 +125,12 @@ static void 	draw_processes(t_data *data)
 /*
 **	Renders arena data.
 */
-void	render_arena(t_data *data)
+void	render_arena_win(t_data *data)
 {
 	if (!data->render.arena_win)
 		data->render.arena_win = create_new_window(ARENA_WIN_HEIGHT, ARENA_WIN_WIDTH,
 													ARENA_Y_OFFSET, ARENA_X_OFFSET);
-	draw_cordinates(data->render.arena_win);
-	draw_arena(data);
-	draw_processes(data);
+	render_cordinates(data->render.arena_win);
+	render_arena(data);
+	render_processes(data);
 }

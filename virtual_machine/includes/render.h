@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/28 12:51:27 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/30 15:46:35 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/05/30 17:37:03 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,15 @@
 int				render_game(t_data *data);
 WINDOW			*create_new_window(int height, int width,
 				int start_y, int start_x);
+void			render_arena_win(t_data *data);
 void			render_arena(t_data *data);
+void			render_processes(t_data *data);
+void			refresh_colors(t_data *data);
+
 void			render_side_bar(t_data *data);
 void			render_speed_data(t_data *data);
 void			render_cycle_data(t_data *data);
+void 			render_players_data(t_data *data);
+void			render_parameters(t_data *data);
 
 #endif

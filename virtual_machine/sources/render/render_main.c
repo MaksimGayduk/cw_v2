@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/28 12:50:38 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/30 16:03:00 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/05/30 17:58:13 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,7 @@ void	init_colors(void)
 	if (has_colors() == FALSE) 
 	{
     	endwin();
-    	ft_printf("Your terminal does not support color\n");
-    	exit(1);
+    	error_msg("Your terminal does not support color", NULL);	
 	}
 	start_color();
 	init_color(COLOR_MAGENTA, 500, 500, 500);
@@ -80,7 +79,7 @@ void	init_start_window(t_data *data)
 	data->render.speed = 50;
 	data->render.paused = 1;
 	render_side_bar(data);
-	render_arena(data);
+	render_arena_win(data);
 	set_speed(data);
 }
 
@@ -95,8 +94,8 @@ int render_game(t_data *data)
 		timeout(10);
 		if ((c = getch()) == ' ')
 			set_speed(data);
-		render_arena(data);
 		play_corewar(data);
+		render_side_bar(data);
 		render_cycle_data(data);
 	}
 	delwin(data->render.arena_win);

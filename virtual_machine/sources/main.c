@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/27 16:12:55 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/29 18:28:36 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/05/30 16:10:48 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,13 @@ int	main(int argc, char **argv)
 	init_arena(&data);
 	introduce_players(&data);
 	
-	render_game(&data);
-
-	//while (play_corewar(&data))
-	//;
-
+	if (data.input_params.v)
+		render_game(&data);
+	else
+	{
+		while (play_corewar(&data))
+			;
+		announce_the_winner(&data);
+	}
 	return (0);
 }

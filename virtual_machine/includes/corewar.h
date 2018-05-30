@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/26 17:22:40 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/30 15:53:13 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/05/30 16:11:08 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ typedef char	t_byte;
 
 # define DUMPED				data->input_params.dump
 # define DUMP_VALUE 		data->input_params.dump_value
+# define V_FLAG				data->input_params.v
 
 # define MEM_ERROR "memory allocation failed" 
 
@@ -180,7 +181,7 @@ void			init_processes(t_data *data);
 void			init_arena(t_data *data);
 void			parse_arguments(t_data *data, t_process *process);
 
-void    		play_corewar(t_data *data);
+int	    		play_corewar(t_data *data);
 void			handle_cycle(t_data *data);
 void			compute_instructions(t_data *data);
 void			kill_processes(t_data *data);
