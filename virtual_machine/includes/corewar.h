@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/26 17:22:40 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/30 15:08:47 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/05/30 15:53:13 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,6 @@ typedef char	t_byte;
 # define BUFF_SIZE 16
 # define DUMP_SIZE 32
 
-//# define GET_NUMBER(x) *((int *)x)
-//# define GET_REV_NUMBER(x, v) *((int *)reverse_array(x, v))
-//# define SET_NUMBER(d, s) ft_memcpy(d, s, REG_SIZE)
 # define IS_OPCODE(x) (x > 0 && x <= OPER_QTY - 2) ? 1 : 0
 
 /*
@@ -83,6 +80,7 @@ typedef char	t_byte;
 **	reg[0] is empty and won`t be used.
 **	It`s simplifies the access to registers
 */
+
 typedef struct	s_player
 {
 	t_byte		magic[MAGIC_LENGTH];
@@ -136,6 +134,7 @@ typedef	struct	s_info
 
 typedef	struct	s_params
 {
+	t_byte		v;
 	t_byte		dump;
 	int			dump_value;
 	t_info		players_info[MAX_PLAYERS];
@@ -169,7 +168,6 @@ typedef struct	s_data
 	int			cycle_to_die;
 	t_params	input_params;
 	t_ren		render;
-	
 }				t_data;
 
 # include		"render.h"

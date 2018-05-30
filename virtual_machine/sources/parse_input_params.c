@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/17 15:27:51 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/24 19:22:01 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/05/30 16:01:03 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,12 @@ void	parse_input_params(t_data *data, char **argv)
 	data->players_qty = 0;
 	while (argv[i])
 	{
-		if (ft_strequ(argv[i], "-dump"))
+		if (ft_strequ(argv[i], "-v"))
+		{
+			data->input_params.v = 1;
+			i++;
+		}	
+		else if (ft_strequ(argv[i], "-dump"))
 		{
 			parse_dump(data, argv[++i]);
 			i++;
