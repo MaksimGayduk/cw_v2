@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/28 17:21:09 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/30 18:07:50 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/05/30 19:42:55 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ void		render_arena(t_data *data)
 	int		x;
 
 	a_win = data->render.arena_win;
+	werase(a_win);
 	wmove(a_win, ARENA_Y_PADDING, ARENA_X_PADDING);
 	i = 0;
 	while (i < MEM_SIZE)
