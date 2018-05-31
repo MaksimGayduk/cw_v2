@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/28 17:21:09 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/31 10:05:03 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/05/31 10:38:44 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,34 +39,6 @@ void		render_cordinates(WINDOW *a_win)
 	wattroff(a_win, COLOR_PAIR(10));
 }
 
-
-void		refresh_colors(t_data *data)
-{
-	WINDOW	*a_win;
-	size_t	i;
-	int		y;
-	int		x;
-
-	a_win = data->render.arena_win;
-	y = ARENA_Y_PADDING;
-	x = ARENA_X_PADDING;
-	
-	i = 0;
-	while (i < MEM_SIZE)
-	{
-		wmove(a_win, y, x);
-		wchgat(a_win, 2, 0, data->render.color_map[i],  NULL);
-		x += 3;
-		i++;
-		if (i % ARENA_RAW_SIZE == 0)
-		{
-			y++;
-			x = ARENA_X_PADDING;
-		}	
-	}
-	wrefresh(a_win);
-}
-
 /*
 **	Draws arena data with necessary colors of players.
 **	Color map array used to define color.
@@ -84,11 +56,12 @@ void		render_arena(t_data *data)
 	i = 0;
 	while (i < MEM_SIZE)
 	{
-		c = data->render.pc_map[i] ? data->render.color_map[i] + 4 : data->render.color_map[i];
-		//wattron(a_win, COLOR_PAIR(data->render.color_map[i]));
+		if (data->render.pc_map[i])
+			c = data->render.color_map[i] + 4;
+		else
+			c = data->render.color_map[i];
 		wattron(a_win, COLOR_PAIR(c));
 		wprintw(a_win, "%02hhx", data->arena[i]);
-		//wattroff(a_win, COLOR_PAIR(data->render.color_map[i]));
 		wattroff(a_win, COLOR_PAIR(c));
 		wprintw(a_win, " ");
 		i++;
@@ -101,28 +74,6 @@ void		render_arena(t_data *data)
 	wrefresh(a_win);
 }
 
-/*
-**	Draws location of each procces (PC) on arena.
-*/
-void 	render_processes(t_data *data)
-{
-	WINDOW	*a_win;
-	t_list	*track;
-	int		x;
-	int		y;
-
-	a_win = data->render.arena_win;
-	track = data->processes;
-	while(track)
-	{
-		y = PC(track) / ARENA_RAW_SIZE + ARENA_Y_PADDING;
-		x = (PC(track) % ARENA_RAW_SIZE) * 3 + ARENA_X_PADDING;
-		wmove(a_win, y, x);
-		wchgat(a_win, 2, 0, data->render.color_map[PC(track)] + 4,  NULL);
-		wrefresh(a_win);
-		track = track->next;
-	}
-}
 
 /*
 **	Renders arena data.
@@ -134,5 +85,4 @@ void	render_arena_win(t_data *data)
 													ARENA_Y_OFFSET, ARENA_X_OFFSET);
 	render_cordinates(data->render.arena_win);
 	render_arena(data);
-	render_processes(data);
 }

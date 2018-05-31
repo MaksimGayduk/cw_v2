@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/28 12:50:38 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/31 10:20:38 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/05/31 10:34:56 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ int render_game(t_data *data)
 			set_speed(data);
 		if (!play_corewar(data))
 			break ;
-		render_cycle_data(data);
+		render_side_bar(data);
 		render_arena(data);
 	}
 	delwin(data->render.arena_win);

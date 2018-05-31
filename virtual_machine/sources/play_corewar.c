@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/05 11:43:30 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/31 10:17:23 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/05/31 10:34:02 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,6 @@ void	execute_instruction(t_data *data, t_list *track)
 	op_tab[OPCODE(track)].action(data, track->content);				
 	if (OPCODE(track) != 9 || !CARRY(track))
 		compute_pc(data, track, PADDING(track));
-		//PC(track) = normalize_index(PC(track) + PADDING(track));
-	//if (V_FLAG) render_arena(data);
-	//if (V_FLAG)	render_processes(data);
-	//if (V_FLAG && OPCODE(track) == 1) render_players_data(data);
 	ft_bzero(&GET_OPERATION(track), sizeof(t_oper));
 }
 
@@ -53,12 +49,7 @@ inline void		compute_instructions(t_data *data)
 			DELAY(track) = op_tab[OPCODE(track)].delay;
 		}
 		else if (!OPCODE(track) && !IS_OPCODE(PC_VAL(track)))
-		{
-			compute_pc(data, track, 1);
-			//PC(track) = normalize_index(++PC(track));
-			//if (V_FLAG) refresh_colors(data);
-			//if (V_FLAG)	render_processes(data);
-		}			
+			compute_pc(data, track, 1);		
 		if (DELAY(track))
 			DELAY(track)--;
 		track = track->next;
@@ -83,7 +74,6 @@ inline void	handle_cycle(t_data *data)
 		data->cycle_to_die -= CYCLE_DELTA;
 		data->live_checks = MAX_CHECKS;
 	}
-	if (V_FLAG)	render_parameters(data);
 }
 
 /*
@@ -103,7 +93,6 @@ inline int	play_corewar(t_data *data)
 			handle_cycle(data);
 			kill_processes(data);
 			set_lives_to_zero(data);
-			if (V_FLAG) render_players_data(data);
 		}
 		data->cycle++;
 		data->counter++;
