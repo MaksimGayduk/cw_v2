@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/17 12:48:39 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/31 09:48:14 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/05/31 12:35:53 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,15 @@ void	delete_dead_processes(t_data *data)
 	t_list	*track;
 	t_list	*overtake;
 
+	t_process *test;//
+
 	track = data->processes;
 	while (track)
 	{
+		test = track->content;
 		overtake = track;
+		if (!LIVE(track))
+			data->render.pc_map[PC(track)]--;
 		if (!LIVE(track) && track == data->processes)
 		{
 			delete_from_beginnig(&data->processes, &track);

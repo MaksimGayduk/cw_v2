@@ -6,7 +6,7 @@
 #    By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/27 16:20:32 by mgayduk           #+#    #+#              #
-#    Updated: 2018/05/30 19:14:01 by mgayduk          ###   ########.fr        #
+#    Updated: 2018/05/31 10:51:56 by mgayduk          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,11 +63,12 @@ OPER := oper_tab.c		\
 		oper_15_lfork.c \
 		oper_16_aff.c 
 
-VIS	:=	render_main.c		\
+REN	:=	render_main.c		\
 		arena_window.c		\
-		side_bar_window.c 
+		side_bar_window.c	\
+		colors_funcs.c
 
-SRC := $(SRC) $(OPER) $(VIS)
+SRC := $(SRC) $(OPER) $(REN)
 
 # Object files
 OBJ := $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))

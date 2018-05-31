@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/26 17:22:40 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/31 10:11:54 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/05/31 10:57:13 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ typedef char	t_byte;
 # define SIZE(x, v)				GET_ARGUMENT(x, v).size
 # define TYPE(x, v)				GET_ARGUMENT(x, v).type
 # define USED(x, v)				GET_ARGUMENT(x, v).used
-
 
 
 //# define REGISTER(x, v)			x->registers[v].reg[v]
@@ -144,7 +143,7 @@ typedef	struct	s_params
 typedef	struct	s_ren
 {
 				t_byte	color_map[MEM_SIZE];
-				t_byte	pc_map[MEM_SIZE];
+				int		pc_map[MEM_SIZE];
 				WINDOW	*main_win;
 				WINDOW	*arena_win;
 				WINDOW	*side_win;

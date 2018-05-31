@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/22 23:56:31 by maks              #+#    #+#             */
-/*   Updated: 2018/05/28 12:27:02 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/05/31 10:43:58 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ t_byte	*read_arena_chunk(t_data *data, t_byte *dest, int start, size_t n)
 
 void	write_arena_chunk(t_data *data, t_byte *src, int start, size_t n)
 {
-	size_t i;
-	int index;
+	size_t	i;
+	int		index;
 
 	i = 0;
 	while (i < n)

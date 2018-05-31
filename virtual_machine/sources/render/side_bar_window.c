@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/29 13:20:20 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/31 10:41:42 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/05/31 11:54:53 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ void	render_parameters(t_data *data)
 		wrefresh(data->render.side_win);
 	}
 	param_win = data->render.param_win;
-	mvwprintw(param_win, 0, 0, "CYCLE_TO_DIE:\t%i", data->cycle_to_die);
+	mvwprintw(param_win, 0, 0, "CYCLE_TO_DIE:\t%4i", data->cycle_to_die);
 	mvwprintw(param_win, 2, 0, "CYCLE_DELTA:\t%i", CYCLE_DELTA);
 	mvwprintw(param_win, 4, 0, "NBR_LIVE:\t%i", NBR_LIVE);
 	mvwprintw(param_win, 6, 0, "MAX_CHECKS:\t%i", MAX_CHECKS);

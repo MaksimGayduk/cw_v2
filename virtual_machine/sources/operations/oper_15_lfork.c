@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/16 13:08:36 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/24 19:23:40 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/05/31 12:18:30 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void	lfork_cor(t_data *data, t_process *process)
 	pc += process->pc;
 	pc = normalize_index(pc);
 	new_process.pc = pc;
+	data->render.pc_map[pc]++;
 	let_new_process_play(data, &new_process);
 	new_node = ft_lstnew(&new_process, sizeof(t_process));
 	if (!new_node)

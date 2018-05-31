@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/28 12:50:38 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/31 10:34:56 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/05/31 10:50:54 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,29 +25,6 @@ WINDOW	*create_new_window(int height, int width, int start_y, int start_x)
 	return (local_win);
 }
 
-void	init_colors(void)
-{
-	if (has_colors() == FALSE) 
-	{
-    	endwin();
-    	error_msg("Your terminal does not support color", NULL);	
-	}
-	start_color();
-	init_color(COLOR_MAGENTA, 500, 500, 500);
-	init_pair(1, COLOR_GREEN, COLOR_BLACK);
-	init_pair(2, COLOR_BLUE, COLOR_BLACK);
-	init_pair(3, COLOR_RED, COLOR_BLACK);
-	init_pair(4, COLOR_CYAN, COLOR_BLACK);
-	
-	init_pair(5, COLOR_BLACK, COLOR_GREEN);
-	init_pair(6, COLOR_BLACK, COLOR_BLUE);
-	init_pair(7, COLOR_BLACK, COLOR_RED);
-	init_pair(8, COLOR_BLACK, COLOR_CYAN);
-
-	init_pair(42, COLOR_MAGENTA, COLOR_MAGENTA);
-	init_pair(43, COLOR_MAGENTA, COLOR_BLACK);
-	init_pair(47, COLOR_BLACK, COLOR_MAGENTA);
-}
 
 void	set_speed(t_data *data)
 {
