@@ -6,11 +6,18 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/05 11:43:30 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/30 19:45:52 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/05/31 10:17:23 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
+
+void	compute_pc(t_data *data, t_list *track, int steps)
+{
+	data->render.pc_map[PC(track)]--;
+	PC(track) = normalize_index(PC(track) + steps);
+	data->render.pc_map[PC(track)]++;
+}
 
 
 void	execute_instruction(t_data *data, t_list *track)
@@ -18,10 +25,11 @@ void	execute_instruction(t_data *data, t_list *track)
 	parse_arguments(data, track->content);
 	op_tab[OPCODE(track)].action(data, track->content);				
 	if (OPCODE(track) != 9 || !CARRY(track))
-		PC(track) = normalize_index(PC(track) + PADDING(track));
+		compute_pc(data, track, PADDING(track));
+		//PC(track) = normalize_index(PC(track) + PADDING(track));
 	//if (V_FLAG) render_arena(data);
 	//if (V_FLAG)	render_processes(data);
-	if (V_FLAG && OPCODE(track) == 1) render_players_data(data);
+	//if (V_FLAG && OPCODE(track) == 1) render_players_data(data);
 	ft_bzero(&GET_OPERATION(track), sizeof(t_oper));
 }
 
@@ -46,7 +54,8 @@ inline void		compute_instructions(t_data *data)
 		}
 		else if (!OPCODE(track) && !IS_OPCODE(PC_VAL(track)))
 		{
-			PC(track) = normalize_index(++PC(track));
+			compute_pc(data, track, 1);
+			//PC(track) = normalize_index(++PC(track));
 			//if (V_FLAG) refresh_colors(data);
 			//if (V_FLAG)	render_processes(data);
 		}			

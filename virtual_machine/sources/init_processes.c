@@ -36,6 +36,7 @@ void	init_processes(t_data *data)
 		ft_memcpy(&process.registers[1], &signature, REG_SIZE);
 		new_node = ft_lstnew(&process, sizeof(t_process));
 		ft_lstadd(&data->processes, new_node);
+		data->render.pc_map[process.pc]++;
 		i++;
 	}
 }

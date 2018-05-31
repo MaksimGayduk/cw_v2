@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/28 12:50:38 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/30 19:48:43 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/05/31 10:20:38 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,6 @@ int render_game(t_data *data)
 	init_start_window(data);
 	while (1)
 	{
-		//usleep(1000000 / (data->render.speed * 5));
 		timeout(1000 / (data->render.speed * 5));
 		if ((c = getch()) == ' ')
 			set_speed(data);

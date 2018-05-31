@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/26 17:22:40 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/30 18:16:59 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/05/31 10:11:54 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,6 +144,7 @@ typedef	struct	s_params
 typedef	struct	s_ren
 {
 				t_byte	color_map[MEM_SIZE];
+				t_byte	pc_map[MEM_SIZE];
 				WINDOW	*main_win;
 				WINDOW	*arena_win;
 				WINDOW	*side_win;
@@ -179,11 +180,12 @@ void			parse_input_params(t_data *data, char **argv);
 void			init_players(t_data *data);
 void			init_processes(t_data *data);
 void			init_arena(t_data *data);
-void			parse_arguments(t_data *data, t_process *process);
 
 int	    		play_corewar(t_data *data);
 void			handle_cycle(t_data *data);
 void			compute_instructions(t_data *data);
+void			parse_arguments(t_data *data, t_process *process);
+void			compute_pc(t_data *data, t_list *track, int steps);
 void			kill_processes(t_data *data);
 
 /*

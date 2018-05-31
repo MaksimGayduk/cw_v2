@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/28 17:21:09 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/30 19:52:08 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/05/31 10:05:03 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,16 +77,20 @@ void		render_arena(t_data *data)
 	size_t	i;
 	int		y;
 	int		x;
+	int		c;
 
 	a_win = data->render.arena_win;
 	wmove(a_win, ARENA_Y_PADDING, ARENA_X_PADDING);
 	i = 0;
 	while (i < MEM_SIZE)
 	{
-		//if (on_pc())
-		wattron(a_win, COLOR_PAIR(data->render.color_map[i]));
-		wprintw(a_win, "%02hhx ", data->arena[i]);
-		wattroff(a_win, COLOR_PAIR(data->render.color_map[i]));
+		c = data->render.pc_map[i] ? data->render.color_map[i] + 4 : data->render.color_map[i];
+		//wattron(a_win, COLOR_PAIR(data->render.color_map[i]));
+		wattron(a_win, COLOR_PAIR(c));
+		wprintw(a_win, "%02hhx", data->arena[i]);
+		//wattroff(a_win, COLOR_PAIR(data->render.color_map[i]));
+		wattroff(a_win, COLOR_PAIR(c));
+		wprintw(a_win, " ");
 		i++;
 		if (i % ARENA_RAW_SIZE == 0)
 		{
