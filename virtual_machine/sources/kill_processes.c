@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/17 12:48:39 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/30 16:44:40 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/05/31 09:47:49 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ static size_t	count_live_processes(t_data *data)
 static void		delete_from_beginnig(t_list **head, t_list **track)
 {
 	*head = (*head)->next;
+	ft_memdel(&((*track)->content));
 	free(*track);
 	*track = *head;
 }
@@ -46,6 +47,7 @@ static void		delete_from_beginnig(t_list **head, t_list **track)
 static void		delete_process(t_list **track, t_list **overtake)
 {
 	(*overtake)->next = (*track)->next;
+	ft_memdel(&((*track)->content));
 	free(*track);
 	*track = (*overtake)->next;
 }

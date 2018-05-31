@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/29 13:20:20 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/30 17:56:46 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/05/31 09:42:59 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,12 @@ void	render_speed_data(t_data *data)
 	WINDOW			*speed_win;
 
 	if (!data->render.speed_win)
+	{
 		data->render.speed_win = subwin(data->render.side_win,
-										SPEED_WIN_HEIGHT, SPEED_WIN_WIDTH,
-										SPEED_Y_OFFSET, SPEED_X_OFFSET);
-	wrefresh(data->render.side_win);
+								SPEED_WIN_HEIGHT, SPEED_WIN_WIDTH,
+								SPEED_Y_OFFSET, SPEED_X_OFFSET);
+		wrefresh(data->render.side_win);
+	}
 	speed_win = data->render.speed_win;
 	if (data->render.paused) mvwprintw(speed_win, 0, 0, "** PAUSED ** ");
 	if (!data->render.paused) mvwprintw(speed_win, 0, 0, "** RUNNING **");
@@ -38,10 +40,12 @@ void	render_cycle_data(t_data *data)
 	WINDOW			*cycle_win;
 
 	if (!data->render.cycle_win)
+	{
 		data->render.cycle_win = subwin(data->render.side_win,
 										CYCLE_WIN_HEIGHT, CYCLE_WIN_WIDTH,
 										CYCLE_Y_OFFSET, CYCLE_X_OFFSET);
-	wrefresh(data->render.side_win);
+		wrefresh(data->render.side_win);
+	}
 	cycle_win = data->render.cycle_win;
 	mvwprintw(cycle_win, 0, 0, "Cycle:\t\t%zu", data->cycle);
 	mvwprintw(cycle_win, 2, 0, "Processes:\t%zu", data->process_qty);
@@ -55,10 +59,12 @@ void render_players_data(t_data *data)
 	WINDOW	*player_win;
 
 	if (!data->render.player_win)
+	{
 		data->render.player_win = subwin(data->render.side_win,
 										PLAYER_WIN_HEIGHT, PLAYER_WIN_WIDTH,
 										PLAYER_Y_OFFSET, PLAYER_X_OFFSET);
-	wrefresh(data->render.side_win);
+		wrefresh(data->render.side_win);
+	}
 	player_win = data->render.player_win;
 
 	i = 0;
@@ -82,10 +88,12 @@ void	render_parameters(t_data *data)
 	WINDOW	*param_win;
 
 	if (!data->render.param_win)
+	{
 		data->render.param_win = subwin(data->render.side_win,
 										PARAM_WIN_HEIGHT, PARAM_WIN_WIDTH,
 										PARAM_Y_OFFSET, PARAM_X_OFFSET);
-	wrefresh(data->render.side_win);
+		wrefresh(data->render.side_win);
+	}
 	param_win = data->render.param_win;
 	mvwprintw(param_win, 0, 0, "CYCLE_TO_DIE:\t%i", data->cycle_to_die);
 	mvwprintw(param_win, 2, 0, "CYCLE_DELTA:\t%i", CYCLE_DELTA);
