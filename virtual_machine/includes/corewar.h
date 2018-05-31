@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/26 17:22:40 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/31 10:57:13 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/05/31 14:10:10 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,6 +144,7 @@ typedef	struct	s_ren
 {
 				t_byte	color_map[MEM_SIZE];
 				int		pc_map[MEM_SIZE];
+				int		brightness_map[MEM_SIZE];
 				WINDOW	*main_win;
 				WINDOW	*arena_win;
 				WINDOW	*side_win;

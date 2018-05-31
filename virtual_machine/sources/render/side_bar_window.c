@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/29 13:20:20 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/31 11:54:53 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/05/31 14:20:17 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,8 @@ void render_players_data(t_data *data)
 		wattron(player_win, COLOR_PAIR(i + 1));
 		wprintw(player_win, "%s", data->players[i].name);
 		wattroff(player_win, COLOR_PAIR(i + 1));
-		mvwprintw(player_win, i * 4 + 1, 4, "Last live:\t\t\t%i", data->players[i].last_live);
-		mvwprintw(player_win, i * 4 + 2, 4, "Lives in current period:\t%i",
+		mvwprintw(player_win, i * 4 + 1, 4, "Last live:\t\t\t%4i", data->players[i].last_live);
+		mvwprintw(player_win, i * 4 + 2, 4, "Lives in current period:\t%4i",
 				data->players[i].live);
 		i++;
 	}
@@ -96,9 +96,9 @@ void	render_parameters(t_data *data)
 	}
 	param_win = data->render.param_win;
 	mvwprintw(param_win, 0, 0, "CYCLE_TO_DIE:\t%4i", data->cycle_to_die);
-	mvwprintw(param_win, 2, 0, "CYCLE_DELTA:\t%i", CYCLE_DELTA);
-	mvwprintw(param_win, 4, 0, "NBR_LIVE:\t%i", NBR_LIVE);
-	mvwprintw(param_win, 6, 0, "MAX_CHECKS:\t%i", MAX_CHECKS);
+	mvwprintw(param_win, 2, 0, "CYCLE_DELTA:\t%4i", CYCLE_DELTA);
+	mvwprintw(param_win, 4, 0, "NBR_LIVE:\t%4i", NBR_LIVE);
+	mvwprintw(param_win, 6, 0, "MAX_CHECKS:\t%4i", MAX_CHECKS);
 	
 	touchwin(param_win);
 	wrefresh(param_win);

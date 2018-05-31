@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/28 17:21:09 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/31 10:38:44 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/05/31 14:17:18 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,12 @@ void		render_arena(t_data *data)
 			c = data->render.color_map[i] + 4;
 		else
 			c = data->render.color_map[i];
+		if (data->render.brightness_map[i] && data->cycle - data->render.brightness_map[i] <= 50)
+			wattron(a_win, A_BOLD);
 		wattron(a_win, COLOR_PAIR(c));
 		wprintw(a_win, "%02hhx", data->arena[i]);
 		wattroff(a_win, COLOR_PAIR(c));
+		wattroff(a_win, A_BOLD);
 		wprintw(a_win, " ");
 		i++;
 		if (i % ARENA_RAW_SIZE == 0)

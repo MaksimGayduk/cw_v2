@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/28 12:50:38 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/31 10:50:54 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/05/31 13:43:11 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,16 +62,24 @@ void	init_start_window(t_data *data)
 
 int render_game(t_data *data)
 {
+	int i;
 	int c;
 
 	init_start_window(data);
+	i = 0;
 	while (1)
 	{
-		timeout(1000 / (data->render.speed * 5));
+		i++;
+		timeout(1000 / (data->render.speed));
 		if ((c = getch()) == ' ')
 			set_speed(data);
 		if (!play_corewar(data))
 			break ;
+		if ((data->render.speed > 900 && i % 16) ||
+			(data->render.speed > 750 && i % 8) ||
+			(data->render.speed > 500 && i % 4) ||
+			(data->render.speed > 100 && i % 2))
+			continue;	
 		render_side_bar(data);
 		render_arena(data);
 	}
