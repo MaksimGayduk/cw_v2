@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/05 11:43:30 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/31 17:19:44 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/05/31 20:01:23 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void	compute_pc(t_data *data, t_process *process, int steps)
 {
+	// if (data->render.live_mark[process->pc])
+	// 	data->render.live_mark[process->pc] = 0;
 	data->render.pc_map[process->pc]--;
 	process->pc = normalize_index(process->pc + steps);
 	data->render.pc_map[process->pc]++;
@@ -22,6 +24,9 @@ void	compute_pc(t_data *data, t_process *process, int steps)
 
 void	execute_instruction(t_data *data, t_list *track)
 {
+	t_process *test;
+
+	test = track->content;
 	parse_arguments(data, track->content);
 	op_tab[OPCODE(track)].action(data, track->content);				
 	if (OPCODE(track) != 9 || !CARRY(track))
@@ -41,6 +46,8 @@ inline void		compute_instructions(t_data *data)
 	track = data->processes;
 	while (track)
 	{
+		if (!OPCODE(track) && !IS_OPCODE(PC_VAL(track)))
+			compute_pc(data, track->content, 1);
 		if (OPCODE(track) && DELAY(track) == 0)
 			execute_instruction(data, track);
 		if (!OPCODE(track) && IS_OPCODE(PC_VAL(track)))
@@ -48,8 +55,7 @@ inline void		compute_instructions(t_data *data)
 			OPCODE(track) = PC_VAL(track);
 			DELAY(track) = op_tab[OPCODE(track)].delay;
 		}
-		else if (!OPCODE(track) && !IS_OPCODE(PC_VAL(track)))
-			compute_pc(data, track->content, 1);		
+		
 		if (DELAY(track))
 			DELAY(track)--;
 		track = track->next;
@@ -93,6 +99,11 @@ inline int	play_corewar(t_data *data)
 			handle_cycle(data);
 			kill_processes(data);
 			set_lives_to_zero(data);
+		}
+		if (V_FLAG)
+		{
+			render_side_bar(data);
+			render_arena(data);
 		}
 		data->cycle++;
 		data->counter++;

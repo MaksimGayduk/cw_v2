@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/28 12:50:38 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/31 15:42:11 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/05/31 19:40:52 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	render_winner(t_data *data)
 	s_win = data->render.side_win;
 	mvwprintw(s_win, WINNER_Y_OFFSET, WINNER_X_OFFSET, "The winner is: ");
 	wattron(s_win, COLOR_PAIR(winner + 1));
-	wprintw(s_win, "%.34s", data->players[i].name);
+	wprintw(s_win, "%.34s", data->players[winner].name);
 	wattroff(s_win, COLOR_PAIR(winner + 1));
 	mvwprintw(s_win, WINNER_Y_OFFSET + 1, WINNER_X_OFFSET, "Press any key to finish");
 	wrefresh(data->render.side_win);
@@ -78,27 +78,20 @@ void	init_start_window(t_data *data)
 
 int render_game(t_data *data)
 {
-	int i;
 	int c;
-
 	init_start_window(data);
-	
-	i = 0;
 	while (1)
 	{
-		i++;
+		if (!play_corewar(data))
+			break ;
+		if ((data->render.speed > 900 && data->cycle % 16) ||
+			(data->render.speed > 750 && data->cycle % 8) ||
+			(data->render.speed > 500 && data->cycle % 4) ||
+			(data->render.speed > 100 && data->cycle % 2))
+			continue;	
 		timeout(1000 / (data->render.speed));
 		if ((c = getch()) == ' ')
 			set_speed(data);
-		if (!play_corewar(data))
-			break ;
-		if ((data->render.speed > 900 && i % 16) ||
-			(data->render.speed > 750 && i % 8) ||
-			(data->render.speed > 500 && i % 4) ||
-			(data->render.speed > 100 && i % 2))
-			continue;	
-		render_side_bar(data);
-		render_arena(data);
 	}
 	render_winner(data);
 	delwin(data->render.arena_win);

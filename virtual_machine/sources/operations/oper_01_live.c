@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/09 09:22:48 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/31 17:05:01 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/05/31 17:43:12 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,10 @@ void	live(t_data *data, t_process *process)
 		data->players[p_num].last_live = data->cycle;
 		if (V_FLAG)
 		{
-			
+			data->render.live_mark[process->pc] = p_num + 11;
+			data->render.brightness_map[process->pc] = data->cycle;
 		}
+			
 	}	
 	process->live++;
 	data->total_lives++;

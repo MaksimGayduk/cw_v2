@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/28 17:21:09 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/31 17:08:19 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/05/31 19:16:03 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,13 +56,21 @@ void		render_arena(t_data *data)
 	i = 0;
 	while (i < MEM_SIZE)
 	{
+		if (data->render.live_mark[i] &&
+			data->cycle - data->render.brightness_map[i] <= 50)
+			c = data->render.live_mark[i];
+			
 		if (data->render.pc_map[i])
 			c = data->render.color_map[i] + 4;
-		else
+		else if (!data->render.live_mark[i])
 			c = data->render.color_map[i];
-		if (data->render.brightness_map[i] &&
-			data->cycle - data->render.brightness_map[i] <= 50)
+
+
+
+		if ((data->render.brightness_map[i] &&
+			data->cycle - data->render.brightness_map[i] <= 50))
 			wattron(a_win, A_BOLD);
+
 		
 		wattron(a_win, COLOR_PAIR(c));
 		wprintw(a_win, "%02hhx", data->arena[i]);
