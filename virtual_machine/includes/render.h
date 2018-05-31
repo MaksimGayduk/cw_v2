@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/28 12:51:27 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/31 10:58:46 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/05/31 15:40:21 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@
 # define 	ARENA_X_PADDING 	10
 
 # define	SIDE_WIN_HEIGHT		ARENA_WIN_HEIGHT
-# define	SIDE_WIN_WIDTH		50
+# define	SIDE_WIN_WIDTH		60
 # define	SIDE_Y_OFFSET		ARENA_Y_OFFSET
 # define	SIDE_X_OFFSET		ARENA_WIN_WIDTH - 1
 # define	SIDE_Y_PADDING		2
@@ -59,6 +59,9 @@
 # define	PARAM_WIN_WIDTH		SIDE_WIN_WIDTH - SIDE_X_PADDING * 2
 # define	PARAM_Y_OFFSET		PLAYER_Y_OFFSET + PLAYER_WIN_HEIGHT + 4
 # define	PARAM_X_OFFSET		SIDE_X_OFFSET + SIDE_X_PADDING
+
+# define	WINNER_Y_OFFSET		PARAM_Y_OFFSET + PARAM_WIN_HEIGHT
+# define	WINNER_X_OFFSET		SIDE_X_PADDING
 
 int				render_game(t_data *data);
 WINDOW			*create_new_window(int height, int width,

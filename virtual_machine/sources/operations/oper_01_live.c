@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/09 09:22:48 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/23 15:07:35 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/05/31 17:05:01 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,10 @@ void	live(t_data *data, t_process *process)
 	{
 		data->players[p_num].live++;
 		data->players[p_num].last_live = data->cycle;
+		if (V_FLAG)
+		{
+			
+		}
 	}	
 	process->live++;
 	data->total_lives++;

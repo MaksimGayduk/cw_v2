@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/26 17:22:40 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/31 14:10:10 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/05/31 17:14:42 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -185,7 +185,7 @@ int	    		play_corewar(t_data *data);
 void			handle_cycle(t_data *data);
 void			compute_instructions(t_data *data);
 void			parse_arguments(t_data *data, t_process *process);
-void			compute_pc(t_data *data, t_list *track, int steps);
+void			compute_pc(t_data *data, t_process *process, int steps);
 void			kill_processes(t_data *data);
 
 /*
@@ -199,7 +199,7 @@ void 			set_lives_to_zero(t_data *data);
 /*
 **	game_funcs.c
 */
-void			announce_the_winner(t_data *data);
+size_t			announce_the_winner(t_data *data);
 void			introduce_players(t_data *data);
 
 /*

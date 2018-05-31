@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/27 16:12:55 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/31 13:31:58 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/05/31 15:32:12 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,15 @@ int	main(int argc, char **argv)
 	init_players(&data);
 	init_processes(&data);
 	init_arena(&data);
-	introduce_players(&data);
-	
 	if (data.input_params.v)
 		render_game(&data);
 	else
 	{
+		introduce_players(&data);
 		while (play_corewar(&data))
 			;
 		announce_the_winner(&data);
 	}
-	system("leaks corewar");
+	//system("leaks corewar");
 	return (0);
 }

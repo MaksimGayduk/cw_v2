@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/16 13:08:36 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/31 12:17:41 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/05/31 17:19:36 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,15 +32,15 @@ void	fork_cor(t_data *data, t_process *process)
 {
 	t_list		*new_node;
 	t_process	new_process;
-	short		pc;
+	short		new_pc;
 
 	new_process = *process;
 	ft_bzero(&new_process.oper, sizeof(t_oper));
-	pc = get_short_number(VALUE(process, 0)) % IDX_MOD;
-	pc += process->pc;
-	pc = normalize_index(pc);
-	new_process.pc = pc;
-	data->render.pc_map[pc]++;
+	new_pc = get_short_number(VALUE(process, 0)) % IDX_MOD;
+	new_pc += process->pc;
+	new_pc = normalize_index(new_pc);
+	new_process.pc = new_pc;
+	data->render.pc_map[new_pc]++;
 	let_new_process_play(data, &new_process);
 	new_node = ft_lstnew(&new_process, sizeof(t_process));
 	if (!new_node)

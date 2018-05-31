@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/29 13:20:20 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/31 14:20:17 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/05/31 15:40:53 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void render_players_data(t_data *data)
 	{
 		mvwprintw(player_win, i * 4, 0, "Player %i: ", data->players[i].signature);
 		wattron(player_win, COLOR_PAIR(i + 1));
-		wprintw(player_win, "%s", data->players[i].name);
+		wprintw(player_win, "%.38s", data->players[i].name);
 		wattroff(player_win, COLOR_PAIR(i + 1));
 		mvwprintw(player_win, i * 4 + 1, 4, "Last live:\t\t\t%4i", data->players[i].last_live);
 		mvwprintw(player_win, i * 4 + 2, 4, "Lives in current period:\t%4i",
@@ -115,6 +115,6 @@ void		render_side_bar(t_data *data)
 	render_cycle_data(data);
 	render_players_data(data);  
 	render_parameters(data);
-	wattroff(data->render.side_win, A_BOLD);
+	//wattroff(data->render.side_win, A_BOLD);
 	wrefresh(data->render.side_win);
 }

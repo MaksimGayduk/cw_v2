@@ -6,17 +6,17 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/05 11:43:30 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/31 12:36:34 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/05/31 17:19:44 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-void	compute_pc(t_data *data, t_list *track, int steps)
+void	compute_pc(t_data *data, t_process *process, int steps)
 {
-	data->render.pc_map[PC(track)]--;
-	PC(track) = normalize_index(PC(track) + steps);
-	data->render.pc_map[PC(track)]++;
+	data->render.pc_map[process->pc]--;
+	process->pc = normalize_index(process->pc + steps);
+	data->render.pc_map[process->pc]++;
 }
 
 
@@ -25,7 +25,7 @@ void	execute_instruction(t_data *data, t_list *track)
 	parse_arguments(data, track->content);
 	op_tab[OPCODE(track)].action(data, track->content);				
 	if (OPCODE(track) != 9 || !CARRY(track))
-		compute_pc(data, track, PADDING(track));
+		compute_pc(data, track->content, PADDING(track));
 	ft_bzero(&GET_OPERATION(track), sizeof(t_oper));
 }
 
@@ -49,7 +49,7 @@ inline void		compute_instructions(t_data *data)
 			DELAY(track) = op_tab[OPCODE(track)].delay;
 		}
 		else if (!OPCODE(track) && !IS_OPCODE(PC_VAL(track)))
-			compute_pc(data, track, 1);		
+			compute_pc(data, track->content, 1);		
 		if (DELAY(track))
 			DELAY(track)--;
 		track = track->next;
@@ -57,7 +57,7 @@ inline void		compute_instructions(t_data *data)
 }
 
 /*
-**	Reduce cycle_to_die.
+**	Reduces cycle_to_die.
 */
 inline void	handle_cycle(t_data *data)
 {
