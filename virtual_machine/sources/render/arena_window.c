@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/28 17:21:09 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/31 19:16:03 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/05/31 20:35:51 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,15 +56,16 @@ void		render_arena(t_data *data)
 	i = 0;
 	while (i < MEM_SIZE)
 	{
+		c = 0;
+		
 		if (data->render.live_mark[i] &&
 			data->cycle - data->render.brightness_map[i] <= 50)
 			c = data->render.live_mark[i];
 			
 		if (data->render.pc_map[i])
 			c = data->render.color_map[i] + 4;
-		else if (!data->render.live_mark[i])
+		else if (!c)
 			c = data->render.color_map[i];
-
 
 
 		if ((data->render.brightness_map[i] &&
