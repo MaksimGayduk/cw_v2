@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/27 16:30:59 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/31 13:21:11 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/06/01 11:29:04 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,10 @@ void	check_champ(t_player *player, char *file_path)
 {
 	int magic;
 
+	if (!player->exec_code_size)
+		error_msg("champion %s has no execution code", file_path);
+	if (player->exec_code_size > CHAMP_MAX_SIZE)
+		error_msg("champion %s is too big", file_path);
 	if (get_int_number(player->size) != (int)player->exec_code_size)
 		error_msg("File %s has a code size that differ from what its header says", file_path);
 	if (player->file_size < MIN_PROGSIZE)
