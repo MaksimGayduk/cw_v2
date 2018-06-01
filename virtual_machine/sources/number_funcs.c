@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/22 21:40:48 by maks              #+#    #+#             */
-/*   Updated: 2018/06/01 11:32:06 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/06/01 14:04:49 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,19 @@
 /*
 **	Such as readed memory dump from .cor file is big endian,
 **	to correct casting, array should be reversed.
-**	for example: 
-**	0017  --> {0x00, 0x17} in little endian will be 5888
-**	after reverse - {0x17, 0x00} will be 23 as needed.
+**	for example:
+**		0017  --> {0x00, 0x17} in little endian will be 5888
+**		after reverse - {0x17, 0x00} will be 23 as needed.
 */
 
 /*
 **	Converts array of bytes to a little-endian integer and returns it.
 */
 
-int get_int_number(void *arr)
+int		get_int_number(void *arr)
 {
-	int res;
-	unsigned char *s;
+	int				res;
+	unsigned char	*s;
 
 	res = 0;
 	s = (unsigned char *)arr;
@@ -35,7 +35,6 @@ int get_int_number(void *arr)
 	res += s[2] << 8;
 	res += s[1] << 16;
 	res += s[0] << 24;
-
 	return (res);
 }
 
@@ -43,10 +42,10 @@ int get_int_number(void *arr)
 **	Converts array of bytes to a little-endian short and returns it.
 */
 
-short get_short_number(void *arr)
+short	get_short_number(void *arr)
 {
-	short res;
-	unsigned char *s;
+	short			res;
+	unsigned char	*s;
 
 	res = 0;
 	s = (unsigned char *)arr;
@@ -59,7 +58,7 @@ short get_short_number(void *arr)
 **	Wrapper function for get_int_number and get_sort_number.
 */
 
-int	get_number(void *arr, int size)
+int		get_number(void *arr, int size)
 {
 	int res;
 
@@ -77,7 +76,7 @@ int	get_number(void *arr, int size)
 **					-1 	 => 4095;
 */
 
-int	normalize_index(int index)
+int		normalize_index(int index)
 {
 	index = index % MEM_SIZE;
 	if (index < 0)

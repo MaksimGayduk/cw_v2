@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/07 11:48:33 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/06/01 13:46:15 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/06/01 14:10:25 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static int		get_next_available_argument(t_process *process)
 {
 	int i;
-	
+
 	i = 0;
 	while (USED(process, i))
 		i++;
@@ -40,7 +40,8 @@ static void		read_register(t_data *data, int *padding, t_process *process)
 	ft_memcpy(VALUE(process, i), process->registers[reg_num], REG_SIZE);
 }
 
-static void		read_direct_value(t_data *data, int *padding, t_process *process)
+static void		read_direct_value(t_data *data, int *padding,
+									t_process *process)
 {
 	int		i;
 	int		size;
@@ -61,7 +62,8 @@ static void		read_direct_value(t_data *data, int *padding, t_process *process)
 	(*padding) += size - 1;
 }
 
-void			read_indirect_value(t_data *data, int *padding, t_process *process)
+void			read_indirect_value(t_data *data, int *padding,
+										t_process *process)
 {
 	int		i;
 	short	offset;
@@ -93,19 +95,18 @@ void			read_indirect_value(t_data *data, int *padding, t_process *process)
 **  Sets PC to the next instruction.
 */
 
-void	parse_arguments(t_data *data, t_process *process)
+void			parse_arguments(t_data *data, t_process *process)
 {
 	int		args_num;
 	int		k;
 	int		padding;
 	t_byte	codage;
 
-	padding = 0;
+	padding = g_op_tab[process->oper.op_code].codage ? 1 : 0;
 	if (!g_op_tab[process->oper.op_code].codage)
 		read_direct_value(data, &padding, process);
 	else
 	{
-		padding = 1;
 		args_num = g_op_tab[process->oper.op_code].args_num;
 		codage = data->arena[(process->pc + padding) % MEM_SIZE];
 		while (args_num--)

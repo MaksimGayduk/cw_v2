@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/27 16:30:59 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/06/01 11:29:04 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/06/01 13:58:27 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 
 static int		read_exec_code(int fd, char **dest)
 {
-	int ret;
-	int size;
-	char buff[BUFF_SIZE + 1];
+	int		ret;
+	int		size;
+	char	buff[BUFF_SIZE + 1];
 
 	size = 0;
 	while ((ret = read(fd, buff, BUFF_SIZE)))
 	{
 		if (ret == -1)
-			error_msg("some errors while reading exec_code were occur", NULL);
+			error_msg("Some errors while reading exec_code were occur", NULL);
 		size += ret;
 	}
 	lseek(fd, -size, 2);
@@ -31,11 +31,10 @@ static int		read_exec_code(int fd, char **dest)
 	return (size);
 }
 
-
 /*
 **	Reads champion`s data: magic, name, size, comment
 **	and executable code from file to structure player
-**	and returns it. 
+**	and returns it.
 */
 
 static void		read_champ(t_player *player, char *file_path)
@@ -57,23 +56,23 @@ static void		read_champ(t_player *player, char *file_path)
 	close(fd);
 }
 
-void	check_champ(t_player *player, char *file_path)
+static void		check_champ(t_player *player, char *file_path)
 {
 	int magic;
 
 	if (!player->exec_code_size)
-		error_msg("champion %s has no execution code", file_path);
+		error_msg("Champion %s has no execution code", file_path);
 	if (player->exec_code_size > CHAMP_MAX_SIZE)
 		error_msg("champion %s is too big", file_path);
 	if (get_int_number(player->size) != (int)player->exec_code_size)
-		error_msg("File %s has a code size that differ from what its header says", file_path);
+		error_msg("Real and specified in header code size are different in %s",
+					file_path);
 	if (player->file_size < MIN_PROGSIZE)
 		error_msg("File %s is too small to be a champion", file_path);
-	magic = get_int_number(player->magic);	
+	magic = get_int_number(player->magic);
 	if (magic != COREWAR_EXEC_MAGIC)
 		error_msg("File %s has an invalid header", file_path);
 }
-
 
 /*
 **	Create an array of players and reads data for each of them.
@@ -82,7 +81,7 @@ void	check_champ(t_player *player, char *file_path)
 void			init_players(t_data *data)
 {
 	size_t	i;
-	
+
 	i = 0;
 	while (i < data->players_qty)
 	{

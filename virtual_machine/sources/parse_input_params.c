@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   parse_input_params.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
+/*   By: mgayduk <mgayduk@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/17 15:27:51 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/06/01 12:15:28 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/06/01 15:14:49 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-static void check_uniqueness(t_data *data, int number)
+static void	check_uniqueness(t_data *data, int number)
 {
-	size_t i;
+	size_t	i;
 
 	i = 0;
 	while (i < MAX_PLAYERS && data->input_params.players_info[i].used)
@@ -39,8 +39,8 @@ static void	parse_dump(t_data *data, char *d_arg)
 
 static void	parse_player_info(t_data *data, char **p_args)
 {
-	size_t i;
-	int number;
+	size_t	i;
+	int		number;
 
 	if (!p_args[0] || !p_args[1])
 		error_msg("some parameter is missing", NULL);
@@ -56,14 +56,14 @@ static void	parse_player_info(t_data *data, char **p_args)
 	data->input_params.players_info[i].used = 1;
 }
 
-static void compute_player_info(t_data *data, char *file_path)
+static void	compute_player_info(t_data *data, char *file_path)
 {
 	size_t	i;
 	int		number;
 
 	i = 0;
 	while (data->input_params.players_info[i].used)
-		i++;	
+		i++;
 	data->input_params.players_info[i].file_path = file_path;
 	if (i == 0)
 		number = 1;
@@ -74,10 +74,9 @@ static void compute_player_info(t_data *data, char *file_path)
 	data->input_params.players_info[i].used = 1;
 }
 
-
-void	parse_input_params(t_data *data, char **argv)
+void		parse_input_params(t_data *data, char **argv)
 {
-	size_t i;
+	size_t	i;
 
 	i = 0;
 	data->players_qty = 0;
@@ -87,7 +86,7 @@ void	parse_input_params(t_data *data, char **argv)
 		{
 			data->input_params.v = 1;
 			i++;
-		}	
+		}
 		else if (ft_strequ(argv[i], "-dump"))
 		{
 			parse_dump(data, argv[++i]);
