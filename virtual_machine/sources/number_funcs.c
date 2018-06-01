@@ -6,11 +6,19 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/22 21:40:48 by maks              #+#    #+#             */
-/*   Updated: 2018/05/23 16:38:54 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/06/01 11:32:06 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
+
+/*
+**	Such as readed memory dump from .cor file is big endian,
+**	to correct casting, array should be reversed.
+**	for example: 
+**	0017  --> {0x00, 0x17} in little endian will be 5888
+**	after reverse - {0x17, 0x00} will be 23 as needed.
+*/
 
 /*
 **	Converts array of bytes to a little-endian integer and returns it.

@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/05 11:43:30 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/31 20:01:23 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/06/01 11:34:01 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 void	compute_pc(t_data *data, t_process *process, int steps)
 {
-	// if (data->render.live_mark[process->pc])
-	// 	data->render.live_mark[process->pc] = 0;
 	data->render.pc_map[process->pc]--;
 	process->pc = normalize_index(process->pc + steps);
 	data->render.pc_map[process->pc]++;

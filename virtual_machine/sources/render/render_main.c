@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/28 12:50:38 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/31 20:15:22 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/06/01 11:50:53 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void	set_speed(t_data *data)
 		if (c == 'd') data->render.speed += 100;
 		if (data->render.speed < 1) data->render.speed = 1;
 		if (data->render.speed > 1000) data->render.speed = 1000;
+		render_speed_data(data);
 	}
 	data->render.paused = !data->render.paused;
 	render_speed_data(data);
