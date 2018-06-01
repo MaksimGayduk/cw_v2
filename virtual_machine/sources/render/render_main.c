@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/28 12:50:38 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/06/01 11:50:53 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/06/01 12:11:40 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	render_winner(t_data *data)
 	wattron(s_win, COLOR_PAIR(winner + 1));
 	wprintw(s_win, "%.34s", data->players[winner].name);
 	wattroff(s_win, COLOR_PAIR(winner + 1));
-	mvwprintw(s_win, WINNER_Y_OFFSET + 1, WINNER_X_OFFSET, "Press any key to finish");
+	mvwprintw(s_win, WINNER_Y_OFFSET + 2, WINNER_X_OFFSET, "Press any key to finish");
 	wrefresh(data->render.side_win);
 	wgetch(s_win);
 }
@@ -90,7 +90,7 @@ int render_game(t_data *data)
 		// 	(data->render.speed > 500 && data->cycle % 4) ||
 		// 	(data->render.speed > 100 && data->cycle % 2))
 		// 	continue;	
-		timeout(1000 / (data->render.speed));
+		timeout(1000 / ((data->render.speed) * 1.4));
 		if ((c = getch()) == ' ')
 			set_speed(data);
 	}

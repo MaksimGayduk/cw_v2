@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/05 11:43:30 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/06/01 11:34:01 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/06/01 12:24:26 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	compute_pc(t_data *data, t_process *process, int steps)
 	data->render.pc_map[process->pc]--;
 	process->pc = normalize_index(process->pc + steps);
 	data->render.pc_map[process->pc]++;
+	if (V_FLAG) render_arena(data);
 }
 
 
@@ -29,6 +30,9 @@ void	execute_instruction(t_data *data, t_list *track)
 	op_tab[OPCODE(track)].action(data, track->content);				
 	if (OPCODE(track) != 9 || !CARRY(track))
 		compute_pc(data, track->content, PADDING(track));
+	if (V_FLAG) render_arena(data);
+	if (V_FLAG && OPCODE(track) == 1)
+		render_players_data(data);
 	ft_bzero(&GET_OPERATION(track), sizeof(t_oper));
 }
 
@@ -47,13 +51,12 @@ inline void		compute_instructions(t_data *data)
 		if (!OPCODE(track) && !IS_OPCODE(PC_VAL(track)))
 			compute_pc(data, track->content, 1);
 		if (OPCODE(track) && DELAY(track) == 0)
-			execute_instruction(data, track);
+			execute_instruction(data, track);	
 		if (!OPCODE(track) && IS_OPCODE(PC_VAL(track)))
 		{
 			OPCODE(track) = PC_VAL(track);
 			DELAY(track) = op_tab[OPCODE(track)].delay;
 		}
-		
 		if (DELAY(track))
 			DELAY(track)--;
 		track = track->next;
@@ -97,12 +100,14 @@ inline int	play_corewar(t_data *data)
 			handle_cycle(data);
 			kill_processes(data);
 			set_lives_to_zero(data);
+			if (V_FLAG) render_side_bar(data);
 		}
-		if (V_FLAG)
-		{
-			render_side_bar(data);
-			render_arena(data);
-		}
+		// if (V_FLAG)
+		// {
+		// 	render_side_bar(data);
+		// 	render_arena(data);
+		// }
+		if (V_FLAG) render_cycle_data(data);
 		data->cycle++;
 		data->counter++;
 		return (1);
