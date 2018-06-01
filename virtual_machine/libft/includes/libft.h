@@ -6,14 +6,14 @@
 /*   By: mgayduk <mgayduk@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/27 11:03:18 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/03/13 18:40:47 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/06/01 16:56:20 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
-#include <inttypes.h>
+# include <inttypes.h>
 
 # include <stdlib.h>
 # include <string.h>

@@ -6,11 +6,11 @@
 /*   By: mgayduk <mgayduk@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/28 17:21:09 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/06/01 16:01:38 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/06/01 16:36:06 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "render.h"
+#include "corewar.h"
 
 /*
 **	Draws horisontal and vertical coordinate bars.

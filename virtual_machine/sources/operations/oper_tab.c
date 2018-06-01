@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   oper_tab.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
+/*   By: mgayduk <mgayduk@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/04 13:55:18 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/06/01 13:43:30 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/06/01 16:35:43 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "operations.h"
+#include "corewar.h"
 
 /*
 **	Global array, that contains instructions of Corewar

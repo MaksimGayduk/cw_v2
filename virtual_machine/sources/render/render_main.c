@@ -6,11 +6,11 @@
 /*   By: mgayduk <mgayduk@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/28 12:50:38 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/06/01 15:49:38 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/06/01 16:36:23 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "render.h"
+#include "corewar.h"
 
 WINDOW	*create_new_window(int height, int width, int start_y, int start_x)
 {	
