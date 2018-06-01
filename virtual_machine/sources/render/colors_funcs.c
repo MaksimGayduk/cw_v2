@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/31 10:50:36 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/31 17:33:40 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/06/01 13:11:16 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,13 @@ void	init_colors(void)
 	init_pair(47, COLOR_BLACK, COLOR_MAGENTA);
 }
 
-void	update_color_map(t_data *data, size_t src, int start, size_t n)
+void	update_color_map(t_data *data, t_byte champion, int start, size_t n)
 {
 	size_t	i;
 	int		index;
 	int		parent_color;
 
-	parent_color = data->render.color_map[src];
+	parent_color = champion + 1;
 	i = 0;
 	while (i < n)
 	{

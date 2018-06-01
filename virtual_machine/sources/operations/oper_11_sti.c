@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/16 11:22:16 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/31 10:59:05 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/06/01 12:42:49 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,5 @@ void	sti(t_data *data, t_process *process)
 	dest = process->pc + dest;
 	write_arena_chunk(data, val1, dest, REG_SIZE);
 	if (V_FLAG)
-			update_color_map(data, process->pc, dest, REG_SIZE);
+			update_color_map(data, process->champion, dest, REG_SIZE);
 }		

@@ -31,6 +31,7 @@ void	init_processes(t_data *data)
 	while (i < data->process_qty)
 	{
 		ft_bzero(&process, sizeof(t_process));
+		process.champion = i;
 		process.pc = MEM_SIZE / data->players_qty * i;
 		signature = get_int_number(&GET_SIGNATURE(i));
 		ft_memcpy(&process.registers[1], &signature, REG_SIZE);

@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/29 13:20:20 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/31 15:40:53 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/06/01 13:11:32 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,5 @@ void		render_side_bar(t_data *data)
 	render_cycle_data(data);
 	render_players_data(data);  
 	render_parameters(data);
-	//wattroff(data->render.side_win, A_BOLD);
 	wrefresh(data->render.side_win);
 }

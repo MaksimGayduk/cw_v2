@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/28 12:51:27 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/31 15:40:21 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/06/01 12:43:38 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,6 @@ void 			render_players_data(t_data *data);
 void			render_parameters(t_data *data);
 
 void			init_colors(void);
-void			update_color_map(t_data *data, size_t src, int start, size_t n);
+void			update_color_map(t_data *data, t_byte src, int start, size_t n);
 
 #endif

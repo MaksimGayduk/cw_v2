@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/26 17:22:40 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/31 17:21:33 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/06/01 12:38:36 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,7 @@ typedef struct	s_process
 	t_byte		dead;
 	t_byte		carry;
 	t_oper		oper;
+	t_byte		champion;
 	t_byte		registers[REG_NUMBER + 1][REG_SIZE];
 }				t_process;
 
