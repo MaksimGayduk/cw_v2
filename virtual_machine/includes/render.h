@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
+/*   By: mgayduk <mgayduk@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/28 12:51:27 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/06/01 12:43:38 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/06/01 16:08:36 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,21 +40,25 @@
 # define	SIDE_Y_PADDING		2
 # define 	SIDE_X_PADDING 		5
 
+# define	SPEED_WIN			data->render.speed_win
 # define	SPEED_WIN_HEIGHT	4
 # define	SPEED_WIN_WIDTH		SIDE_WIN_WIDTH - SIDE_X_PADDING * 2
 # define	SPEED_Y_OFFSET		SIDE_Y_OFFSET + SIDE_Y_PADDING
 # define	SPEED_X_OFFSET		SIDE_X_OFFSET + SIDE_X_PADDING
 
+# define	CYCLE_WIN			data->render.cycle_win
 # define	CYCLE_WIN_HEIGHT	4
 # define	CYCLE_WIN_WIDTH		SIDE_WIN_WIDTH - SIDE_X_PADDING
 # define	CYCLE_Y_OFFSET		SPEED_Y_OFFSET + SPEED_WIN_HEIGHT
 # define	CYCLE_X_OFFSET		SIDE_X_OFFSET + SIDE_X_PADDING
 
+# define	PLAYER_WIN			data->render.player_win
 # define	PLAYER_WIN_HEIGHT	4 * MAX_PLAYERS
 # define	PLAYER_WIN_WIDTH	SIDE_WIN_WIDTH - SIDE_X_PADDING * 2
 # define	PLAYER_Y_OFFSET		CYCLE_Y_OFFSET + CYCLE_WIN_HEIGHT
 # define	PLAYER_X_OFFSET		SIDE_X_OFFSET + SIDE_X_PADDING
 
+# define	PARAM_WIN 			data->render.param_win
 # define	PARAM_WIN_HEIGHT	8
 # define	PARAM_WIN_WIDTH		SIDE_WIN_WIDTH - SIDE_X_PADDING * 2
 # define	PARAM_Y_OFFSET		PLAYER_Y_OFFSET + PLAYER_WIN_HEIGHT + 4

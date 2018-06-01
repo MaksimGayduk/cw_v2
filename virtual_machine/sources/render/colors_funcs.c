@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   colors_funcs.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
+/*   By: mgayduk <mgayduk@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/31 10:50:36 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/06/01 13:11:16 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/06/01 16:11:55 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 void	init_colors(void)
 {
-	if (!has_colors()) 
+	if (!has_colors())
 	{
-    	endwin();
-    	error_msg("Your terminal does not support color", NULL);	
+		endwin();
+		error_msg("Your terminal does not support color", NULL);
 	}
 	start_color();
 	init_color(COLOR_MAGENTA, 500, 500, 500);
@@ -25,17 +25,14 @@ void	init_colors(void)
 	init_pair(2, COLOR_BLUE, COLOR_BLACK);
 	init_pair(3, COLOR_RED, COLOR_BLACK);
 	init_pair(4, COLOR_CYAN, COLOR_BLACK);
-	
 	init_pair(5, COLOR_BLACK, COLOR_GREEN);
 	init_pair(6, COLOR_BLACK, COLOR_BLUE);
 	init_pair(7, COLOR_BLACK, COLOR_RED);
 	init_pair(8, COLOR_BLACK, COLOR_CYAN);
-
 	init_pair(11, COLOR_WHITE, COLOR_GREEN);
 	init_pair(12, COLOR_WHITE, COLOR_BLUE);
 	init_pair(13, COLOR_WHITE, COLOR_RED);
 	init_pair(14, COLOR_WHITE, COLOR_CYAN);
-
 	init_pair(42, COLOR_MAGENTA, COLOR_MAGENTA);
 	init_pair(43, COLOR_MAGENTA, COLOR_BLACK);
 	init_pair(47, COLOR_BLACK, COLOR_MAGENTA);

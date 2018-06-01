@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   arena_window.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
+/*   By: mgayduk <mgayduk@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/28 17:21:09 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/31 20:35:51 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/06/01 16:01:38 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,12 @@
 /*
 **	Draws horisontal and vertical coordinate bars.
 */
-void		render_cordinates(WINDOW *a_win)
+
+static void		render_cordinates(WINDOW *a_win)
 {
 	size_t	i;
 
 	wmove(a_win, ARENA_Y_PADDING - 2, ARENA_X_PADDING);
-
 	wattron(a_win, COLOR_PAIR(43));
 	i = 0;
 	while (i < ARENA_RAW_SIZE)
@@ -39,11 +39,31 @@ void		render_cordinates(WINDOW *a_win)
 	wattroff(a_win, COLOR_PAIR(10));
 }
 
+static int		set_attributes(t_data *data, size_t i)
+{
+	int	c;
+
+	c = 0;
+	if (data->render.live_mark[i] &&
+		data->cycle - data->render.brightness_map[i] <= 50)
+		c = data->render.live_mark[i];
+	if (data->render.pc_map[i])
+		c = data->render.color_map[i] + 4;
+	else if (!c)
+		c = data->render.color_map[i];
+	if ((data->render.brightness_map[i] &&
+		data->cycle - data->render.brightness_map[i] <= 50))
+		wattron(data->render.arena_win, A_BOLD);
+	wattron(data->render.arena_win, COLOR_PAIR(c));
+	return (c);
+}
+
 /*
 **	Draws arena data with necessary colors of players.
 **	Color map array used to define color.
 */
-void		render_arena(t_data *data)
+
+void			render_arena(t_data *data)
 {
 	WINDOW	*a_win;
 	size_t	i;
@@ -56,24 +76,7 @@ void		render_arena(t_data *data)
 	i = 0;
 	while (i < MEM_SIZE)
 	{
-		c = 0;
-		
-		if (data->render.live_mark[i] &&
-			data->cycle - data->render.brightness_map[i] <= 50)
-			c = data->render.live_mark[i];
-			
-		if (data->render.pc_map[i])
-			c = data->render.color_map[i] + 4;
-		else if (!c)
-			c = data->render.color_map[i];
-
-
-		if ((data->render.brightness_map[i] &&
-			data->cycle - data->render.brightness_map[i] <= 50))
-			wattron(a_win, A_BOLD);
-
-		
-		wattron(a_win, COLOR_PAIR(c));
+		c = set_attributes(data, i);
 		wprintw(a_win, "%02hhx", data->arena[i]);
 		wattroff(a_win, COLOR_PAIR(c));
 		wattroff(a_win, A_BOLD);
@@ -88,15 +91,15 @@ void		render_arena(t_data *data)
 	wrefresh(a_win);
 }
 
-
 /*
 **	Renders arena data.
 */
-void	render_arena_win(t_data *data)
+
+void			render_arena_win(t_data *data)
 {
 	if (!data->render.arena_win)
-		data->render.arena_win = create_new_window(ARENA_WIN_HEIGHT, ARENA_WIN_WIDTH,
-													ARENA_Y_OFFSET, ARENA_X_OFFSET);
+		data->render.arena_win = create_new_window(ARENA_WIN_HEIGHT,
+							ARENA_WIN_WIDTH, ARENA_Y_OFFSET, ARENA_X_OFFSET);
 	render_cordinates(data->render.arena_win);
 	render_arena(data);
 }
