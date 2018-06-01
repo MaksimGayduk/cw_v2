@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/07 11:48:33 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/24 12:51:42 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/06/01 13:46:15 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static void		read_direct_value(t_data *data, int *padding, t_process *process)
 	if ((i = get_next_available_argument(process)) > 2)
 		return ;
 	(*padding)++;
-	size = op_tab[process->oper.op_code].label_size;
+	size = g_op_tab[process->oper.op_code].label_size;
 	ft_bzero(temp, sizeof(temp));
 	read_arena_chunk(data, temp, process->pc + *padding, size);
 	if (temp[0] & 0b10000000)
@@ -101,12 +101,12 @@ void	parse_arguments(t_data *data, t_process *process)
 	t_byte	codage;
 
 	padding = 0;
-	if (!op_tab[process->oper.op_code].codage)
+	if (!g_op_tab[process->oper.op_code].codage)
 		read_direct_value(data, &padding, process);
 	else
 	{
 		padding = 1;
-		args_num = op_tab[process->oper.op_code].args_num;
+		args_num = g_op_tab[process->oper.op_code].args_num;
 		codage = data->arena[(process->pc + padding) % MEM_SIZE];
 		while (args_num--)
 		{

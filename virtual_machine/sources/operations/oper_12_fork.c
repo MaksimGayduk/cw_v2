@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/16 13:08:36 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/06/01 11:39:55 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/06/01 13:44:00 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	let_new_process_play(t_data *data, t_process *process)
 	if (IS_OPCODE(data->arena[process->pc]))
 	{
 		process->oper.op_code = data->arena[process->pc];
-		process->oper.delay = op_tab[process->oper.op_code].delay - 1;
+		process->oper.delay = g_op_tab[process->oper.op_code].delay - 1;
 	}
 }
 

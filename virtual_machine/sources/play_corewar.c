@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/05 11:43:30 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/06/01 12:37:54 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/06/01 13:45:50 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	execute_instruction(t_data *data, t_list *track)
 
 	test = track->content;
 	parse_arguments(data, track->content);
-	op_tab[OPCODE(track)].action(data, track->content);				
+	g_op_tab[OPCODE(track)].action(data, track->content);				
 	if (OPCODE(track) != 9 || !CARRY(track))
 		compute_pc(data, track->content, PADDING(track));
 	if (V_FLAG) render_arena(data);
@@ -55,7 +55,7 @@ inline void		compute_instructions(t_data *data)
 		if (!OPCODE(track) && IS_OPCODE(PC_VAL(track)))
 		{
 			OPCODE(track) = PC_VAL(track);
-			DELAY(track) = op_tab[OPCODE(track)].delay;
+			DELAY(track) = g_op_tab[OPCODE(track)].delay;
 		}
 		if (DELAY(track))
 			DELAY(track)--;

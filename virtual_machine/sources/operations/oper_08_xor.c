@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/11 16:45:00 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/23 15:09:45 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/06/01 13:37:47 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,12 @@ void	xor(t_data *data, t_process *process)
 	short	reg_num;
 
 	data = NULL;
-	if ((TYPE(process, 0) == REG_CODE && 
+	if ((TYPE(process, 0) == REG_CODE &&
 		INCORRECT_REG_NUM(REG_NUM(process, 0))) ||
 		(TYPE(process, 1) == REG_CODE &&
 		INCORRECT_REG_NUM(REG_NUM(process, 1))) ||
 		INCORRECT_REG_NUM(REG_NUM(process, 2)))
 		return ;
-		
 	v1 = get_int_number(VALUE(process, 0));
 	v2 = get_int_number(VALUE(process, 1));
 	res = v1 ^ v2;

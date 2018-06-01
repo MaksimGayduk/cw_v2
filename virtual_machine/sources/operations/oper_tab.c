@@ -6,18 +6,18 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/04 13:55:18 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/24 12:21:08 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/06/01 13:43:30 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "operations.h"
 
 /*
-**	global array, that contains instructions of Corewar  
+**	Global array, that contains instructions of Corewar
 **	{op_code, name, description, codage, argc, cycles, carry, label size}
 */
 
-const t_op	op_tab[OPER_QTY] = 
+const t_op	g_op_tab[OPER_QTY] =
 {
 	{0, NULL, NULL, 0, 0, 0, 0, 0, NULL},
 	{0x01, "live", "alive", 0, 1, 10, 0, REG_SIZE, live},

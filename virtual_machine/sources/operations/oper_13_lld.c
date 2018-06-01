@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/10 10:01:03 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/23 16:15:51 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/06/01 13:40:33 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 /*
 **	Load the value of the first argument in the registry.
-**	Like ld, but without % IDX_MOD. 
+**	Like ld, but without % IDX_MOD.
 */
 
 void	lld(t_data *data, t_process *process)

@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/05 11:57:21 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/24 12:45:47 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/06/01 13:45:27 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ typedef struct	s_op
 	void		(*action)(t_data *, t_process *);
 }				t_op;
 
-extern			const t_op	op_tab[18];
+extern			const t_op	g_op_tab[18];
 
 void			live(t_data *data, t_process *process);
 void			ld(t_data *data, t_process *process);

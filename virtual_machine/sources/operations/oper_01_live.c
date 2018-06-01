@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/09 09:22:48 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/05/31 17:43:12 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/06/01 13:34:57 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 **	is indeed alive.
 */
 
-int	is_player_num(t_data *data, int val)
+int		is_player_num(t_data *data, int val)
 {
 	size_t	i;
 
@@ -47,8 +47,7 @@ void	live(t_data *data, t_process *process)
 			data->render.live_mark[process->pc] = p_num + 11;
 			data->render.brightness_map[process->pc] = data->cycle;
 		}
-			
-	}	
+	}
 	process->live++;
 	data->total_lives++;
 }
