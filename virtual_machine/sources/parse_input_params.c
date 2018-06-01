@@ -6,11 +6,28 @@
 /*   By: mgayduk <mgayduk@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/17 15:27:51 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/06/01 15:14:49 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/06/01 17:56:49 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
+
+static void	parse_dump(t_data *data, char *d_arg, size_t *arg_num)
+{
+	if (!d_arg)
+		error_msg("dump value wasn`t specified", NULL);
+	if (!ft_is_number(d_arg))
+		error_msg("dump value should be non-negative number", NULL);
+	data->input_params.dump_value = ft_atoi(d_arg);
+	if (data->input_params.dump_value < 0)
+		error_msg("dump value should be non-negative number", NULL);
+	data->input_params.dump = 1;
+	(*arg_num)++;
+}
+
+/*
+**	Every player should have unique number. This functions checks it.
+*/
 
 static void	check_uniqueness(t_data *data, int number)
 {
@@ -25,19 +42,7 @@ static void	check_uniqueness(t_data *data, int number)
 	}
 }
 
-static void	parse_dump(t_data *data, char *d_arg)
-{
-	if (!d_arg)
-		error_msg("dump value wasn`t specified", NULL);
-	if (!ft_is_number(d_arg))
-		error_msg("dump value should be non-negative number", NULL);
-	data->input_params.dump_value = ft_atoi(d_arg);
-	if (data->input_params.dump_value < 0)
-		error_msg("dump value should be non-negative number", NULL);
-	data->input_params.dump = 1;
-}
-
-static void	parse_player_info(t_data *data, char **p_args)
+static void	parse_player_info(t_data *data, char **p_args, size_t *arg_num)
 {
 	size_t	i;
 	int		number;
@@ -54,7 +59,13 @@ static void	parse_player_info(t_data *data, char **p_args)
 	check_uniqueness(data, number);
 	data->input_params.players_info[i].signature = number;
 	data->input_params.players_info[i].used = 1;
+	*arg_num += 2;
 }
+
+/*
+**	If player`s number was not specified it should be computed.
+**	number of new player = number of previous player + 1.
+*/
 
 static void	compute_player_info(t_data *data, char *file_path)
 {
@@ -88,19 +99,13 @@ void		parse_input_params(t_data *data, char **argv)
 			i++;
 		}
 		else if (ft_strequ(argv[i], "-dump"))
-		{
-			parse_dump(data, argv[++i]);
-			i++;
-		}
+			parse_dump(data, argv[++i], &i);
 		else
 		{
 			if (data->players_qty == MAX_PLAYERS)
 				error_msg("limit of players is exceeded", NULL);
 			if (ft_strequ(argv[i], "-n"))
-			{
-				parse_player_info(data, &(argv[++i]));
-				i += 2;
-			}
+				parse_player_info(data, &(argv[++i]), &i);
 			else
 				compute_player_info(data, argv[i++]);
 			data->players_qty++;
