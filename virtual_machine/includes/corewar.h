@@ -6,7 +6,7 @@
 /*   By: mgayduk <mgayduk@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/26 17:22:40 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/06/01 16:55:01 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/06/02 14:00:19 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ typedef char	t_byte;
 
 # define DUMPED				data->input_params.dump
 # define DUMP_VALUE 		data->input_params.dump_value
+# define INTERACTIVE		data->input_params.i
 # define V_FLAG				data->input_params.v
 
 # define MEM_ERROR "memory allocation failed"
@@ -140,6 +141,7 @@ typedef	struct	s_info
 
 typedef	struct	s_params
 {
+	t_byte		i;
 	t_byte		v;
 	t_byte		dump;
 	int			dump_value;
@@ -335,5 +337,8 @@ void			render_parameters(t_data *data);
 
 void			init_colors(void);
 void			update_color_map(t_data *data, t_byte src, int start, size_t n);
+
+void			handle_interactive_mode(t_data *data);
+void			set_speed(t_data *data);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: mgayduk <mgayduk@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/05 11:43:30 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/06/01 15:25:45 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/06/02 13:10:27 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void	handle_cycle(t_data *data)
 }
 
 /*
-**	Main cycle of corewar game.
+**	Main function for corewar game cycle.
 */
 
 int		play_corewar(t_data *data)

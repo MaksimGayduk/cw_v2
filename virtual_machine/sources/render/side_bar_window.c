@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   side_bar_window.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgayduk <mgayduk@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/29 13:20:20 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/06/01 16:36:22 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/06/02 14:35:01 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,15 @@ void	render_speed_data(t_data *data)
 								SPEED_Y_OFFSET, SPEED_X_OFFSET);
 		wrefresh(data->render.side_win);
 	}
-	if (data->render.paused)
-		mvwprintw(SPEED_WIN, 0, 0, "** PAUSED ** ");
-	if (!data->render.paused)
-		mvwprintw(SPEED_WIN, 0, 0, "** RUNNING **");
+	if (INTERACTIVE)
+		mvwprintw(SPEED_WIN, 0, 0, "** INTERACTIVE MODE **");
+	else
+	{
+		if (data->render.paused)
+			mvwprintw(SPEED_WIN, 0, 0, "     ** PAUSED **     ");
+		if (!data->render.paused)
+			mvwprintw(SPEED_WIN, 0, 0, "     ** RUNNING **    ");
+	}
 	mvwprintw(SPEED_WIN, 2, 0, "Max Speed: %4i cycle/second",
 				data->render.speed);
 	touchwin(SPEED_WIN);

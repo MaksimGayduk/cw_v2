@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+         #
+#    By: mgayduk <mgayduk@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/27 16:20:32 by mgayduk           #+#    #+#              #
-#    Updated: 2018/05/31 10:51:56 by mgayduk          ###   ########.fr        #
+#    Updated: 2018/06/02 13:56:58 by mgayduk          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -66,7 +66,8 @@ OPER := oper_tab.c		\
 REN	:=	render_main.c		\
 		arena_window.c		\
 		side_bar_window.c	\
-		colors_funcs.c
+		colors_funcs.c		\
+		mode_parameters.c
 
 SRC := $(SRC) $(OPER) $(REN)
 
