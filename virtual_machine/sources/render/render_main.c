@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_main.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgayduk <mgayduk@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/28 12:50:38 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/06/02 14:04:01 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/06/02 15:09:19 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	render_winner(t_data *data)
 	WINDOW *s_win;
 	size_t winner;
 
+	render_side_bar(data);
 	winner = announce_the_winner(data);
 	s_win = data->render.side_win;
 	mvwprintw(s_win, WINNER_Y_OFFSET, WINNER_X_OFFSET, "The winner is: ");

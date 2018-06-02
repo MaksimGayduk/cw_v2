@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/29 13:20:20 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/06/02 14:35:01 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/06/02 15:20:19 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ void	render_cycle_data(t_data *data)
 	}
 	mvwprintw(CYCLE_WIN, 0, 0, "Cycle:\t\t%zu", data->cycle);
 	mvwprintw(CYCLE_WIN, 2, 0, "Processes:\t%zu", data->process_qty);
+	mvwprintw(CYCLE_WIN, 4, 0, "Total lives:                    ");
+	mvwprintw(CYCLE_WIN, 4, 0, "Total lives:\t%zu", data->total_lives);
 	touchwin(CYCLE_WIN);
 	wrefresh(CYCLE_WIN);
 }

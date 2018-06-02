@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/17 12:48:39 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/06/01 14:02:22 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/06/02 14:59:42 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,5 +87,7 @@ void			kill_processes(t_data *data)
 	if (alive == data->process_qty)
 		return ;
 	delete_dead_processes(data);
+	if (V_FLAG)
+		announce_killed_qty(data->process_qty - alive);
 	data->process_qty = ft_lstlen(data->processes);
 }

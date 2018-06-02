@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   corewar.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgayduk <mgayduk@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/26 17:22:40 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/06/02 14:00:19 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/06/02 16:09:29 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -207,6 +207,7 @@ void			set_lives_to_zero(t_data *data);
 */
 size_t			announce_the_winner(t_data *data);
 void			introduce_players(t_data *data);
+void			announce_killed_qty(int killed_qty);
 
 /*
 ** helpers.c
@@ -214,6 +215,7 @@ void			introduce_players(t_data *data);
 void			error_msg(char *msg, char *arg);
 void			*reverse_array(void *arr, size_t arr_size);
 void			dump_arena(t_data *data);
+void			print_usage(void);
 
 /*
 **	number_funcs.c
@@ -301,7 +303,7 @@ void			let_new_process_play(t_data *data, t_process *process);
 # define SPEED_X_OFFSET		SIDE_X_OFFSET + SIDE_X_PADDING
 
 # define CYCLE_WIN			data->render.cycle_win
-# define CYCLE_WIN_HEIGHT	4
+# define CYCLE_WIN_HEIGHT	6
 # define CYCLE_WIN_WIDTH		SIDE_WIN_WIDTH - SIDE_X_PADDING
 # define CYCLE_Y_OFFSET		SPEED_Y_OFFSET + SPEED_WIN_HEIGHT
 # define CYCLE_X_OFFSET		SIDE_X_OFFSET + SIDE_X_PADDING

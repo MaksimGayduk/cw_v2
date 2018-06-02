@@ -1,0 +1,26 @@
+---------------------------------------------------------------
+Usage: ./corewar [champ-file]
+---------------------------------------------------------------
+minimun number of champions 1
+maximum number of champions 4
+
+Additional flags:
+    -dump [n] - prints memory dump of the game on n cycle
+
+*---                                                        ---*
+|   -v - turns on visualization:                               |
+|        Visualistion controls:                                |
+
+        i - interactive step by step mode
+
+        space - run / pause the game
+
+        When the game pused it`s speed can be change:
+            s - reduce speed for 100 cycles/second
+            q - reduce speed for 10 cycles/second
+            w - reduce speed for 1 cycles/second
+            r - increase speed for 1 cycles/second
+|           t - increase speed for 10 cycles/second            |
+|           d - increase speed for 100 cycles/second           |
+*---                                                        ---*
+
