@@ -1,6 +1,39 @@
 .name "Megadeth"
 .comment "Dread and the Fugitive Mind"
 
+st r1, 6
+live %-42
+st r2, -9
+lfork %2033
+st r1, 6
+live %-42
+lfork %1337
+st r2, -9
+st r1, 6
+live %-42
+st r2, -9
+fork %500
+st r1, 6
+live %-42
+lfork %3000
+st r2, -9
+
+st r1, 6
+live %-42
+st r2, -9
+lfork %2033
+st r1, 6
+live %-42
+lfork %1337
+st r2, -9
+st r1, 6
+live %-42
+st r2, -9
+fork %500
+st r1, 6
+live %-42
+fork %1000
+st r2, -9
 
 castle:
 	st r1, 6
@@ -8,7 +41,7 @@ castle:
 	zjmp %-5
 	ld %1, r2
 
-	# Код для записи интсрукции жизни 
+
 	ld %880, r3
 	ld %33682435, r4	 # 02 01 f4 03
 	ld %1879114227, r5
@@ -24,20 +57,11 @@ castle:
 	st r3, 495
 	st r6, 493
 
-	# st r3, 493
-	# st r6, 492
-	# st r7, 491
+	st r3, 493
+	st r6, 492
+	st r7, 491
 
 	and r16, 0, r16
 	fork %457
 	zjmp %:castle
 
-
-# live:
-# 	live %-42
-# 	zjmp %:live
-	
-# attacker:
-# 	fork %1
-# 	and r3, 0, r3
-# 	zjmp %:live
